@@ -1,0 +1,31 @@
+// Breakpoints map
+$breakpoints: (
+  xs: 480px,
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  xxl: 1440px,
+);
+
+// Responsive Mixin
+@mixin respond($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "⚠️ Breakpoint `#{$breakpoint}` not found in $breakpoints map.";
+  }
+}
+
+@mixin flex-column() {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-row-center() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

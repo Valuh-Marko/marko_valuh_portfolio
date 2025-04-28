@@ -1,0 +1,53 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixin" as *;
+
+.c-footer {
+  padding: 2rem 1rem;
+  background-color: $orange;
+  color: $black;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem;
+
+  @include respond(md) {
+    grid-template-columns: 3fr 1fr 1fr;
+  }
+}
+
+.c-divider {
+  grid-column: span 3;
+}
+
+.c-footer__heading {
+  font-size: 1.25rem;
+  font-family: $suisse-intl-mono;
+  text-transform: uppercase;
+}
+
+.c-footer__links {
+  @include flex-column();
+  gap: 0.5rem;
+  grid-column: 2/3;
+}
+
+.c-footer__navigation {
+  @include flex-column();
+  gap: 0.5rem;
+  text-transform: uppercase;
+}
+
+.c-footer-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.c-footer__disclaimer {
+  text-transform: uppercase;
+  margin-top: 8rem;
+  font-size: 0.75rem;
+  display: grid;
+  grid-column: span 3;
+  grid-template-columns: subgrid;
+  font-family: $suisse-intl-mono;
+}

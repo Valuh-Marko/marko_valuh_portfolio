@@ -1,0 +1,56 @@
+@use "./variables" as *;
+@use "./mixin" as *;
+
+.c-section {
+  padding-top: 6rem;
+  padding-bottom: 8rem;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 2.5rem;
+
+  @include respond(md) {
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 5rem;
+  }
+}
+
+.c-section__label {
+  margin-top: 0.25rem;
+  display: flex;
+  font-family: $suisse-intl-mono;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  gap: 1rem;
+
+  &.c-section__label--alt {
+    display: none;
+    gap: 0.5rem;
+
+    @include respond(md) {
+      display: flex;
+    }
+  }
+
+  @include respond(md) {
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 5rem;
+  }
+}
+
+.c-section__column {
+  @include flex-column();
+  gap: 4rem;
+}
+
+.c-section__title {
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+  font-weight: 500;
+}
+
+.c-section-icon-wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4rem;
+}

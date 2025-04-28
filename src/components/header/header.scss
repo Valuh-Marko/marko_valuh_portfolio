@@ -1,0 +1,238 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixin" as *;
+
+.c-header-wrapper {
+  position: fixed;
+  z-index: 100;
+  width: min(calc(100vw - 2rem), 37.5rem);
+}
+
+.c-header {
+  @include flex-column();
+  justify-content: space-between;
+  position: relative;
+  background-color: #e2e3e6;
+  border-radius: 0.25rem;
+  height: calc(100vh - 2rem);
+  overflow-y: hidden;
+  clip-path: polygon(
+    100% 0,
+    100% 100%,
+    17.75rem 100%,
+    17.25rem calc(100% - 0.5rem),
+    7rem calc(100% - 0.5rem),
+    6.5rem 100%,
+    1.5rem 100%,
+    0 calc(100% - 1.5rem),
+    0 0,
+    47% 0
+  );
+}
+
+.c-header-bar {
+  display: flex;
+  height: fit-content;
+  gap: 1rem;
+}
+
+.c-header-bar__logo {
+  padding-left: 0.75rem;
+  padding-top: 0.75rem;
+  min-width: 6rem;
+  font-family: $suisse-intl-mono;
+  font-size: 3rem;
+  line-height: 3rem;
+  font-weight: bold;
+}
+
+.c-header-bar__info {
+  @include flex-column();
+  padding-top: 0.75rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-family: $suisse-intl-mono;
+  justify-content: space-between;
+  text-transform: uppercase;
+  width: 100%;
+  height: 6.5rem;
+  padding-bottom: 1rem;
+}
+
+.c-header-bar__info-title {
+  @include flex-column();
+}
+
+.c-header-bar__menu-icon {
+  @include flex-row-center();
+  cursor: pointer;
+  min-width: 5.5rem;
+  padding-right: 1rem;
+
+  &:hover {
+    .c-bar-line::before {
+      left: 100%;
+    }
+  }
+}
+
+.c-bar-holder {
+  @include flex-row-center();
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.c-bar-line {
+  position: relative;
+  height: 1px;
+  border-radius: 1px;
+  background-color: $black;
+  transform-origin: center;
+  width: 1.5rem;
+
+  &::before {
+    content: "";
+    position: absolute;
+    background-color: #e2e3e6;
+    border-radius: 1px;
+    height: 1px;
+    width: 0.75rem;
+    left: -0.75rem;
+    top: 0;
+    z-index: 2;
+    transition: all 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+
+  &:nth-of-type(1) {
+    &::before {
+      transition-delay: 0.1s;
+    }
+  }
+
+  &:nth-of-type(2) {
+    &::before {
+      transition-delay: 0.15s;
+    }
+  }
+
+  &:nth-of-type(3) {
+    &::before {
+      transition-delay: 0.2s;
+    }
+  }
+}
+
+.c-link {
+  display: flex;
+  align-items: center;
+  border-top: 1px dashed $gray;
+  overflow-y: hidden;
+  transition: color 0.3s ease-in;
+  white-space: nowrap;
+
+  &:hover {
+    color: $orange;
+  }
+}
+
+.c-link__indicator {
+  padding: 1rem 0 1rem 0.75rem;
+  font-family: $suisse-intl-mono;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  min-width: 25%;
+}
+
+.c-link__text {
+  position: relative;
+  font-weight: 500;
+}
+
+.c-header-contact {
+  background-color: $orange;
+  min-height: fit-content;
+  height: 7.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.c-header-contact__left {
+  padding-left: 0.75rem;
+  padding-top: 0.75rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  min-width: 6rem;
+  font-family: $suisse-intl-mono;
+  white-space: pre-line;
+  text-transform: uppercase;
+}
+
+.c-header-contact__center {
+  @include flex-column();
+  justify-content: space-between;
+  padding-left: 0.75rem;
+  padding-top: 0.75rem;
+  padding-bottom: 1rem;
+  font-size: 0.75rem;
+  font-family: $suisse-intl-mono;
+  width: 100%;
+
+  span:first-of-type {
+    text-transform: uppercase;
+    font-family: $font-helvetica-now;
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+  }
+}
+
+.c-socials-holder {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+.c-header-label {
+  font-size: 0.5rem;
+  text-align: center;
+  writing-mode: vertical-lr;
+  font-family: $suisse-intl-mono;
+  text-orientation: upright;
+  text-transform: uppercase;
+  letter-spacing: -0.125rem;
+  line-height: 0.5rem;
+  margin-right: -0.5rem;
+}
+
+.c-header-contact-download-wrapper {
+  @include flex-row-center();
+  min-width: 5.5rem;
+
+  &:hover {
+    svg {
+      transform: translateY(0);
+    }
+  }
+}
+
+.c-header-contact-download {
+  overflow: hidden;
+  align-self: center;
+  padding-right: 1rem;
+  max-height: 2rem;
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+    transform: translateY(calc(-100% - 1.5rem));
+    transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+
+    &:first-of-type {
+      margin-bottom: 1.5rem;
+    }
+  }
+}

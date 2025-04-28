@@ -1,0 +1,26 @@
+@use "./mixin" as *;
+@use "./variables" as *;
+
+html {
+  font-size: 11px;
+
+  @include respond(md) {
+    font-size: 12px;
+  }
+
+  @include respond(lg) {
+    font-size: 13px;
+  }
+
+  @include respond(xl) {
+    font-size: 14px;
+  }
+
+  @include respond(xxl) {
+    font-size: 16px;
+  }
+}
+
+.container {
+  padding-inline: 1rem;
+}

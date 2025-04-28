@@ -1,0 +1,80 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixin" as *;
+
+.c-stacking-cards {
+  position: relative;
+}
+
+.c-card-container {
+  position: sticky;
+  top: 0;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 2.5rem;
+  padding-block: 1.5rem;
+  border-top: 1px dashed $gray;
+  background-color: $white;
+
+  @include respond(md) {
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 5rem;
+  }
+}
+
+.c-card__label {
+  margin-top: 0.25rem;
+  display: flex;
+  font-family: $suisse-intl-mono;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  gap: 1rem;
+
+  &.c-section__label--alt {
+    display: none;
+    gap: 0.5rem;
+
+    @include respond(md) {
+      display: flex;
+    }
+  }
+
+  @include respond(md) {
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 5rem;
+  }
+}
+
+.c-card__content {
+  @include flex-column();
+}
+
+.c-card__title {
+  font-size: 2rem;
+  line-height: 2rem;
+  margin-bottom: 3rem;
+  font-weight: 500;
+}
+
+.c-card__excerpt {
+  text-indent: 6em;
+  margin-bottom: 2rem;
+  padding-right: 6rem;
+}
+
+.c-card__img-holder {
+  @include flex-row-center();
+  border-radius: 0.25rem;
+  background-color: $light-gray;
+  aspect-ratio: 2 / 1;
+  grid-column: span 2;
+
+  @include respond(md) {
+    aspect-ratio: 1;
+    grid-column: 3 / 4;
+  }
+}
+
+.c-card__img {
+  width: 10rem;
+  height: 10rem;
+}

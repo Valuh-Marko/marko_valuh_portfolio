@@ -1,0 +1,22 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "title": "Dr Bean Coffee",
+      "excerpt": "Small workshop based in Novi Sad, specializing in fresh Turkish and espresso coffee.",
+      "url": "projects/dr-bean"
+    },
+    {
+      "id": 2,
+      "title": "Advokat u Novom Sadu",
+      "excerpt": "Law office providing professional legal services across a wide range of practice areas, representing clients before all courts, government bodies, and institutions.",
+      "url": "projects/epam"
+    },
+    {
+      "id": 3,
+      "title": "Pelemiš Dental Care",
+      "excerpt": "Professional healthcare facility providing services like check-ups, cleanings, treatments, and oral surgeries.",
+      "url": "projects/codeplicity"
+    }
+  ]
+}

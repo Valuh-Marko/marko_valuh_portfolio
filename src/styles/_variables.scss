@@ -1,0 +1,46 @@
+// Font Family
+$font-helvetica-now: "Helvetica Now Display", sans-serif;
+$suisse-intl-mono: "Suisse Int'l Mono", sans-serif;
+
+// Font Weights
+$font-weight-map: (
+  hairline: 100,
+  thin: 200,
+  extra-light: 250,
+  regular: 400,
+  medium: 500,
+  bold: 700,
+  extra-bold: 800,
+  black: 900,
+  extra-black: 950,
+);
+
+$black: #000000;
+$white: #ffffff;
+$gray: #a7a7a7;
+$light-gray: #f0f1f4;
+$orange: #e86c39;
+
+// Spacing Scale (1rem to 8rem)
+$spacing-1: 1rem;
+$spacing-2: 2rem;
+$spacing-3: 3rem;
+$spacing-4: 4rem;
+$spacing-5: 5rem;
+$spacing-6: 6rem;
+$spacing-7: 7rem;
+$spacing-8: 8rem;
+
+// Base font sizes (mobile first)
+$font-xs: 0.75rem; // 12px
+$font-sm: 1rem; // 16px
+$font-md: 1.125rem; // 18px
+$font-lg: 1.25rem; // 20px
+$font-xl: 1.5rem; // 24px
+
+$font-h6: 1.75rem; // 28px
+$font-h5: 2rem; // 32px
+$font-h4: 2.5rem; // 40px
+$font-h3: 3rem; // 48px
+$font-h2: 3.75rem; // 60px
+$font-h1: 4.5rem; // 72px
