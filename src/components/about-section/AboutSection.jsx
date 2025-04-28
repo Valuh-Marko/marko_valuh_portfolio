@@ -37,7 +37,11 @@ export const AboutSection = () => {
         <div className="c-about-project-container">
           {data.map((project) => (
             <div className="c-about-project">
-              <img src="" alt="" className="c-about-project__img" />
+              <img
+                src={project.img_url}
+                alt=""
+                className="c-about-project__img"
+              />
               <h5 className="c-about-project__title">{project.title}</h5>
               <p className="c-about-project__desc">{project.excerpt}</p>
             </div>

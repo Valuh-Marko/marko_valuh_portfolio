@@ -15,6 +15,13 @@ const WithTransition = (WrappedComponent) => {
       enter: {
         opacity: 1,
       },
+      exit: {
+        opacity: 0.5,
+        transition: {
+          duration: 0.6,
+          ease: [0.76, 0, 0.24, 1],
+        },
+      },
     };
 
     const slide = {
@@ -38,17 +45,20 @@ const WithTransition = (WrappedComponent) => {
         y: 0,
         scale: 1,
         opacity: 1,
+        backgroundColor: "white",
       },
       enter: {
         y: 0,
         scale: 1,
         opacity: 1,
+        backgroundColor: "white",
       },
 
       exit: {
         y: -100,
         scale: 0.85,
-        opacity: 0.5,
+        opacity: 0,
+        backgroundColor: "black",
         transition: {
           duration: 1.2,
           ease: [0.76, 0, 0.24, 1],

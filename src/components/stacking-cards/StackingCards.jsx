@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import { Card } from "./components/Card";
 import "./stacking-cards.scss";
 
-export const StackingCards = ({ response, label, className }) => {
+export const StackingCards = ({ response, label, className, long_desc }) => {
   const container = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -31,6 +31,7 @@ export const StackingCards = ({ response, label, className }) => {
           data={item}
           top={top}
           key={item.id}
+          long_desc={long_desc}
         />
       ))}
     </motion.div>

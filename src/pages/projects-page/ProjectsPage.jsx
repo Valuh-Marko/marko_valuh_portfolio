@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import projects from "../../assets/images/projects.webp";
 import { StackingCards } from "../../components/stacking-cards/StackingCards";
-import response from "../../data/work_experience.json";
+import response from "../../data/projects.json";
 import "./projects_page.scss";
 
 export const ProjectsPage = WithTransition(() => {
@@ -43,6 +43,7 @@ export const ProjectsPage = WithTransition(() => {
           className="c-projects__cards"
           label={"P"}
           response={response}
+          long_desc={true}
         ></StackingCards>
       </div>
     </div>

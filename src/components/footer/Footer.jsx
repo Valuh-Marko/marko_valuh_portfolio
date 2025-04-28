@@ -7,7 +7,13 @@ import "./footer.scss";
 export const Footer = () => {
   return (
     <div className="c-footer">
-      <h5 className="c-footer-logo">MV - Marko Valuh</h5>
+      <div className="c-footer__logo-holder">
+        <img
+          className="c-footer-logo"
+          src={`${import.meta.env.BASE_URL}/marko_valuh_logo.png`}
+        />
+        <h5>Marko Valuh</h5>
+      </div>
       <h5 className="c-footer__heading">Contact</h5>
       <h5 className="c-footer__heading">Navigate</h5>
       <Divider color={"black"} />
