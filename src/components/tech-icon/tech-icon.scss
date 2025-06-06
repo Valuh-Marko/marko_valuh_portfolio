@@ -1,0 +1,17 @@
+.c-tech-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.25rem;
+}
+
+.c-icon__title {
+  margin-top: 0.25rem;
+  font-family: "Suisse Int'l Mono", sans-serif;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  text-align: center;
+  gap: 1rem;
+}

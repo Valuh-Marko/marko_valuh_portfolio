@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import React, { useRef } from "react";
 import { Card } from "./components/Card";
 import "./stacking-cards.scss";
+import { useLocation } from "react-router";
 
 export const StackingCards = ({ response, label, className, long_desc }) => {
   const container = useRef(null);
@@ -11,7 +12,14 @@ export const StackingCards = ({ response, label, className, long_desc }) => {
     offset: ["start start", "end end"],
   });
 
-  const { data } = response;
+  const { data, location } = response;
+
+  const parsedData = data.map((item) => {
+    return {
+      ...item,
+      url: `${location}/${item.url}`,
+    };
+  });
 
   const top = useTransform(
     scrollYProgress,
@@ -24,7 +32,7 @@ export const StackingCards = ({ response, label, className, long_desc }) => {
       ref={container}
       className={`c-stacking-cards ${className && className}`}
     >
-      {data.map((item) => (
+      {parsedData.map((item) => (
         <Card
           label={label}
           index={item.id}

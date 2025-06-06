@@ -1,0 +1,26 @@
+{
+  "company": "Codeplicity",
+  "role": "Front-end Developer",
+  "location": "Novi Sad, Serbia",
+  "duration": {
+    "from": "February 2021",
+    "to": "February 2022"
+  },
+  "projects": [
+    {
+      "name": "Internal Tools & Infrastructure",
+      "role": "Front-end Developer",
+      "description": [
+        "Built interactive internal tools using vanilla JavaScript, PHP, and HTML, focusing on performance and simplicity.",
+        "Styled UI components using modular SASS, maintaining clean and maintainable codebases across projects.",
+        "Used Vagrant to provision and standardize local environments, reducing onboarding time and eliminating dev machine inconsistencies."
+      ],
+      "technologies": [
+        "JavaScript",
+        "PHP",
+        "SCSS",
+        "Vagrant"
+      ]
+    }
+  ]
+}

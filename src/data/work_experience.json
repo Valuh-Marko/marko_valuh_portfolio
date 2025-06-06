@@ -4,25 +4,26 @@
       "id": 1,
       "title": "Software Developer at NQode",
       "excerpt": "Built scalable front-end architectures using Angular and Next.js, with a focus on modular design, performance, and maintainability. Led initiatives to streamline development through reusable components, coding standards, and CI/CD workflows, resulting in faster feature delivery and improved team efficiency.",
-      "url": "work-experience/nqode"
+      "url": "nqode"
     },
     {
       "id": 2,
       "title": "Frontend Developer at EPAM Systems",
       "excerpt": "Implemented dynamic, responsive front-end features with Angular and Sass, enhancing UX through polished UI components and animations. Optimized deployment with Docker and fostered strong cross-functional collaboration to ensure timely, aligned project delivery.",
-      "url": "work-experience/epam"
+      "url": "epam"
     },
     {
       "id": 3,
       "title": "Frontend Developer at Codeplicity.",
       "excerpt": "Developed interactive web features using vanilla JavaScript, PHP, and HTML with a focus on performance and user experience. Employed modular SASS styling and Vagrant-based environments to ensure maintainability, visual consistency, and smooth team collaboration.",
-      "url": "work-experience/codeplicity"
+      "url": "codeplicity"
     },
     {
       "id": 4,
       "title": "Volunteer at WonderlandAI.",
       "excerpt": "At WonderlandAI, we volunteered by leading workshops to inspire and educate young students about AI and technology. Our focus was on making complex concepts fun, accessible, and engaging for the next generation.",
-      "url": "work-experience/wonderland"
+      "url": "wonderland"
     }
-  ]
+  ],
+  "location": "/work-experience"
 }

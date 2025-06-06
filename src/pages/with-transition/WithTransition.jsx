@@ -58,7 +58,7 @@ const WithTransition = (WrappedComponent) => {
         y: -100,
         scale: 0.85,
         opacity: 0,
-        backgroundColor: "black",
+        backgroundColor: "white",
         transition: {
           duration: 1.2,
           ease: [0.76, 0, 0.24, 1],

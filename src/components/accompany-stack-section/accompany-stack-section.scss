@@ -23,7 +23,13 @@
 
 .c-acc-button-stack {
   display: flex;
+  flex-direction: column;
+
   gap: 1rem;
+
+  @include respond(md) {
+    flex-direction: row;
+  }
 }
 
 .c-acc-stack__label {
