@@ -1,0 +1,29 @@
+{
+  "company": "EPAM Systems",
+  "role": "Front-end Developer",
+  "location": "Novi Sad, Serbia",
+  "duration": {
+    "from": "February 2022",
+    "to": "April 2024"
+  },
+  "projects": [
+    {
+      "name": "Meridianbet – Global Sports Betting and Casino",
+      "role": "Front-end Developer",
+      "description": [
+        "Developed responsive front-end interfaces using Angular and SASS, integrating dynamic components and smooth animations for a polished experience.",
+        "Contributed to platform performance by optimizing load times, reducing bundle sizes, and implementing lazy loading for key sections.",
+        "Set up containerized environments using Docker, ensuring parity between development and production, and significantly reducing deployment friction.",
+        "Bridged gaps between frontend, backend, and design teams by initiating and leading regular technical reviews and refinement sessions."
+      ],
+      "technologies": [
+        "Angular",
+        "React",
+        "SCSS",
+        "Nest.js",
+        "Docker",
+        "Figma"
+      ]
+    }
+  ]
+}

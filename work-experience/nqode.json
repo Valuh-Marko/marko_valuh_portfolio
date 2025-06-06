@@ -1,0 +1,40 @@
+{
+  "company": "NQODE",
+  "role": "Front-end Developer",
+  "location": "Novi Sad, Serbia",
+  "duration": {
+    "from": "April 2024",
+    "to": "Present"
+  },
+  "projects": [
+    {
+      "name": "Adam Project",
+      "role": "Front-end Developer",
+      "description": [
+        "Designed and built a modular, scalable Angular front-end architecture, enabling long-term flexibility and fast iteration on new features.",
+        "Created a design-aligned, reusable component library, documented for future developer use and scalable team collaboration.",
+        "Championed development standards: introduced strict linting, enforced code reviews, and built onboarding tools to help new team members integrate faster."
+      ],
+      "technologies": [
+        "Angular",
+        "Docker",
+        "Figma"
+      ]
+    },
+    {
+      "name": "SOURCE.AG",
+      "role": "Full-Stack Developer",
+      "description": [
+        "Built a high-performance web application using Next.js for frontend and NestJS for backend, prioritizing speed and SSR optimization.",
+        "Integrated dynamic data fetching and fine-tuned API performance to deliver a seamless, real-time user experience.",
+        "Worked hand-in-hand with the product owner to prioritize features, rapidly prototyping and iterating to meet tight timelines.",
+        "Deployed via Vercel, optimizing build pipelines and leveraging serverless infrastructure for stability at scale."
+      ],
+      "technologies": [
+        "Next.js",
+        "Nest.js",
+        "Figma"
+      ]
+    }
+  ]
+}
