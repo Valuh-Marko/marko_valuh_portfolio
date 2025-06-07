@@ -44,6 +44,7 @@ export const ProjectsPage = WithTransition(() => {
           label={"P"}
           response={response}
           long_desc={true}
+          external={true}
         ></StackingCards>
       </div>
     </div>

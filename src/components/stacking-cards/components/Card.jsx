@@ -14,7 +14,14 @@ const loadImage = async (index) => {
   return null;
 };
 
-export const Card = ({ label, index, data, top, long_desc }) => {
+export const Card = ({
+  label,
+  index,
+  data,
+  top,
+  long_desc,
+  external = false,
+}) => {
   const [src, setSrc] = useState(null);
 
   useEffect(() => {
@@ -37,7 +44,16 @@ export const Card = ({ label, index, data, top, long_desc }) => {
         <p className="c-card__excerpt">
           {long_desc ? data.excerpt_xl : data.excerpt}
         </p>
-        <Button label="Find out more" to={data.url} />
+
+        {external ? (
+          <Button
+            label="Visit Website"
+            blankTarget={true}
+            to={data.external_url}
+          />
+        ) : (
+          <Button label="Find out more" to={data.url} />
+        )}
       </div>
       <div className="c-card__img-holder">
         <img className="c-card__img" src={src} alt="card-img" />

@@ -4,7 +4,13 @@ import { Card } from "./components/Card";
 import "./stacking-cards.scss";
 import { useLocation } from "react-router";
 
-export const StackingCards = ({ response, label, className, long_desc }) => {
+export const StackingCards = ({
+  response,
+  label,
+  className,
+  long_desc,
+  external = false,
+}) => {
   const container = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -40,6 +46,7 @@ export const StackingCards = ({ response, label, className, long_desc }) => {
           top={top}
           key={item.id}
           long_desc={long_desc}
+          external={external}
         />
       ))}
     </motion.div>
