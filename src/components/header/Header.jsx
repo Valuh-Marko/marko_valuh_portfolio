@@ -17,8 +17,8 @@ export const Header = ({ scrollDirection }) => {
 
   const slideOut = {
     show: {
-      top: "1rem",
-      left: "1rem",
+      y: "1rem",
+      x: "1rem",
       transition: {
         duration: 0.4,
         ease: [0.76, 0, 0.24, 1],
@@ -26,11 +26,22 @@ export const Header = ({ scrollDirection }) => {
     },
 
     hide: {
-      top: "-100%",
-      left: "1rem",
+      y: "-100%",
+      x: "1rem",
       transition: {
         duration: 0.4,
         delay: 0.2,
+        ease: [0.76, 0, 0.24, 1],
+      },
+    },
+
+    exit: {
+      y: "-100%",
+      x: "1rem",
+      opacity: 0,
+      transition: {
+        duration: 0.4,
+        delay: 0.15,
         ease: [0.76, 0, 0.24, 1],
       },
     },
@@ -39,11 +50,12 @@ export const Header = ({ scrollDirection }) => {
   return (
     <motion.div
       initial={{
-        top: "1rem",
-        left: "1rem",
+        y: "1rem",
+        x: "1rem",
       }}
       variants={slideOut}
       animate={direction}
+      exit={"exit"}
       className="c-header-wrapper"
     >
       <motion.div
@@ -52,6 +64,13 @@ export const Header = ({ scrollDirection }) => {
         }}
         animate={variant}
         variants={headerHeight(height)}
+        exit={{
+          maxHeight: "6.5rem",
+          transition: {
+            duration: 0.4,
+            ease: [0.76, 0, 0.24, 1],
+          },
+        }}
         className="c-header"
       >
         <div className="c-header-bar">

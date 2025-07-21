@@ -26,13 +26,13 @@ const WithTransition = (WrappedComponent) => {
 
     const slide = {
       initial: {
-        top: "100vh",
+        y: "100vh",
       },
       enter: {
-        top: "100vh",
+        y: "100vh",
       },
       exit: {
-        top: "0",
+        y: "0",
         transition: {
           duration: 0.6,
           ease: [0.76, 0, 0.24, 1],
@@ -69,9 +69,9 @@ const WithTransition = (WrappedComponent) => {
     return (
       <div className="c-page-anim">
         <motion.div {...anim(slide)} className="c-page-anim__slide" />
+        <Header scrollDirection={scrollDirection} />
         <motion.div className="c-page-anim__page" {...anim(perspective)}>
           <motion.div {...anim(opacity)}>
-            <Header scrollDirection={scrollDirection} />
             <Component />
             <Footer />
           </motion.div>

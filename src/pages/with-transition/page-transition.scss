@@ -6,12 +6,11 @@
 
 .c-page-anim__slide {
   position: fixed;
-  top: 0;
-  left: 0;
+  transform: translateY(0) translateX(0);
   background-color: $white;
   height: 100vh;
   width: 100vw;
-  z-index: 3;
+  z-index: 150;
 }
 
 .c-page-anim__page {

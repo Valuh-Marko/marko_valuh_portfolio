@@ -4,6 +4,8 @@
 .c-header-wrapper {
   position: fixed;
   z-index: 100;
+  transform: translateY(0) translateX(0);
+  transform-origin: top left;
   width: min(calc(100vw - 2rem), 37.5rem);
 }
 
