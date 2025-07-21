@@ -56,10 +56,7 @@ export const Header = ({ scrollDirection }) => {
       >
         <div className="c-header-bar">
           <Link to="/" className="c-header-bar__logo">
-            <img
-              className="c-logo"
-              src={`${import.meta.env.BASE_URL}/mv_logo_simple.png`}
-            />
+            <img className="c-logo" src={`/mv_logo_simple.png`} />
           </Link>
           <div className="c-header-bar__info">
             <h5 className="c-header-bar__info-name">Marko Valuh</h5>
@@ -124,7 +121,7 @@ export const Header = ({ scrollDirection }) => {
           <span className="c-header-label">download CV</span>
           <Divider vertical={true} color={"black"} />
           <a
-            href={`${import.meta.env.BASE_URL}/files/Marko_Valuh_resume.pdf`}
+            href={`/files/Marko_Valuh_resume.pdf`}
             download
             className="c-header-contact-download-wrapper"
           >
