@@ -7,28 +7,35 @@ import { ProjectsPage } from "./pages/projects-page/ProjectsPage";
 import { WorkExperiencePage } from "./pages/work-experience-page/WorkExperiencePage";
 import { SingleWorkExperiencePage } from "./pages/single-work-experience-page/SingleWorkExperiencePage";
 import { SingleProjectPage } from "./pages/single-project-page/SingleProjectPage";
+import { useScrollLock } from "./hooks/useLockScroll";
 
 function App() {
   const location = useLocation();
   const [direction, setDirection] = useState(-1);
 
-  useEffect(() => {
-    const lenis = new Lenis({
-      autoRaf: true,
-    });
+  const [isTransitioning, setIsTransitioning] = useState(true);
 
+  const lenis = new Lenis({
+    autoRaf: true,
+  });
+
+  useScrollLock(isTransitioning);
+
+  useEffect(() => {
     lenis.on("scroll", (e) => {
       setDirection(e.direction);
     });
-
-    setTimeout(() => {
-      lenis.scrollTo(0, { immediate: true });
-    }, 1200);
-  }, [location.pathname]);
+  });
 
   return (
     <>
-      <AnimatePresence mode="wait">
+      <AnimatePresence
+        mode="wait"
+        onExitComplete={() => {
+          setIsTransitioning(false);
+          lenis.scrollTo(0, { immediate: true });
+        }}
+      >
         <Routes location={location} key={location.pathname}>
           <Route
             path="/"
