@@ -15,17 +15,17 @@ function App() {
 
   const [isTransitioning, setIsTransitioning] = useState(true);
 
-  const lenis = new Lenis({
-    autoRaf: true,
-  });
-
   useScrollLock(isTransitioning);
 
   useEffect(() => {
+    const lenis = new Lenis({
+      autoRaf: true,
+    });
+
     lenis.on("scroll", (e) => {
       setDirection(e.direction);
     });
-  });
+  }, [location.pathname]);
 
   return (
     <>
@@ -33,7 +33,7 @@ function App() {
         mode="wait"
         onExitComplete={() => {
           setIsTransitioning(false);
-          lenis.scrollTo(0, { immediate: true });
+          window.scrollTo(0, 0);
         }}
       >
         <Routes location={location} key={location.pathname}>
