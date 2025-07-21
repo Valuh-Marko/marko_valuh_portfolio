@@ -21,7 +21,7 @@ export const SingleWorkExperiencePage = WithTransition(() => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch(`/marko_valuh_portfolio/work-experience/${name}.json`)
+    fetch(`/work-experience/${name}.json`)
       .then((res) => res.json())
       .then((json) => setData(json))
       .catch((err) => console.error("Failed to load JSON:", err));
