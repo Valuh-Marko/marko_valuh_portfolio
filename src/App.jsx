@@ -8,6 +8,11 @@ import { WorkExperiencePage } from "./pages/work-experience-page/WorkExperienceP
 import { SingleWorkExperiencePage } from "./pages/single-work-experience-page/SingleWorkExperiencePage";
 import { SingleProjectPage } from "./pages/single-project-page/SingleProjectPage";
 import { useScrollLock } from "./hooks/useLockScroll";
+import { Helmet } from "react-helmet";
+import heading from "./assets/images/heading.webp";
+import aboutImg from "./assets/images/about.webp";
+import projects from "./assets/images/projects.webp";
+import work_experience from "./assets/images/work_experience.webp";
 
 function App() {
   const location = useLocation();
@@ -29,6 +34,12 @@ function App() {
 
   return (
     <>
+      <Helmet>
+        <link rel="preload" as="image" href={heading} />
+        <link rel="preload" as="image" href={aboutImg} />
+        <link rel="preload" as="image" href={projects} />
+        <link rel="preload" as="image" href={work_experience} />
+      </Helmet>
       <AnimatePresence
         mode="wait"
         onExitComplete={() => {
