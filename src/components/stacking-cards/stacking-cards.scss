@@ -69,6 +69,7 @@
   grid-column: span 2;
 
   @include respond(md) {
+    min-width: 15rem;
     aspect-ratio: 1;
     grid-column: 3 / 4;
   }

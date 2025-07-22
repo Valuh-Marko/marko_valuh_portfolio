@@ -1,6 +1,6 @@
 import Lenis from "lenis";
 import { AnimatePresence } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Route, Routes, useLocation } from "react-router";
 import { HomePage } from "./pages/home-page/HomePage";
 import { ProjectsPage } from "./pages/projects-page/ProjectsPage";
@@ -18,14 +18,14 @@ function App() {
   const location = useLocation();
   const [direction, setDirection] = useState(-1);
 
-  const [isTransitioning, setIsTransitioning] = useState(true);
-
-  useScrollLock(isTransitioning);
+  const lenisRef = useRef(null);
 
   useEffect(() => {
     const lenis = new Lenis({
       autoRaf: true,
     });
+
+    lenisRef.current = lenis;
 
     lenis.on("scroll", (e) => {
       setDirection(e.direction);
@@ -43,8 +43,7 @@ function App() {
       <AnimatePresence
         mode="wait"
         onExitComplete={() => {
-          setIsTransitioning(false);
-          window.scrollTo(0, 0);
+          lenisRef.current?.scrollTo(0, { immediate: true });
         }}
       >
         <Routes location={location} key={location.pathname}>
