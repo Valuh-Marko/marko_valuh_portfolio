@@ -9,11 +9,12 @@ import { firstBar, headerHeight, lastBar, opacity } from "./animation/anims";
 import { HeaderLink } from "./components/HeaderLink";
 import "./header.scss";
 
-export const Header = ({ scrollDirection }) => {
+export const Header = ({ scrollDirection, scrollY }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { height } = useWindowSize();
   const variant = isOpen ? "open" : "closed";
-  const direction = scrollDirection === 1 && !isOpen ? "hide" : "show";
+  const direction =
+    scrollDirection === 1 && !isOpen && scrollY > 100 ? "hide" : "show";
 
   const slideOut = {
     show: {

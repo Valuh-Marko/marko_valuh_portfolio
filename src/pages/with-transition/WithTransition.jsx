@@ -7,7 +7,7 @@ import "./page-transition.scss";
 
 const WithTransition = (WrappedComponent) => {
   const Component = WrappedComponent;
-  return ({ scrollDirection }) => {
+  return ({ scrollDirection, scrollY }) => {
     const opacity = {
       initial: {
         opacity: 0,
@@ -69,7 +69,7 @@ const WithTransition = (WrappedComponent) => {
     return (
       <div className="c-page-anim">
         <motion.div {...anim(slide)} className="c-page-anim__slide" />
-        <Header scrollDirection={scrollDirection} />
+        <Header scrollDirection={scrollDirection} scrollY={scrollY} />
         <motion.div className="c-page-anim__page" {...anim(perspective)}>
           <motion.div {...anim(opacity)}>
             <Component />

@@ -17,6 +17,7 @@ import work_experience from "./assets/images/work_experience.webp";
 function App() {
   const location = useLocation();
   const [direction, setDirection] = useState(-1);
+  const [scrollY, setScrollY] = useState(0);
 
   const lenisRef = useRef(null);
 
@@ -29,6 +30,7 @@ function App() {
 
     lenis.on("scroll", (e) => {
       setDirection(e.direction);
+      setScrollY(e.scroll);
     });
   }, [location.pathname]);
 
@@ -49,12 +51,22 @@ function App() {
         <Routes location={location} key={location.pathname}>
           <Route
             path="/"
-            element={<HomePage key="home_page" scrollDirection={direction} />}
+            element={
+              <HomePage
+                key="home_page"
+                scrollDirection={direction}
+                scrollY={scrollY}
+              />
+            }
           />
           <Route
             path="/projects"
             element={
-              <ProjectsPage key="projects_page" scrollDirection={direction} />
+              <ProjectsPage
+                key="projects_page"
+                scrollDirection={direction}
+                scrollY={scrollY}
+              />
             }
           />
           <Route
@@ -63,6 +75,7 @@ function App() {
               <SingleProjectPage
                 key="single_project_page"
                 scrollDirection={direction}
+                scrollY={scrollY}
               />
             }
           />
@@ -72,6 +85,7 @@ function App() {
               <WorkExperiencePage
                 key="work_experience_page"
                 scrollDirection={direction}
+                scrollY={scrollY}
               />
             }
           />
@@ -81,12 +95,19 @@ function App() {
               <SingleWorkExperiencePage
                 key="single_work_experience_page"
                 scrollDirection={direction}
+                scrollY={scrollY}
               />
             }
           />
           <Route
             path="*"
-            element={<HomePage key="home_page" scrollDirection={direction} />}
+            element={
+              <HomePage
+                key="home_page"
+                scrollDirection={direction}
+                scrollY={scrollY}
+              />
+            }
           />
         </Routes>
       </AnimatePresence>
