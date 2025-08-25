@@ -7,7 +7,7 @@ const DEFAULT_DESCRIPTION =
 const DEFAULT_JSONLD = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  url: "https://yourdomain.com/",
+  url: "https://marko-valuh.com/",
   name: "Marko Valuh",
   description: DEFAULT_DESCRIPTION,
 };
