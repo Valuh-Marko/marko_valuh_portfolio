@@ -6,10 +6,12 @@ import { HeroSection } from "../../components/hero-section/HeroSection";
 import { TechStackSection } from "../../components/tech-stack-section/TechStackSection";
 import { WorkExperience } from "../../components/work-experience/WorkExperience";
 import "./homepage.scss";
+import SEO from "../../components/seo-component/SEO";
 
 export const HomePage = WithTransition(() => {
   return (
     <>
+      <SEO />
       <HeroSection />
       <TechStackSection />
       <AccompanyStackSection />

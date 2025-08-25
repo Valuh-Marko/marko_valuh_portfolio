@@ -6,6 +6,7 @@ import projects from "../../assets/images/projects.webp";
 import { StackingCards } from "../../components/stacking-cards/StackingCards";
 import response from "../../data/projects.json";
 import "./projects_page.scss";
+import SEO from "../../components/seo-component/SEO";
 
 export const ProjectsPage = WithTransition(() => {
   const container = useRef(null);
@@ -17,36 +18,39 @@ export const ProjectsPage = WithTransition(() => {
   const y = useTransform(heroScroll, [0, 1], [0, height / 3]);
 
   return (
-    <div className="c-projects">
-      <div ref={container} className="c-projects-hero">
-        <div className="c-projects-hero-container container">
-          <h1 className="c-projects-hero__title">Projects & Creations</h1>
-          <div className="c-projects-hero-details">
-            <h3 className="c-projects-hero-subtitle">
-              Exploring solutions through real-world projects.
-            </h3>
+    <>
+      <SEO />
+      <div className="c-projects">
+        <div ref={container} className="c-projects-hero">
+          <div className="c-projects-hero-container container">
+            <h1 className="c-projects-hero__title">Projects & Creations</h1>
+            <div className="c-projects-hero-details">
+              <h3 className="c-projects-hero-subtitle">
+                Exploring solutions through real-world projects.
+              </h3>
+            </div>
           </div>
-        </div>
 
-        {/* Background Paralax Image */}
-        <motion.img
-          className="c-projects-hero-img"
-          src={projects}
-          alt="hero_img"
-          style={{
-            y: y,
-          }}
-        />
+          {/* Background Paralax Image */}
+          <motion.img
+            className="c-projects-hero-img"
+            src={projects}
+            alt="hero_img"
+            style={{
+              y: y,
+            }}
+          />
+        </div>
+        <div className="container">
+          <StackingCards
+            className="c-projects__cards"
+            label={"P"}
+            response={response}
+            long_desc={true}
+            external={true}
+          ></StackingCards>
+        </div>
       </div>
-      <div className="container">
-        <StackingCards
-          className="c-projects__cards"
-          label={"P"}
-          response={response}
-          long_desc={true}
-          external={true}
-        ></StackingCards>
-      </div>
-    </div>
+    </>
   );
 });
