@@ -7,8 +7,14 @@ import { TechStackSection } from "../../components/tech-stack-section/TechStackS
 import { WorkExperience } from "../../components/work-experience/WorkExperience";
 import "./homepage.scss";
 import SEO from "../../components/seo-component/SEO";
+import { useEffect } from "react";
 
-export const HomePage = WithTransition(() => {
+export const HomePage = WithTransition(({setContentLoaded}) => {
+  
+  useEffect(() => {
+    setContentLoaded();
+  }, [setContentLoaded]);
+
   return (
     <>
       <SEO />

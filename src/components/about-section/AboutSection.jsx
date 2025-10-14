@@ -1,13 +1,12 @@
-import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
-import { useWindowSize } from "../../hooks/useWindowSize";
-import { Divider } from "../../components/divider/Divider";
+import { useEffect, useRef, useState } from "react";
 import heroImg from "../../assets/images/about.webp";
-import projects from "../../data/projects.json";
+import { Divider } from "../../components/divider/Divider";
+import { useWindowSize } from "../../hooks/useWindowSize";
 import "./about-section.scss";
 
 export const AboutSection = () => {
-  const { data } = projects;
+  const [response, setResponse] = useState();
   const aboutContainer = useRef(null);
   const { height, width } = useWindowSize();
   const respond = width < 768 ? "end" : "start";
@@ -18,6 +17,16 @@ export const AboutSection = () => {
   });
 
   const y = useTransform(aboutScroll, [0, 1], [-height / 2, 0]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch("/data/projects.json");
+      const data = await res.json();
+      setResponse(data.data);
+    }
+
+    fetchData();
+  }, []);
 
   return (
     <div ref={aboutContainer} className="c-about">
@@ -35,17 +44,18 @@ export const AboutSection = () => {
         </div>
         <Divider />
         <div className="c-about-project-container">
-          {data.map((project) => (
-            <div className="c-about-project">
-              <img
-                src={project.img_url}
-                alt=""
-                className="c-about-project__img"
-              />
-              <h5 className="c-about-project__title">{project.title}</h5>
-              <p className="c-about-project__desc">{project.excerpt}</p>
-            </div>
-          ))}
+          {response &&
+            response.map((project) => (
+              <div className="c-about-project">
+                <img
+                  src={project.img_url}
+                  alt=""
+                  className="c-about-project__img"
+                />
+                <h5 className="c-about-project__title">{project.title}</h5>
+                <p className="c-about-project__desc">{project.excerpt}</p>
+              </div>
+            ))}
         </div>
       </div>
 

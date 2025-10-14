@@ -1,8 +1,7 @@
 import { motion, useScroll, useTransform } from "motion/react";
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { Card } from "./components/Card";
 import "./stacking-cards.scss";
-import { useLocation } from "react-router";
 
 export const StackingCards = ({
   response,

@@ -1,14 +1,14 @@
-import React, { useRef } from "react";
-import WithTransition from "../with-transition/WithTransition";
 import { motion, useScroll, useTransform } from "motion/react";
-import { useWindowSize } from "../../hooks/useWindowSize";
+import { useEffect, useRef, useState } from "react";
 import workExperience from "../../assets/images/work_experience.webp";
-import { StackingCards } from "../../components/stacking-cards/StackingCards";
-import response from "../../data/work_experience.json";
-import "./work_experience.scss";
 import SEO from "../../components/seo-component/SEO";
+import { StackingCards } from "../../components/stacking-cards/StackingCards";
+import { useWindowSize } from "../../hooks/useWindowSize";
+import WithTransition from "../with-transition/WithTransition";
+import "./work_experience.scss";
 
-export const WorkExperiencePage = WithTransition(() => {
+export const WorkExperiencePage = WithTransition(({ setContentLoaded }) => {
+  const [response, setResponse] = useState();
   const container = useRef(null);
   const { scrollYProgress: heroScroll } = useScroll({
     target: container,
@@ -16,6 +16,17 @@ export const WorkExperiencePage = WithTransition(() => {
   });
   const { height } = useWindowSize();
   const y = useTransform(heroScroll, [0, 1], [0, height / 3]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch("/data/work_experience.json");
+      const data = await res.json();
+      setResponse(data);
+      setContentLoaded();
+    }
+
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -44,11 +55,13 @@ export const WorkExperiencePage = WithTransition(() => {
           />
         </div>
         <div className="container">
-          <StackingCards
-            className="c-work-experience__cards"
-            label={"WE"}
-            response={response}
-          ></StackingCards>
+          {response && (
+            <StackingCards
+              className="c-work-experience__cards"
+              label={"WE"}
+              response={response}
+            ></StackingCards>
+          )}
         </div>
       </div>
     </>

@@ -1,14 +1,15 @@
-import React, { useRef } from "react";
-import WithTransition from "../with-transition/WithTransition";
 import { motion, useScroll, useTransform } from "motion/react";
-import { useWindowSize } from "../../hooks/useWindowSize";
+import { useEffect, useRef, useState } from "react";
 import projects from "../../assets/images/projects.webp";
-import { StackingCards } from "../../components/stacking-cards/StackingCards";
-import response from "../../data/projects.json";
-import "./projects_page.scss";
 import SEO from "../../components/seo-component/SEO";
+import { StackingCards } from "../../components/stacking-cards/StackingCards";
+import { useWindowSize } from "../../hooks/useWindowSize";
+import WithTransition from "../with-transition/WithTransition";
+import "./projects_page.scss";
 
-export const ProjectsPage = WithTransition(() => {
+export const ProjectsPage = WithTransition(({ setContentLoaded }) => {
+  const [response, setResponse] = useState();
+
   const container = useRef(null);
   const { scrollYProgress: heroScroll } = useScroll({
     target: container,
@@ -16,6 +17,17 @@ export const ProjectsPage = WithTransition(() => {
   });
   const { height } = useWindowSize();
   const y = useTransform(heroScroll, [0, 1], [0, height / 3]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch("/data/projects.json");
+      const data = await res.json();
+      setResponse(data);
+      setContentLoaded();
+    }
+
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -42,13 +54,15 @@ export const ProjectsPage = WithTransition(() => {
           />
         </div>
         <div className="container">
-          <StackingCards
-            className="c-projects__cards"
-            label={"P"}
-            response={response}
-            long_desc={true}
-            external={true}
-          ></StackingCards>
+          {response && (
+            <StackingCards
+              className="c-projects__cards"
+              label={"P"}
+              response={response}
+              long_desc={true}
+              external={true}
+            ></StackingCards>
+          )}
         </div>
       </div>
     </>

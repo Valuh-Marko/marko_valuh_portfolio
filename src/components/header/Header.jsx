@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaLinkedin } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { Link } from "react-router";
@@ -8,13 +8,14 @@ import { Divider } from "../divider/Divider";
 import { firstBar, headerHeight, lastBar, opacity } from "./animation/anims";
 import { HeaderLink } from "./components/HeaderLink";
 import "./header.scss";
+import { ScrollContext } from "../../context/ScrollContext";
 
-export const Header = ({ scrollDirection, scrollY }) => {
+export const Header = ({ shouldShow }) => {
+  const { directionRef, scrollYRef } = useContext(ScrollContext);
+  const [direction, setDirection] = useState("hide");
   const [isOpen, setIsOpen] = useState(false);
   const { height } = useWindowSize();
   const variant = isOpen ? "open" : "closed";
-  const direction =
-    scrollDirection === 1 && !isOpen && scrollY > 100 ? "hide" : "show";
 
   const slideOut = {
     show: {
@@ -48,12 +49,30 @@ export const Header = ({ scrollDirection, scrollY }) => {
     },
   };
 
+  useEffect(() => {
+    let lastDirection = direction;
+
+    const checkDirection = () => {
+      const newDirection =
+        directionRef.current === 1 && !isOpen && scrollYRef.current > 100
+          ? "hide"
+          : "show";
+
+      if (newDirection !== lastDirection && shouldShow) {
+        lastDirection = newDirection;
+        setDirection(newDirection);
+      }
+
+      requestAnimationFrame(checkDirection);
+    };
+
+    const frameId = requestAnimationFrame(checkDirection);
+    return () => cancelAnimationFrame(frameId);
+  }, [directionRef, scrollYRef, isOpen, direction, shouldShow]);
+
   return (
     <motion.div
-      initial={{
-        y: "1rem",
-        x: "1rem",
-      }}
+      initial={"hide"}
       variants={slideOut}
       animate={direction}
       exit={"exit"}

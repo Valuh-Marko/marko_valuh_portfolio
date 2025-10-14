@@ -1,9 +1,21 @@
-import React from "react";
-import "./work-experience.scss";
+import { useEffect, useState } from "react";
 import { StackingCards } from "../stacking-cards/StackingCards";
-import response from "../../data/work_experience.json";
+import "./work-experience.scss";
 
-export const WorkExperience = () => {
+export const WorkExperience = ({ setContentLoaded }) => {
+  const [response, setResponse] = useState();
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch("/data/work_experience.json");
+      const data = await res.json();
+      setResponse(data);
+      setContentLoaded();
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <div className="container">
       <div className="c-section">
@@ -17,7 +29,7 @@ export const WorkExperience = () => {
           <h3 className="c-section__title">The Journey Behind the Expertise</h3>
         </div>
       </div>
-      <StackingCards label={"AS"} response={response} />
+      {response && <StackingCards label={"AS"} response={response} />}
     </div>
   );
 };
