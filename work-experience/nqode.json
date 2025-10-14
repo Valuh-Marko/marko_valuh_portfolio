@@ -8,6 +8,22 @@
   },
   "projects": [
     {
+      "name": "Brightfunded",
+      "role": "Front-End Developer",
+      "description": [
+        "Developed and maintained a responsive and scalable front-end architecture using Angular, ensuring consistent performance across devices.",
+        "Collaborated closely with designers in Figma to translate UI concepts into clean, interactive, and reusable Angular components.",
+        "Supported the Framer CMS setup by managing custom code snippets and implementing complex interactions to extend its functionality.",
+        "Integrated Google Analytics for comprehensive user tracking and insights, optimizing the platform’s conversion and engagement metrics.",
+        "Implemented FingerprintJS to generate unique visitor identifiers, enhancing security, session tracking, and fraud detection without relying on invasive methods.",
+        "Worked alongside backend engineers to streamline data handling through GCP services, ensuring efficient and secure data flow throughout the application."
+      ],
+      "technologies": [
+        "Angular",
+        "Figma"
+      ]
+    },
+    {
       "name": "Adam Project",
       "role": "Front-end Developer",
       "description": [
@@ -15,11 +31,7 @@
         "Created a design-aligned, reusable component library, documented for future developer use and scalable team collaboration.",
         "Championed development standards: introduced strict linting, enforced code reviews, and built onboarding tools to help new team members integrate faster."
       ],
-      "technologies": [
-        "Angular",
-        "Docker",
-        "Figma"
-      ]
+      "technologies": ["Angular", "Docker", "Figma"]
     },
     {
       "name": "SOURCE.AG",
@@ -30,11 +42,7 @@
         "Worked hand-in-hand with the product owner to prioritize features, rapidly prototyping and iterating to meet tight timelines.",
         "Deployed via Vercel, optimizing build pipelines and leveraging serverless infrastructure for stability at scale."
       ],
-      "technologies": [
-        "Next.js",
-        "Nest.js",
-        "Figma"
-      ]
+      "technologies": ["Next.js", "Nest.js", "Figma"]
     }
   ]
 }

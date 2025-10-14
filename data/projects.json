@@ -1,0 +1,32 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "title": "Dr Bean Coffee",
+      "excerpt": "Small workshop based in Novi Sad, specializing in fresh Turkish and espresso coffee.",
+      "excerpt_xl": "Small artisan coffee workshop in Novi Sad, specializing in fresh Turkish and espresso coffee made from high-quality Arabica beans sourced from Brazil’s Minas Gerais region. Focused on premium quality, traditional roasting, and delivering rich, balanced flavors, Dr Bean offers freshly roasted coffee for home enjoyment, emphasizing natural aromas and expert craftsmanship.",
+      "url": "/dr-bean",
+      "external_url": "https://www.drbean.org/",
+      "img_url": "/images/dr_bean_logo.webp"
+    },
+    {
+      "id": 2,
+      "title": "Advokat u Novom Sadu",
+      "excerpt": "Law office providing professional legal services across a wide range of practice areas, representing clients before all courts, government bodies, and institutions.",
+      "excerpt_xl": "Advokatska Kancelarija, located in Novi Sad, is a professional legal practice led by attorneys Dijana Biro, Davor Marić, and Milan Nedić. The firm offers comprehensive legal services across various areas of law, including contract law, tort law, labor law, commercial law, property and civil law, criminal and misdemeanor law, administrative law, debt collection procedures, and representation in public auctions. The attorneys represent clients before courts of all jurisdictions, as well as before other state bodies and institutions. They adhere to principles of independence, professionalism, conscientiousness, objectivity, and responsibility, ensuring that client interests are prioritized and legal assistance is provided diligently and timely.",
+      "url": "/advokat_u_novom_sadu",
+      "external_url": "https://advokatunovomsadu.rs/",
+      "img_url": "/images/ans_logo.png"
+    },
+    {
+      "id": 3,
+      "title": "Pelemiš Dental Care",
+      "excerpt": "Professional healthcare facility providing services like check-ups, cleanings, treatments, and oral surgeries.",
+      "excerpt_xl": "Pelemiš Dental Care is a modern dental clinic based in Novi Sad, offering a wide range of dental services. The clinic provides professional healthcare services, including routine check-ups, dental cleanings, various treatments, and oral surgeries. With a focus on patient comfort and utilizing up-to-date dental practices, the clinic aims to deliver high-quality dental care tailored to individual needs.",
+      "url": "/pelemis_dental_care",
+      "external_url": "https://www.drpelemis.rs/home",
+      "img_url": "/images/pelemis_dental_care.webp"
+    }
+  ],
+  "location": "/projects"
+}
