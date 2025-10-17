@@ -111,18 +111,6 @@
   @include flex-column();
 }
 
-.c-project__title {
-  font-size: 2rem;
-  line-height: 2rem;
-  font-weight: 500;
-}
-
-.c-project__subtitle {
-  font-size: 1.5rem;
-  margin-top: 0.25rem;
-  margin-bottom: 3rem;
-}
-
 .c-project__excerpt {
   margin-bottom: 2rem;
   padding-right: 6rem;

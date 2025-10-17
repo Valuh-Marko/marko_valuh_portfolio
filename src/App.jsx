@@ -1,11 +1,6 @@
 import { AnimatePresence } from "motion/react";
 import { useContext } from "react";
-import { Helmet } from "react-helmet";
 import { Route, Routes, useLocation } from "react-router";
-import aboutImg from "./assets/images/about.webp";
-import heading from "./assets/images/heading.webp";
-import projects from "./assets/images/projects.webp";
-import work_experience from "./assets/images/work_experience.webp";
 import { ScrollContext } from "./context/ScrollContext";
 import { HomePage } from "./pages/home-page/HomePage";
 import { ProjectsPage } from "./pages/projects-page/ProjectsPage";
@@ -19,12 +14,6 @@ function App() {
 
   return (
     <>
-      <Helmet>
-        <link rel="preload" as="image" href={heading} />
-        <link rel="preload" as="image" href={aboutImg} />
-        <link rel="preload" as="image" href={projects} />
-        <link rel="preload" as="image" href={work_experience} />
-      </Helmet>
       <AnimatePresence
         mode="wait"
         onExitComplete={() => {

@@ -27,7 +27,7 @@ export const ProjectsPage = WithTransition(({ setContentLoaded }) => {
     }
 
     fetchData();
-  }, []);
+  });
 
   return (
     <>

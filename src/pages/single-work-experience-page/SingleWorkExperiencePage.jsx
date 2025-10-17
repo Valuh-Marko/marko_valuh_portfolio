@@ -65,8 +65,6 @@ export const SingleWorkExperiencePage = WithTransition(
               <div key={`${index}-project`} className="c-project-container">
                 <div className="c-project__label">p/00{index}</div>
                 <div className="c-project__content">
-                  <h3 className="c-project__title">{project.name}</h3>
-                  <p className="c-project__subtitle">{project.role}</p>
                   <p className="c-project__excerpt">
                     {project.description.map((desc, index) => (
                       <li key={`${index}-desc`}>{desc}</li>

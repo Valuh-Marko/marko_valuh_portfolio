@@ -42,6 +42,8 @@ export const getLazyIcon = (tech) => {
     Figma: () => import("react-icons/fa").then((m) => ({ default: m.FaFigma })),
     "JSON-based content system": () =>
       import("react-icons/bs").then((m) => ({ default: m.BsFileEarmarkCode })),
+      "Google Cloud Platform": () =>
+    import("react-icons/di").then((m) => ({ default: m.DiGoogleCloudPlatform }))
   };
 
   const loader = map[tech];

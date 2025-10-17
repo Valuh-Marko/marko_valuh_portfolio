@@ -15,7 +15,7 @@ export const slideOut = {
 };
 
 export const headerHeight = (windowHeight) => {
-  const remValue = `${windowHeight / 16}rem`;
+  const remValue = `${windowHeight / 24}rem`;
 
   return {
     closed: {
