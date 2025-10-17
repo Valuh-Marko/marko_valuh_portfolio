@@ -1,13 +1,115 @@
-# React + Vite
+# 🌐 Marko Valuh - Developer Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, smooth, and minimal **React + Vite** portfolio project showcasing my full-stack development work, built with performance and design in mind.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- ⚡ **Vite 6** — Lightning-fast builds and hot reloading  
+- ⚛️ **React 19** — Modern components and concurrent rendering  
+- 💫 **Lenis** — Smooth scrolling and refined user motion  
+- 🎞️ **Motion** — Declarative animations with simplicity  
+- 🧭 **React Router 7** — Seamless page transitions  
+- 🎨 **Sass** — Clean and scalable styling  
+- 🧠 **React Helmet Async** — SEO-friendly meta handling  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# marko_valuh_portfolio
+---
+
+## 🛠️ Installation
+
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/your-username/mv-port-2.git
+cd mv-port-2
+npm install
+```
+
+---
+
+## 💻 Development
+
+Start a local development server:
+
+```bash
+npm run dev
+```
+
+Then open the provided localhost URL (usually [http://localhost:5173](http://localhost:5173)).
+
+---
+
+## 🏗️ Build
+
+Generate an optimized production build:
+
+```bash
+npm run build
+```
+
+Preview the production build locally:
+
+```bash
+npm run preview
+```
+
+---
+
+## 🧹 Linting
+
+Run ESLint to maintain clean, consistent code:
+
+```bash
+npm run lint
+```
+
+---
+
+## 📂 Project Structure
+
+```
+mv-port-2/
+├── public/              # Static assets
+├── src/
+│   ├── components/      # Reusable UI components
+│   ├── pages/           # Route pages
+│   ├── styles/          # Global and modular SCSS
+│   ├── hooks/           # Custom React hooks
+│   ├── context/         # React context providers
+│   ├── App.jsx          # Root component
+│   └── main.jsx         # Entry file
+├── index.html
+├── package.json
+└── vite.config.js
+```
+
+---
+
+## 🌱 Environment
+
+- **Node.js** 19+  
+- **npm** or **pnpm** recommended  
+- **Modern browsers** supported
+
+---
+
+## 📸 Preview
+
+Coming soon 👀  
+
+---
+
+## 📜 License
+
+This project is private and not open-source.  
+All rights reserved © 2025 — **Marko Valuh**
+
+---
+
+## 👨‍💻 Author
+
+**Marko Valuh**  
+💼 Full Stack Developer  
+🌍 [https://marko-valuh.com](https://marko-valuh.com)  
+📧 [marko.valuh@gmail.com]
