@@ -8,8 +8,6 @@
   },
   "projects": [
     {
-      "name": "Internal Tools & Infrastructure",
-      "role": "Front-end Developer",
       "description": [
         "Built interactive internal tools using vanilla JavaScript, PHP, and HTML, focusing on performance and simplicity.",
         "Styled UI components using modular SASS, maintaining clean and maintainable codebases across projects.",

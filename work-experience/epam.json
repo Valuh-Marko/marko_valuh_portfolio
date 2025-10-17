@@ -8,22 +8,13 @@
   },
   "projects": [
     {
-      "name": "Meridianbet – Global Sports Betting and Casino",
-      "role": "Front-end Developer",
       "description": [
-        "Developed responsive front-end interfaces using Angular and SASS, integrating dynamic components and smooth animations for a polished experience.",
-        "Contributed to platform performance by optimizing load times, reducing bundle sizes, and implementing lazy loading for key sections.",
-        "Set up containerized environments using Docker, ensuring parity between development and production, and significantly reducing deployment friction.",
-        "Bridged gaps between frontend, backend, and design teams by initiating and leading regular technical reviews and refinement sessions."
+        "Developed responsive and dynamic front-end applications using Angular and SCSS, integrating smooth animations and interactive components.",
+        "Optimized platform performance by reducing bundle sizes, improving load times, and applying lazy loading for key sections.",
+        "Configured containerized development and production environments using Docker, ensuring consistency and efficient deployment.",
+        "Collaborated closely with backend and design teams, leading technical reviews and refinement sessions to improve workflows and project quality."
       ],
-      "technologies": [
-        "Angular",
-        "React",
-        "SCSS",
-        "Nest.js",
-        "Docker",
-        "Figma"
-      ]
+      "technologies": ["Angular", "React", "SCSS", "Nest.js", "Docker", "Figma"]
     }
   ]
 }
