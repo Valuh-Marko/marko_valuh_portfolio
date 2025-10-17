@@ -26,6 +26,15 @@
       "url": "/pelemis_dental_care",
       "external_url": "https://www.drpelemis.rs/home",
       "img_url": "/images/pelemis_dental_care.webp"
+    },
+    {
+      "id": 4,
+      "title": "World Best Brands",
+      "excerpt": "Curated platform showcasing and ranking top global brands across various industries.",
+      "excerpt_xl": "World Best Brands is a curated online platform dedicated to identifying, showcasing, and ranking the most influential and successful global brands across diverse industries. From fashion and technology to consumer goods and services, the platform provides insightful content, brand analyses, and yearly rankings based on criteria such as innovation, market influence, sustainability, and customer engagement. With a commitment to highlighting excellence in branding, World Best Brands serves as a trusted resource for professionals, researchers, and consumers interested in brand performance and reputation worldwide.",
+      "url": "/world_best_brands",
+      "external_url": "https://worldbestbrands.net/",
+      "img_url": "/images/world_best_brands_logo.webp"
     }
   ],
   "location": "/projects"
