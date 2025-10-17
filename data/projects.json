@@ -1,7 +1,16 @@
 {
-  "data": [
+  "data": [ 
     {
       "id": 1,
+      "title": "World Best Brands",
+      "excerpt": "Distribution company based in Belgrade, Serbia, specializing in import and export of FMCG products from top global brands.",
+      "excerpt_xl": "World Best Brands LLC is a distribution and trading company headquartered in Belgrade, Serbia, founded in August 2020. Specializing in the import and export of fast-moving consumer goods (FMCG), the company focuses on high-demand categories such as groceries, toiletries, household, and laundry items. World Best Brands is a trusted supplier of globally recognized products from leading brands including Coca-Cola, Mars, Jacobs, Ferrero, Red Bull, Milka, Procter & Gamble, Unilever, and many others. In addition to distributing branded goods, the company also offers a growing range of private label products tailored to meet the diverse needs of clients and markets. With a commitment to reliability, quality, and long-term partnerships, World Best Brands serves as a key link in the global FMCG supply chain.",
+      "url": "/world_best_brands",
+      "external_url": "https://worldbestbrands.net/",
+      "img_url": "https://worldbestbrands.net/wp-content/uploads/2024/12/cropped-viber_image_2024-12-13_13-26-03-573-150x150.png"
+    },
+    {
+      "id": 2,
       "title": "Dr Bean Coffee",
       "excerpt": "Small workshop based in Novi Sad, specializing in fresh Turkish and espresso coffee.",
       "excerpt_xl": "Small artisan coffee workshop in Novi Sad, specializing in fresh Turkish and espresso coffee made from high-quality Arabica beans sourced from Brazil’s Minas Gerais region. Focused on premium quality, traditional roasting, and delivering rich, balanced flavors, Dr Bean offers freshly roasted coffee for home enjoyment, emphasizing natural aromas and expert craftsmanship.",
@@ -10,7 +19,7 @@
       "img_url": "/images/dr_bean_logo.webp"
     },
     {
-      "id": 2,
+      "id": 3,
       "title": "Advokat u Novom Sadu",
       "excerpt": "Law office providing professional legal services across a wide range of practice areas, representing clients before all courts, government bodies, and institutions.",
       "excerpt_xl": "Advokatska Kancelarija, located in Novi Sad, is a professional legal practice led by attorneys Dijana Biro, Davor Marić, and Milan Nedić. The firm offers comprehensive legal services across various areas of law, including contract law, tort law, labor law, commercial law, property and civil law, criminal and misdemeanor law, administrative law, debt collection procedures, and representation in public auctions. The attorneys represent clients before courts of all jurisdictions, as well as before other state bodies and institutions. They adhere to principles of independence, professionalism, conscientiousness, objectivity, and responsibility, ensuring that client interests are prioritized and legal assistance is provided diligently and timely.",
@@ -19,22 +28,13 @@
       "img_url": "/images/ans_logo.png"
     },
     {
-      "id": 3,
+      "id": 4,
       "title": "Pelemiš Dental Care",
       "excerpt": "Professional healthcare facility providing services like check-ups, cleanings, treatments, and oral surgeries.",
       "excerpt_xl": "Pelemiš Dental Care is a modern dental clinic based in Novi Sad, offering a wide range of dental services. The clinic provides professional healthcare services, including routine check-ups, dental cleanings, various treatments, and oral surgeries. With a focus on patient comfort and utilizing up-to-date dental practices, the clinic aims to deliver high-quality dental care tailored to individual needs.",
       "url": "/pelemis_dental_care",
       "external_url": "https://www.drpelemis.rs/home",
       "img_url": "/images/pelemis_dental_care.webp"
-    },
-    {
-      "id": 4,
-      "title": "World Best Brands",
-      "excerpt": "Distribution company based in Belgrade, Serbia, specializing in import and export of FMCG products from top global brands.",
-      "excerpt_xl": "World Best Brands LLC is a distribution and trading company headquartered in Belgrade, Serbia, founded in August 2020. Specializing in the import and export of fast-moving consumer goods (FMCG), the company focuses on high-demand categories such as groceries, toiletries, household, and laundry items. World Best Brands is a trusted supplier of globally recognized products from leading brands including Coca-Cola, Mars, Jacobs, Ferrero, Red Bull, Milka, Procter & Gamble, Unilever, and many others. In addition to distributing branded goods, the company also offers a growing range of private label products tailored to meet the diverse needs of clients and markets. With a commitment to reliability, quality, and long-term partnerships, World Best Brands serves as a key link in the global FMCG supply chain.",
-      "url": "/world_best_brands",
-      "external_url": "https://worldbestbrands.net/",
-      "img_url": "https://worldbestbrands.net/wp-content/uploads/2024/12/cropped-viber_image_2024-12-13_13-26-03-573-150x150.png"
     }
   ],
   "location": "/projects"
