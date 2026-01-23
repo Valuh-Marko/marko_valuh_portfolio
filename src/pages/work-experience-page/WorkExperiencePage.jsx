@@ -1,7 +1,6 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import workExperience from "../../assets/images/work_experience.webp";
-import SEO from "../../components/seo-component/SEO";
 import { StackingCards } from "../../components/stacking-cards/StackingCards";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import WithTransition from "../with-transition/WithTransition";
@@ -30,7 +29,6 @@ export const WorkExperiencePage = WithTransition(({ setContentLoaded }) => {
 
   return (
     <>
-      <SEO />
       <div className="c-work-experience">
         <div ref={container} className="c-work-experience-hero">
           <div className="c-work-experience-hero-container container">

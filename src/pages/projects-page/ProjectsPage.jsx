@@ -1,7 +1,6 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import projects from "../../assets/images/projects.webp";
-import SEO from "../../components/seo-component/SEO";
 import { StackingCards } from "../../components/stacking-cards/StackingCards";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import WithTransition from "../with-transition/WithTransition";
@@ -31,7 +30,6 @@ export const ProjectsPage = WithTransition(({ setContentLoaded }) => {
 
   return (
     <>
-      <SEO />
       <div className="c-projects">
         <div ref={container} className="c-projects-hero">
           <div className="c-projects-hero-container container">

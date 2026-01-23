@@ -45,17 +45,20 @@ export const AboutSection = () => {
         <Divider />
         <div className="c-about-project-container">
           {response &&
-            response.map((project) => (
-              <div className="c-about-project">
-                <img
-                  src={project.img_url}
-                  alt=""
-                  className="c-about-project__img"
-                />
-                <h5 className="c-about-project__title">{project.title}</h5>
-                <p className="c-about-project__desc">{project.excerpt}</p>
-              </div>
-            ))}
+            response.map(
+              (project, idx) =>
+                idx < 3 && (
+                  <div className="c-about-project">
+                    <img
+                      src={project.img_url}
+                      alt=""
+                      className="c-about-project__img"
+                    />
+                    <h5 className="c-about-project__title">{project.title}</h5>
+                    <p className="c-about-project__desc">{project.excerpt}</p>
+                  </div>
+                )
+            )}
         </div>
       </div>
 

@@ -9,11 +9,13 @@
   "projects": [
     {
       "description": [
-        "Developed responsive and dynamic front-end applications using Angular and SCSS, integrating smooth animations and interactive components.",
-        "Optimized platform performance by reducing bundle sizes, improving load times, and applying lazy loading for key sections.",
-        "Configured containerized development and production environments using Docker, ensuring consistency and efficient deployment.",
-        "Collaborated closely with backend and design teams, leading technical reviews and refinement sessions to improve workflows and project quality."
+        "Developed interactive, high-traffic user interfaces using Angular and React, focusing on performance, responsiveness, and cross-browser compatibility.",
+        "Collaborated within large, cross-functional teams to align technical implementation with business, design, and usability requirements.",
+        "Integrated frontend features with backend services built on Node.js and NestJS, ensuring reliable data exchange and consistent application behavior.",
+        "Used Docker-based environments to standardize local development and deployment workflows across distributed teams.",
+        "Actively participated in code reviews, technical discussions, and incremental refactoring efforts to improve legacy codebases and overall system stability."
       ],
+
       "technologies": ["Angular", "React", "SCSS", "Nest.js", "Docker", "Figma"]
     }
   ]

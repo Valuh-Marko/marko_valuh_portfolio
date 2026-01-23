@@ -1,5 +1,14 @@
 {
-  "data": [ 
+  "data": [
+    {
+      "id": 0,
+      "title": "STK Vojvodina, Novi Sad",
+      "excerpt": "STK Vojvodina is one of Serbia’s most historic table tennis clubs, known for decades of competitive success and a strong tradition of youth development in Novi Sad.",
+      "excerpt_xl": "STK Vojvodina is a renowned table tennis club based in Novi Sad, recognized for its long-standing tradition, competitive success, and commitment to developing young talent. Founded in the mid-20th century, the club has played an important role in shaping the national table tennis scene, consistently competing at the highest domestic levels while fostering a strong sports culture within the local community.\n\nThe project aimed to translate this rich sporting heritage into a modern digital experience that communicates credibility, professionalism, and approachability. A key focus was creating a clear structure for presenting club history, competitions, youth programs, and news updates, while ensuring the platform remains easy to maintain and scalable for future needs.\n\nSpecial attention was given to performance, accessibility, and responsive design, allowing the website to function seamlessly across devices and serve a broad audience — from players and parents to supporters and partners. The result is a digital platform that not only documents the club’s achievements, but also supports its ongoing mission of growth, visibility, and engagement.",
+      "url": "/world_best_brands",
+      "external_url": "https://www.stkvojvodina.org.rs/",
+      "img_url": "/images/stk_vojvodina_logo.svg"
+    },
     {
       "id": 1,
       "title": "World Best Brands",

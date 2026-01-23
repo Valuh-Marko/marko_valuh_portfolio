@@ -9,14 +9,14 @@
   "projects": [
     {
       "description": [
-        "Designed and developed scalable web applications, building both frontend and backend systems to deliver high-performance, responsive experiences.",
-        "Implemented modular and reusable UI components using Angular and Next.js, translating design concepts into interactive interfaces with pixel-perfect fidelity.",
-        "Extended CMS capabilities with custom code and complex interactions, optimizing content management and platform flexibility.",
-        "Optimized API and data handling to ensure seamless real-time user experiences, collaborating closely with backend engineers and leveraging cloud services.",
-        "Integrated analytics, tracking, and visitor identification tools to improve engagement, conversions, and security without compromising user privacy.",
-        "Established development best practices, including code reviews, linting, onboarding tools, and reusable component libraries, boosting team productivity and maintainability.",
-        "Worked with product stakeholders to rapidly prototype, iterate, and prioritize features, ensuring timely delivery of high-quality solutions."
+        "Designed and implemented a scalable frontend architecture using Angular and TypeScript, with a strong focus on modularity, long-term maintainability, and future feature expansion.",
+        "Built and maintained a reusable component library aligned with design system principles, ensuring consistent UI behavior and significantly accelerating feature development.",
+        "Translated complex product requirements and Figma designs into responsive, accessible interfaces with pixel-perfect precision.",
+        "Integrated frontend applications with REST and GraphQL APIs, optimizing data flows and ensuring smooth, real-time user interactions.",
+        "Introduced linting rules, coding standards, and structured peer code reviews, improving code quality and streamlining onboarding for new team members.",
+        "Worked closely with designers, backend engineers, and product stakeholders to rapidly prototype, iterate, and deliver high-quality features in a fast-paced environment."
       ],
+
       "technologies": [
         "Angular",
         "Next.js",

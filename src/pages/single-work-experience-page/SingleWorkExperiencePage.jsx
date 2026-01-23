@@ -1,12 +1,11 @@
 import { motion, useScroll, useTransform } from "motion/react";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router";
 import workExperience from "../../assets/images/work_experience.webp";
 import { TechIcon } from "../../components/tech-icon/TechIcon";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import WithTransition from "../with-transition/WithTransition";
 import "./single-work-experience-page.scss";
-import SEO from "../../components/seo-component/SEO";
 
 export const SingleWorkExperiencePage = WithTransition(
   ({ setContentLoaded }) => {
@@ -37,7 +36,6 @@ export const SingleWorkExperiencePage = WithTransition(
 
     return (
       <>
-        <SEO />
         <div className="c-single-page">
           <div ref={container} className="c-single-page-hero">
             <div className="c-single-page-hero-container container">
