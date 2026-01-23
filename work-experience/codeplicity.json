@@ -9,16 +9,13 @@
   "projects": [
     {
       "description": [
-        "Built interactive internal tools using vanilla JavaScript, PHP, and HTML, focusing on performance and simplicity.",
-        "Styled UI components using modular SASS, maintaining clean and maintainable codebases across projects.",
-        "Used Vagrant to provision and standardize local environments, reducing onboarding time and eliminating dev machine inconsistencies."
+        "Developed clean, efficient, and maintainable user interfaces using vanilla JavaScript and modular Sass for internal tools and platform infrastructure.",
+        "Maintained and incrementally modernized legacy codebases, introducing improved patterns and tooling while preserving system stability.",
+        "Built reusable UI components and styling utilities to support multiple internal projects with shared requirements.",
+        "Set up reproducible local development environments using Vagrant, significantly reducing onboarding time and environment-related issues for new developers."
       ],
-      "technologies": [
-        "JavaScript",
-        "PHP",
-        "SCSS",
-        "Vagrant"
-      ]
+
+      "technologies": ["JavaScript", "PHP", "SCSS", "Vagrant"]
     }
   ]
 }

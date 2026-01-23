@@ -17,12 +17,6 @@
       "title": "Frontend Developer at Codeplicity.",
       "excerpt": "Developed interactive web features using vanilla JavaScript, PHP, and HTML with a focus on performance and user experience. Employed modular SASS styling and Vagrant-based environments to ensure maintainability, visual consistency, and smooth team collaboration.",
       "url": "codeplicity"
-    },
-    {
-      "id": 4,
-      "title": "Volunteer at WonderlandAI.",
-      "excerpt": "At WonderlandAI, we volunteered by leading workshops to inspire and educate young students about AI and technology. Our focus was on making complex concepts fun, accessible, and engaging for the next generation.",
-      "url": "wonderland"
     }
   ],
   "location": "/work-experience"
