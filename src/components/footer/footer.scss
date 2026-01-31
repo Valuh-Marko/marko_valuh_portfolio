@@ -6,7 +6,7 @@
   background-color: $orange;
   color: $black;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 0.5fr 1fr 1fr;
   gap: 0.5rem;
 
   @include respond(md) {
@@ -23,6 +23,14 @@
   line-height: 1.25rem;
   gap: 0.5rem;
   font-weight: bold;
+
+  h5 {
+    display: none;
+
+    @include respond(md) {
+      display: block;
+    }
+  }
 }
 
 .c-footer-logo {

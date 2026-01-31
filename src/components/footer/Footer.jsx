@@ -40,7 +40,7 @@ export const Footer = () => {
         </Link>
       </div>
       <div className="c-footer__disclaimer">
-        <span>&copy; 2025 Marko Valuh</span>
+        <span>&copy; 2026 Marko Valuh</span>
       </div>
     </div>
   );
