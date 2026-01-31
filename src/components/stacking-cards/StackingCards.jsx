@@ -29,7 +29,7 @@ export const StackingCards = ({
   const top = useTransform(
     scrollYProgress,
     [0, 1],
-    ["0rem", `-${5 * Math.floor(data.length / 2)}rem`]
+    ["0rem", `-${5 * Math.floor(data.length / 2)}rem`],
   );
 
   return (

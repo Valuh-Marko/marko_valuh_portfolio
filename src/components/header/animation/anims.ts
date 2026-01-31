@@ -14,8 +14,9 @@ export const slideOut = {
   },
 };
 
-export const headerHeight = (windowHeight) => {
-  const remValue = `${windowHeight / 24}rem`;
+export const headerHeight = (windowHeight: number) => {
+  const divideValue = windowHeight >= 900 ? 24 : 16;
+  const remValue = `${windowHeight / divideValue}rem`;
 
   return {
     closed: {
@@ -66,7 +67,7 @@ export const lastBar = {
   },
 };
 
-export const slideDown = (idx) => {
+export const slideDown = (idx: number) => {
   return {
     mouseOut: {
       y: `-100% * ${idx}`,

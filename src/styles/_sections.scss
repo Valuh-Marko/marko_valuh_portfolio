@@ -5,7 +5,7 @@
   padding-top: 6rem;
   padding-bottom: 8rem;
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr;
   gap: 2.5rem;
 
   @include respond(md) {
@@ -52,5 +52,9 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 4rem;
+  gap: 2rem;
+
+  @include respond(md) {
+    gap: 4rem;
+  }
 }

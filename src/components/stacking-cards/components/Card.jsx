@@ -40,7 +40,14 @@ export const Card = ({
         {label}/00{index}
       </div>
       <div className="c-card__content">
-        <h3 className="c-card__title">{data.title}</h3>
+        <h3
+          className={`c-card__title ${data.subtitle ? "" : "c-card__title--no-subtitle"}`}
+        >
+          {data.title}
+        </h3>
+        {data.subtitle && (
+          <div className="c-card__subtitle">{data.subtitle}</div>
+        )}
         <p className="c-card__excerpt">
           {long_desc ? data.excerpt_xl : data.excerpt}
         </p>
