@@ -3,18 +3,21 @@
     {
       "id": 1,
       "title": "Software Developer at NQode",
+      "subtitle": "April 2024 - Present",
       "excerpt": "Built scalable front-end architectures using Angular and Next.js, with a focus on modular design, performance, and maintainability. Led initiatives to streamline development through reusable components, coding standards, and CI/CD workflows, resulting in faster feature delivery and improved team efficiency.",
       "url": "nqode"
     },
     {
       "id": 2,
       "title": "Frontend Developer at EPAM Systems",
+      "subtitle": "February 2022 - April 2024",
       "excerpt": "Implemented dynamic, responsive front-end features with Angular and Sass, enhancing UX through polished UI components and animations. Optimized deployment with Docker and fostered strong cross-functional collaboration to ensure timely, aligned project delivery.",
       "url": "epam"
     },
     {
       "id": 3,
       "title": "Frontend Developer at Codeplicity.",
+      "subtitle": "February 2021 - February 2022",
       "excerpt": "Developed interactive web features using vanilla JavaScript, PHP, and HTML with a focus on performance and user experience. Employed modular SASS styling and Vagrant-based environments to ensure maintainability, visual consistency, and smooth team collaboration.",
       "url": "codeplicity"
     }
