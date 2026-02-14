@@ -1,3 +1,12 @@
+:root {
+  --neutral-0: oklch(0% 0 0); /* black */
+  --neutral-100: oklch(100% 0.00011 271.152); /* white */
+  --neutral-70: oklch(72.838% 0.00008 271.152);
+  --neutral-95: oklch(95.824% 0.00426 271.37);
+  --neutral-92: oklch(91.592% 0.0043 271.368);
+  --accent-60: oklch(67.25% 0.16706 41.474); /* orange */
+}
+
 // Font Family
 $font-helvetica-now: "Helvetica Now Display", sans-serif;
 $suisse-intl-mono: "Suisse Int'l Mono", sans-serif;
@@ -15,11 +24,11 @@ $font-weight-map: (
   extra-black: 950,
 );
 
-$black: #000000;
-$white: #ffffff;
-$gray: #a7a7a7;
-$light-gray: #f0f1f4;
-$orange: #e86c39;
+$black: var(--neutral-0);
+$white: var(--neutral-100);
+$gray: var(--neutral-70);
+$light-gray: var(--neutral-95);
+$orange: var(--accent-60);
 
 // Spacing Scale (1rem to 8rem)
 $spacing-1: 1rem;

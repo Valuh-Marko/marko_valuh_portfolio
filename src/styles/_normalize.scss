@@ -112,9 +112,9 @@ section {
 
 body {
   line-height: 1.5;
-  font-family: $font-helvetica-now; // assumes your var is loaded
-  background-color: #fff;
-  color: #000;
+  font-family: $font-helvetica-now;
+  background-color: $white;
+  color: $black;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

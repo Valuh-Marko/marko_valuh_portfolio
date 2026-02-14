@@ -13,7 +13,7 @@
   @include flex-column();
   justify-content: space-between;
   position: relative;
-  background-color: #e2e3e6;
+  background-color: oklab(91.592% 0.0001 -0.0043);
   border-radius: 0.25rem;
   height: calc(100vh - 2rem);
   overflow-y: hidden;
@@ -99,7 +99,7 @@
   &::before {
     content: "";
     position: absolute;
-    background-color: #e2e3e6;
+    background-color: oklch(91.592% 0.0043 271.368);
     border-radius: 1px;
     height: 1px;
     width: 0.75rem;
