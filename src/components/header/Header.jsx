@@ -10,6 +10,21 @@ import { HeaderLink } from "./components/HeaderLink";
 import "./header.scss";
 import { ScrollContext } from "../../context/ScrollContext";
 
+const HEADER_LINKS_CONFIG = [
+  {
+    linkLabel: "Homepage",
+    linkValue: "/",
+  },
+  {
+    linkLabel: "Projects",
+    linkValue: "/projects",
+  },
+  {
+    linkLabel: "Work Experience",
+    linkValue: "/work-experience",
+  },
+];
+
 export const Header = ({ shouldShow }) => {
   const { directionRef, scrollYRef } = useContext(ScrollContext);
   const [direction, setDirection] = useState("hide");
@@ -129,15 +144,11 @@ export const Header = ({ shouldShow }) => {
           </div>
         </div>
         <div className="c-header-links">
-          <HeaderLink to="/" isOpen={isOpen} index={1}>
-            Homepage
-          </HeaderLink>
-          <HeaderLink isOpen={isOpen} to="/projects" index={2}>
-            Projects
-          </HeaderLink>
-          <HeaderLink isOpen={isOpen} to="/work-experience" index={3}>
-            Work Experience
-          </HeaderLink>
+          {HEADER_LINKS_CONFIG.map(({ linkLabel, linkValue }) => (
+            <HeaderLink to={linkValue} isOpen={isOpen} index={1}>
+              {linkLabel}
+            </HeaderLink>
+          ))}
         </div>
         <div className="c-header-contact">
           <div className="c-header-contact__left">

@@ -71,7 +71,6 @@
 
 .c-header-bar__menu-icon {
   @include flex-row-center();
-  cursor: pointer;
   min-width: 5.5rem;
   padding-right: 1rem;
 
@@ -135,9 +134,19 @@
   overflow-y: hidden;
   transition: color 0.3s ease-in;
   white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
 
   &:hover {
     color: $orange;
+
+    .c-link__icon {
+      transform: translateX(-100%);
+    }
+  }
+
+  &.c-link--active {
+    cursor: default;
   }
 }
 
@@ -152,6 +161,12 @@
 .c-link__text {
   position: relative;
   font-weight: 500;
+}
+
+.c-link__icon {
+  margin-left: 25%;
+  transition: transform 0.62s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: translateX(0);
 }
 
 .c-header-contact {

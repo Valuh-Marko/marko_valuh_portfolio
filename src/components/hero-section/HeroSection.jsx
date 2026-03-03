@@ -36,6 +36,7 @@ export const HeroSection = () => {
         className="c-hero-img"
         src={heroImg}
         alt="hero_img"
+        fetchPriority="high"
         style={{
           y: y,
         }}
