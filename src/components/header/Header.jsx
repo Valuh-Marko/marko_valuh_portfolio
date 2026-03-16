@@ -144,8 +144,13 @@ export const Header = ({ shouldShow }) => {
           </div>
         </div>
         <div className="c-header-links">
-          {HEADER_LINKS_CONFIG.map(({ linkLabel, linkValue }) => (
-            <HeaderLink to={linkValue} isOpen={isOpen} index={1}>
+          {HEADER_LINKS_CONFIG.map(({ linkLabel, linkValue }, index) => (
+            <HeaderLink
+              to={linkValue}
+              isOpen={isOpen}
+              index={index}
+              key={linkLabel}
+            >
               {linkLabel}
             </HeaderLink>
           ))}

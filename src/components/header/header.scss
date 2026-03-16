@@ -134,6 +134,7 @@
   overflow-y: hidden;
   transition: color 0.3s ease-in;
   white-space: nowrap;
+  overflow: hidden;
   user-select: none;
   cursor: pointer;
 
@@ -143,10 +144,6 @@
     .c-link__icon {
       transform: translateX(-100%);
     }
-  }
-
-  &.c-link--active {
-    cursor: default;
   }
 }
 
