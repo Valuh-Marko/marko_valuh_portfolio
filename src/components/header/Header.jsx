@@ -176,7 +176,7 @@ export const Header = ({ shouldShow }) => {
           <span className="c-header-label">download CV</span>
           <Divider vertical={true} color={"black"} />
           <a
-            href={`/files/Marko_Valuh_resume.pdf`}
+            href={`/files/Marko_Valuh_resume.docx`}
             download
             className="c-header-contact-download-wrapper"
           >
