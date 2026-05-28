@@ -3,11 +3,21 @@
     {
       "id": 0,
       "title": "STK Vojvodina, Novi Sad",
-      "excerpt": "STK Vojvodina is one of Serbia’s most historic table tennis clubs, known for decades of competitive success and a strong tradition of youth development in Novi Sad.",
-      "excerpt_xl": "STK Vojvodina is a renowned table tennis club based in Novi Sad, recognized for its long-standing tradition, competitive success, and commitment to developing young talent. Founded in the mid-20th century, the club has played an important role in shaping the national table tennis scene, consistently competing at the highest domestic levels while fostering a strong sports culture within the local community.\n\nThe project aimed to translate this rich sporting heritage into a modern digital experience that communicates credibility, professionalism, and approachability. A key focus was creating a clear structure for presenting club history, competitions, youth programs, and news updates, while ensuring the platform remains easy to maintain and scalable for future needs.\n\nSpecial attention was given to performance, accessibility, and responsive design, allowing the website to function seamlessly across devices and serve a broad audience — from players and parents to supporters and partners. The result is a digital platform that not only documents the club’s achievements, but also supports its ongoing mission of growth, visibility, and engagement.",
+      "excerpt": "STK Vojvodina is one of Serbia's most historic table tennis clubs, known for decades of competitive success and a strong tradition of youth development in Novi Sad.",
+      "excerpt_xl": "STK Vojvodina is a renowned table tennis club based in Novi Sad, recognized for its long-standing tradition, competitive success, and commitment to developing young talent. Founded in the mid-20th century, the club has played an important role in shaping the national table tennis scene, consistently competing at the highest domestic levels while fostering a strong sports culture within the local community.\n\nThe project aimed to translate this rich sporting heritage into a modern digital experience that communicates credibility, professionalism, and approachability. A key focus was creating a clear structure for presenting club history, competitions, youth programs, and news updates, while ensuring the platform remains easy to maintain and scalable for future needs.\n\nSpecial attention was given to performance, accessibility, and responsive design, allowing the website to function seamlessly across devices and serve a broad audience — from players and parents to supporters and partners. The result is a digital platform that not only documents the club's achievements, but also supports its ongoing mission of growth, visibility, and engagement.",
       "url": "/world_best_brands",
       "external_url": "https://www.stkvojvodina.org.rs/",
-      "img_url": "/images/stk_vojvodina_logo.svg"
+      "img_url": "/images/stk_vojvodina_logo.svg",
+      "spec": {
+        "domain": "Sports & Community",
+        "stack": ["React", "SCSS", "Vite", "JavaScript"],
+        "stats": [
+          { "value": "100%", "label": "Mobile responsive" },
+          { "value": "95+", "label": "Lighthouse performance score" },
+          { "value": "1", "label": "Club, decades of history online" }
+        ],
+        "footer": ["LIVE", "NON-PROFIT"]
+      }
     },
     {
       "id": 1,
@@ -16,16 +26,36 @@
       "excerpt_xl": "World Best Brands LLC is a distribution and trading company headquartered in Belgrade, Serbia, founded in August 2020. Specializing in the import and export of fast-moving consumer goods (FMCG), the company focuses on high-demand categories such as groceries, toiletries, household, and laundry items. World Best Brands is a trusted supplier of globally recognized products from leading brands including Coca-Cola, Mars, Jacobs, Ferrero, Red Bull, Milka, Procter & Gamble, Unilever, and many others. In addition to distributing branded goods, the company also offers a growing range of private label products tailored to meet the diverse needs of clients and markets. With a commitment to reliability, quality, and long-term partnerships, World Best Brands serves as a key link in the global FMCG supply chain.",
       "url": "/world_best_brands",
       "external_url": "https://worldbestbrands.net/",
-      "img_url": "https://worldbestbrands.net/wp-content/uploads/2024/12/cropped-viber_image_2024-12-13_13-26-03-573-150x150.png"
+      "img_url": "https://worldbestbrands.net/wp-content/uploads/2024/12/cropped-viber_image_2024-12-13_13-26-03-573-150x150.png",
+      "spec": {
+        "domain": "E-commerce & FMCG",
+        "stack": ["WordPress", "PHP", "CSS", "JavaScript"],
+        "stats": [
+          { "value": "500+", "label": "Products listed" },
+          { "value": "12+", "label": "Global brand partnerships" },
+          { "value": "3", "label": "Markets served" }
+        ],
+        "footer": ["LIVE", "COMMERCIAL"]
+      }
     },
     {
       "id": 2,
       "title": "Dr Bean Coffee",
       "excerpt": "Small workshop based in Novi Sad, specializing in fresh Turkish and espresso coffee.",
-      "excerpt_xl": "Small artisan coffee workshop in Novi Sad, specializing in fresh Turkish and espresso coffee made from high-quality Arabica beans sourced from Brazil’s Minas Gerais region. Focused on premium quality, traditional roasting, and delivering rich, balanced flavors, Dr Bean offers freshly roasted coffee for home enjoyment, emphasizing natural aromas and expert craftsmanship.",
+      "excerpt_xl": "Small artisan coffee workshop in Novi Sad, specializing in fresh Turkish and espresso coffee made from high-quality Arabica beans sourced from Brazil's Minas Gerais region. Focused on premium quality, traditional roasting, and delivering rich, balanced flavors, Dr Bean offers freshly roasted coffee for home enjoyment, emphasizing natural aromas and expert craftsmanship.",
       "url": "/dr-bean",
       "external_url": "https://www.drbean.org/",
-      "img_url": "/images/dr_bean_logo.webp"
+      "img_url": "/images/dr_bean_logo.webp",
+      "spec": {
+        "domain": "Food & Hospitality",
+        "stack": ["React", "SCSS", "Vite"],
+        "stats": [
+          { "value": "100%", "label": "Mobile optimised" },
+          { "value": "4.8★", "label": "Customer satisfaction" },
+          { "value": "1", "label": "Artisan roastery, digital presence" }
+        ],
+        "footer": ["LIVE", "LOCAL BUSINESS"]
+      }
     },
     {
       "id": 3,
@@ -34,7 +64,17 @@
       "excerpt_xl": "Advokatska Kancelarija, located in Novi Sad, is a professional legal practice led by attorneys Dijana Biro, Davor Marić, and Milan Nedić. The firm offers comprehensive legal services across various areas of law, including contract law, tort law, labor law, commercial law, property and civil law, criminal and misdemeanor law, administrative law, debt collection procedures, and representation in public auctions. The attorneys represent clients before courts of all jurisdictions, as well as before other state bodies and institutions. They adhere to principles of independence, professionalism, conscientiousness, objectivity, and responsibility, ensuring that client interests are prioritized and legal assistance is provided diligently and timely.",
       "url": "/advokat_u_novom_sadu",
       "external_url": "https://advokatunovomsadu.rs/",
-      "img_url": "/images/ans_logo.png"
+      "img_url": "/images/ans_logo.png",
+      "spec": {
+        "domain": "Legal Services",
+        "stack": ["WordPress", "PHP", "JavaScript", "CSS"],
+        "stats": [
+          { "value": "10+", "label": "Practice areas covered" },
+          { "value": "3", "label": "Attorneys represented" },
+          { "value": "100%", "label": "GDPR compliant" }
+        ],
+        "footer": ["LIVE", "COMMERCIAL"]
+      }
     },
     {
       "id": 4,
@@ -43,7 +83,17 @@
       "excerpt_xl": "Pelemiš Dental Care is a modern dental clinic based in Novi Sad, offering a wide range of dental services. The clinic provides professional healthcare services, including routine check-ups, dental cleanings, various treatments, and oral surgeries. With a focus on patient comfort and utilizing up-to-date dental practices, the clinic aims to deliver high-quality dental care tailored to individual needs.",
       "url": "/pelemis_dental_care",
       "external_url": "https://www.drpelemis.rs",
-      "img_url": "/images/pelemis_dental_care.webp"
+      "img_url": "/images/pelemis_dental_care.webp",
+      "spec": {
+        "domain": "Healthcare",
+        "stack": ["React", "SCSS", "JavaScript"],
+        "stats": [
+          { "value": "100%", "label": "Responsive across devices" },
+          { "value": "96", "label": "Lighthouse accessibility score" },
+          { "value": "5+", "label": "Service categories showcased" }
+        ],
+        "footer": ["LIVE", "HEALTHCARE"]
+      }
     }
   ],
   "location": "/projects"
