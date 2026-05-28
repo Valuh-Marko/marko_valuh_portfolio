@@ -12,6 +12,10 @@
   @include respond(md) {
     grid-template-columns: 3fr 1fr 1fr;
   }
+
+  @include respond(lg) {
+    padding-inline: max(2rem, calc((100vw - 1600px) / 2 + 2rem));
+  }
 }
 
 .c-footer__logo-holder {

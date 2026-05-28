@@ -8,8 +8,8 @@
   height: 100vh;
 }
 .loader {
-  width: 48px;
-  height: 48px;
+  width: 3rem;
+  height: 3rem;
   display: inline-block;
   position: relative;
   border: 2px solid $black;
@@ -27,15 +27,15 @@
   bottom: 0;
   margin: auto;
   border: 2px solid $orange;
-  width: 38px;
-  height: 38px;
+  width: 2.375rem;
+  height: 2.375rem;
   animation: rotationBack 1.5s linear infinite;
   transform-origin: center center;
 }
 .loader::before {
-  width: 28px;
-  height: 28px;
-  border-color: oklab(0% 0 0);
+  width: 1.75rem;
+  height: 1.75rem;
+  border-color: $black;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
 }

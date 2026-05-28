@@ -10,7 +10,7 @@ export const WorkExperience = ({ setContentLoaded }) => {
       const res = await fetch("/data/work_experience.json");
       const data = await res.json();
       setResponse(data);
-      setContentLoaded();
+      setContentLoaded?.();
     }
 
     fetchData();

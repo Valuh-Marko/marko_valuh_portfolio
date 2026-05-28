@@ -14,7 +14,7 @@ export const StackingCards = ({
 
   const { scrollYProgress } = useScroll({
     target: container,
-    offset: ["start start", "end end"],
+    offset: ["start end", "end start"],
   });
 
   const { data, location } = response;
@@ -35,7 +35,7 @@ export const StackingCards = ({
   return (
     <motion.div
       ref={container}
-      className={`c-stacking-cards ${className && className}`}
+      className={`c-stacking-cards${className ? ` ${className}` : ""}`}
     >
       {parsedData.map((item) => (
         <Card

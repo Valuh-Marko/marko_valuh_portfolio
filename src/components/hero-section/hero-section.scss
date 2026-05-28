@@ -27,6 +27,7 @@
   font-size: 4rem;
   line-height: 4rem;
   font-weight: 500;
+  text-wrap: balance;
 
   @include respond(xs) {
     font-size: 5rem;
@@ -36,7 +37,10 @@
   @include respond(md) {
     font-size: 5rem;
     line-height: 5rem;
-    max-width: 75vw;
+  }
+
+  @include respond(lg) {
+    max-width: 66.67%;
   }
 }
 
@@ -53,7 +57,6 @@
 .c-hero-img {
   position: absolute;
   object-fit: cover;
-  y: -100px;
   left: 0;
   top: 0;
   width: 100%;

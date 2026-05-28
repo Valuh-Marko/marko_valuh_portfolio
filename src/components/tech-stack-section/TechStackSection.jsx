@@ -18,8 +18,10 @@ export const TechStackSection = () => {
         {/* second column */}
         <div className="c-section__column">
           <h3 className="c-section__title">
-            Crafting efficient solutions <br /> with industry standard tools:
+            Crafting efficient solutions <br /> with industry standard tools
           </h3>
+        </div>
+        <div className="c-section__column">
           <div className="c-section-icon-wrapper">
             <FaReact className="c-tech-icon" title="React" />
             <FaAngular className="c-tech-icon" title="Angular" />
@@ -27,11 +29,6 @@ export const TechStackSection = () => {
             <RiTailwindCssFill className="c-tech-icon" title="Tailwind" />
           </div>
         </div>
-        {/* Third Column */}
-        <span className="c-section__label c-section__label--alt">
-          <span>/</span>
-          <span>Front_End</span>
-        </span>
       </div>
     </div>
   );

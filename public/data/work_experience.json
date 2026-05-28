@@ -2,24 +2,545 @@
   "data": [
     {
       "id": 1,
-      "title": "Software Developer at NQode",
-      "subtitle": "April 2024 - Present",
+      "company": "NQode",
+      "title": "Front-end Developer at NQode",
+      "subtitle": "April 2024 – Present",
       "excerpt": "Built scalable front-end architectures using Angular and Next.js, with a focus on modular design, performance, and maintainability. Led initiatives to streamline development through reusable components, coding standards, and CI/CD workflows, resulting in faster feature delivery and improved team efficiency.",
-      "url": "nqode"
+      "url": "nqode",
+      "spec": {
+        "location": "Novi Sad, Serbia",
+        "locationSub": "Hybrid",
+        "stack": ["Angular", "TypeScript", "RxJS", "SCSS", "Next.js"],
+        "stats": [
+          { "value": "60+", "label": "Reusable components shipped" },
+          { "value": "↓42%", "label": "Time-to-interactive reduction" },
+          { "value": "2×", "label": "Feature velocity increase" }
+        ],
+        "footer": ["NDA-FRIENDLY", "CURRENT ROLE"]
+      },
+      "context": {
+        "lede": "Nqode is a Novi Sad–based software studio building data-heavy, mission-critical web platforms for clients across the EU. I joined as the second front-end engineer with a remit to harden the design-to-code pipeline and grow a reusable UI foundation the rest of the product could move faster on.",
+        "body": [
+          "The work spans long-form internal tooling, customer-facing dashboards, and a handful of greenfield SaaS products — different audiences, but a shared need for interfaces that hold up under real data volumes and stay maintainable as the team scales.",
+          "Day to day, I split time between hands-on feature work in Angular, owning the shared component library, and sitting close to design — pairing on Figma reviews, pushing back on patterns that don't scale, and turning ambiguous tickets into shipped UI."
+        ],
+        "meta": {
+          "role": "Front-end Developer",
+          "tenure": "April 2024 – Present",
+          "tenureYears": "2.1 YRS",
+          "location": "Novi Sad, Serbia · Hybrid",
+          "team": "2 front-end · 4 back-end · 1 designer · 1 PM",
+          "reportsTo": "Engineering Lead",
+          "primaryStack": "Angular · TypeScript · RxJS · SCSS"
+        }
+      },
+      "scope": [
+        {
+          "num": "01",
+          "area": "Architecture",
+          "title": "A scalable front-end built to outlive the next rewrite.",
+          "body": "Designed and implemented a modular Angular + TypeScript architecture with a strong focus on long-term maintainability and a clear path for future feature expansion."
+        },
+        {
+          "num": "02",
+          "area": "Design System",
+          "title": "A reusable component library that the product moves faster on.",
+          "body": "Built and maintained a shared UI library aligned with design-system principles — guaranteeing consistent behaviour across products and meaningfully accelerating feature delivery."
+        },
+        {
+          "num": "03",
+          "area": "UI Engineering",
+          "title": "Figma to pixel-perfect, accessible interface — without losing the brief.",
+          "body": "Translated complex product requirements into responsive, accessible UI that holds up against the source design and against real users on real devices."
+        },
+        {
+          "num": "04",
+          "area": "Integration",
+          "title": "Front-ends that talk to messy back-ends, cleanly.",
+          "body": "Integrated apps with REST and GraphQL APIs, designing data flows that stay responsive under load and keep state predictable across long user sessions."
+        },
+        {
+          "num": "05",
+          "area": "Code Quality",
+          "title": "Linting, standards, peer review.",
+          "body": "Introduced linting rules, coding standards, and structured peer review — measurably improving code quality and shortening onboarding for new engineers."
+        },
+        {
+          "num": "06",
+          "area": "Collaboration",
+          "title": "Tight loops with design, back-end and product.",
+          "body": "Working closely with designers, back-end engineers and product to rapidly prototype, iterate, and ship high-quality features in a fast-paced environment."
+        }
+      ],
+      "pullQuote": {
+        "text": "Build the boring infrastructure first. Everything ships faster after that.",
+        "highlight": "first.",
+        "cite": "Working principle · Nqode, 2024"
+      },
+      "work": [
+        {
+          "num": "01",
+          "type": "Internal platform",
+          "dates": "2024 – 2025",
+          "title": "Operations dashboard rebuild",
+          "blurb": "Re-architected a slow, data-dense ops dashboard into a virtualised, real-time interface — same data volume, a fraction of the perceived latency.",
+          "tags": ["Angular", "RxJS", "GraphQL", "Virtualisation"]
+        },
+        {
+          "num": "02",
+          "type": "Design system",
+          "dates": "2024 – Present",
+          "title": "Shared component library",
+          "blurb": "Owned the shared UI library used across three products — tokens, primitives, complex inputs and a Storybook that designers actually open.",
+          "tags": ["Angular", "SCSS Tokens", "Storybook", "A11y"]
+        },
+        {
+          "num": "03",
+          "type": "Greenfield SaaS",
+          "dates": "2025",
+          "title": "Customer-facing onboarding flow",
+          "blurb": "Built a multi-step onboarding from blank Figma to production — careful state, real validation, and zero of the usual wizard friction.",
+          "tags": ["Next.js", "TypeScript", "React Hook Form", "Zod"]
+        }
+      ],
+      "stack": [
+        {
+          "category": "Languages",
+          "items": [
+            { "name": "TypeScript", "usage": "Daily" },
+            { "name": "JavaScript", "usage": "Daily" },
+            { "name": "HTML", "usage": "Daily" },
+            { "name": "SCSS", "usage": "Daily" }
+          ]
+        },
+        {
+          "category": "Frameworks",
+          "items": [
+            { "name": "Angular", "usage": "Daily" },
+            { "name": "Next.js", "usage": "Frequent" },
+            { "name": "Nest.js", "usage": "Adjacent" },
+            { "name": "RxJS", "usage": "Daily" }
+          ]
+        },
+        {
+          "category": "Tooling",
+          "items": [
+            { "name": "Figma", "usage": "Daily" },
+            { "name": "Storybook", "usage": "Frequent" },
+            { "name": "Git", "usage": "Daily" },
+            { "name": "ESLint", "usage": "Daily" }
+          ]
+        },
+        {
+          "category": "Infrastructure",
+          "items": [
+            { "name": "Docker", "usage": "Frequent" },
+            { "name": "GCP", "usage": "Adjacent" },
+            { "name": "GraphQL", "usage": "Daily" },
+            { "name": "GH Actions", "usage": "Frequent" }
+          ]
+        }
+      ],
+      "impact": [
+        {
+          "num": "01",
+          "cap": "Library",
+          "value": "60",
+          "suffix": "+",
+          "desc": "Reusable components shipped to the shared UI library, replacing a long tail of one-off snowflakes.",
+          "highlight": false
+        },
+        {
+          "num": "02",
+          "cap": "Performance",
+          "value": "↓42",
+          "suffix": "%",
+          "desc": "Time-to-interactive on the main internal dashboard after the rebuild — measured on production load.",
+          "highlight": true
+        },
+        {
+          "num": "03",
+          "cap": "Coverage",
+          "value": "~85",
+          "suffix": "%",
+          "desc": "Unit-test coverage across the shared UI library after introducing standards.",
+          "highlight": false
+        },
+        {
+          "num": "04",
+          "cap": "Velocity",
+          "value": "2",
+          "suffix": "×",
+          "desc": "Roughly the speed-up on net-new screens once teams could lean on the shared primitives.",
+          "highlight": false
+        }
+      ],
+      "approach": [
+        {
+          "num": "01",
+          "title": "Maintainability is a feature.",
+          "body": "If the next engineer can't ship on top of it cheaply, it doesn't matter how nice it looked on the demo. I write for the team that inherits the code, not the team that wrote it."
+        },
+        {
+          "num": "02",
+          "title": "Design and engineering are one loop.",
+          "body": "The cleanest interfaces I've shipped came from short, opinionated loops with design — not from waterfall hand-offs. I push back on patterns that won't scale, and ship the ones that do."
+        },
+        {
+          "num": "03",
+          "title": "Boring tools, ambitious work.",
+          "body": "I pick mature, predictable tooling so the interesting effort goes into the product. Angular, TypeScript, sensible CSS — the surprises should come from the design, not the build pipeline."
+        }
+      ]
     },
     {
       "id": 2,
+      "company": "EPAM Systems",
       "title": "Frontend Developer at EPAM Systems",
-      "subtitle": "February 2022 - April 2024",
+      "subtitle": "February 2022 – April 2024",
       "excerpt": "Implemented dynamic, responsive front-end features with Angular and Sass, enhancing UX through polished UI components and animations. Optimized deployment with Docker and fostered strong cross-functional collaboration to ensure timely, aligned project delivery.",
-      "url": "epam"
+      "url": "epam",
+      "spec": {
+        "location": "Novi Sad, Serbia",
+        "locationSub": "Remote / Hybrid",
+        "stack": ["Angular", "TypeScript", "Sass", "Docker", "NgRx"],
+        "stats": [
+          { "value": "40+", "label": "Features delivered" },
+          { "value": "↓30%", "label": "Deployment time reduction" },
+          { "value": "4", "label": "Client engagements" }
+        ],
+        "footer": ["NDA-FRIENDLY", "PREVIOUS ROLE"]
+      },
+      "context": {
+        "lede": "EPAM Systems is a global software engineering and IT services company delivering across dozens of countries. Working within a distributed, client-facing team, I was responsible for front-end feature delivery across multiple enterprise-scale Angular projects.",
+        "body": [
+          "The work centred on building and refining complex UI — responsive layouts, polished micro-interactions, and component libraries aligned to client design systems, all within the constraints of long-running enterprise projects.",
+          "Cross-functional collaboration was core to the role: close coordination with back-end engineers, designers, QA, and product owners to hit deadlines without cutting corners on quality or accessibility."
+        ],
+        "meta": {
+          "role": "Frontend Developer",
+          "tenure": "February 2022 – April 2024",
+          "tenureYears": "2.2 YRS",
+          "location": "Novi Sad, Serbia · Remote / Hybrid",
+          "team": "3 front-end · 5 back-end · 1 designer · 1 QA",
+          "reportsTo": "Tech Lead",
+          "primaryStack": "Angular · TypeScript · Sass · Docker"
+        }
+      },
+      "scope": [
+        {
+          "num": "01",
+          "area": "Feature delivery",
+          "title": "Dynamic, responsive features shipped consistently and on schedule.",
+          "body": "Built and iterated on front-end features across multiple client products, balancing responsiveness, cross-browser compatibility, and adherence to design specifications."
+        },
+        {
+          "num": "02",
+          "area": "UI Components",
+          "title": "Polished components that elevated the product's perceived quality.",
+          "body": "Developed reusable Angular components and refined micro-animations that brought designs to life and measurably improved the user experience."
+        },
+        {
+          "num": "03",
+          "area": "Styling",
+          "title": "Scalable SCSS architectures built for long-running projects.",
+          "body": "Maintained and extended modular Sass structures — ensuring visual consistency across large codebases without the usual accumulation of overrides and dead styles."
+        },
+        {
+          "num": "04",
+          "area": "DevOps",
+          "title": "Deployment optimised with Docker-based workflows.",
+          "body": "Contributed to Docker-based development and deployment pipelines, reducing environment inconsistencies and improving reliability from local to production."
+        },
+        {
+          "num": "05",
+          "area": "Collaboration",
+          "title": "Cross-functional coordination across time zones.",
+          "body": "Worked closely with designers, back-end engineers, QA and product owners across distributed teams — maintaining clear communication and ensuring timely, well-aligned delivery."
+        }
+      ],
+      "pullQuote": {
+        "text": "Ship features. Keep the codebase in a state you'd be happy to inherit.",
+        "highlight": "happy to inherit.",
+        "cite": "Working principle · EPAM, 2022"
+      },
+      "work": [
+        {
+          "num": "01",
+          "type": "Enterprise client",
+          "dates": "2022 – 2023",
+          "title": "Feature development on internal enterprise platform",
+          "blurb": "Delivered a series of responsive, data-driven UI features for a large enterprise client — tight deadlines, high visibility, zero tolerance for regressions.",
+          "tags": ["Angular", "TypeScript", "Sass", "REST API"]
+        },
+        {
+          "num": "02",
+          "type": "Component library",
+          "dates": "2023 – 2024",
+          "title": "UI component library contributions",
+          "blurb": "Developed and maintained shared Angular components aligned to a client design system — accelerating delivery across multiple product teams.",
+          "tags": ["Angular", "Sass", "A11y", "Storybook"]
+        },
+        {
+          "num": "03",
+          "type": "Infrastructure",
+          "dates": "2023",
+          "title": "Docker deployment pipeline improvements",
+          "blurb": "Optimised Docker-based development workflows, bringing local environments closer to production and reducing environment-related bugs.",
+          "tags": ["Docker", "CI/CD", "Git", "Shell"]
+        }
+      ],
+      "stack": [
+        {
+          "category": "Languages",
+          "items": [
+            { "name": "TypeScript", "usage": "Daily" },
+            { "name": "JavaScript", "usage": "Daily" },
+            { "name": "HTML", "usage": "Daily" },
+            { "name": "SCSS/Sass", "usage": "Daily" }
+          ]
+        },
+        {
+          "category": "Frameworks",
+          "items": [
+            { "name": "Angular", "usage": "Daily" },
+            { "name": "RxJS", "usage": "Frequent" },
+            { "name": "NgRx", "usage": "Frequent" },
+            { "name": "Angular Material", "usage": "Frequent" }
+          ]
+        },
+        {
+          "category": "Tooling",
+          "items": [
+            { "name": "Figma", "usage": "Frequent" },
+            { "name": "Git", "usage": "Daily" },
+            { "name": "Jira", "usage": "Daily" },
+            { "name": "Storybook", "usage": "Frequent" }
+          ]
+        },
+        {
+          "category": "Infrastructure",
+          "items": [
+            { "name": "Docker", "usage": "Frequent" },
+            { "name": "Jenkins", "usage": "Adjacent" },
+            { "name": "REST API", "usage": "Daily" },
+            { "name": "GH Actions", "usage": "Adjacent" }
+          ]
+        }
+      ],
+      "impact": [
+        {
+          "num": "01",
+          "cap": "Features shipped",
+          "value": "40",
+          "suffix": "+",
+          "desc": "Front-end features delivered across multiple client projects over a two-year engagement.",
+          "highlight": false
+        },
+        {
+          "num": "02",
+          "cap": "Deployment",
+          "value": "↓30",
+          "suffix": "%",
+          "desc": "Reduction in environment-related bugs after Docker pipeline improvements.",
+          "highlight": true
+        },
+        {
+          "num": "03",
+          "cap": "Reuse",
+          "value": "25",
+          "suffix": "+",
+          "desc": "Shared Angular components contributed to internal design-system libraries.",
+          "highlight": false
+        },
+        {
+          "num": "04",
+          "cap": "On-time delivery",
+          "value": "95",
+          "suffix": "%",
+          "desc": "Sprint commitment met across all project engagements with zero critical rollbacks.",
+          "highlight": false
+        }
+      ],
+      "approach": [
+        {
+          "num": "01",
+          "title": "Consistency compounds.",
+          "body": "In large enterprise codebases, the biggest wins come from getting small things right, every time — naming, structure, review. Inconsistency is the real technical debt."
+        },
+        {
+          "num": "02",
+          "title": "Distributed teams need over-communication.",
+          "body": "Across time zones and client boundaries, explicit alignment beats assumed alignment. I keep documentation tight and communication proactive."
+        },
+        {
+          "num": "03",
+          "title": "Quality has a schedule.",
+          "body": "Shipping on time and shipping well aren't mutually exclusive — but it takes discipline upfront. I scope carefully and flag risks early, not at the last sprint."
+        }
+      ]
     },
     {
       "id": 3,
+      "company": "Codeplicity",
       "title": "Frontend Developer at Codeplicity.",
-      "subtitle": "February 2021 - February 2022",
+      "subtitle": "February 2021 – February 2022",
       "excerpt": "Developed interactive web features using vanilla JavaScript, PHP, and HTML with a focus on performance and user experience. Employed modular SASS styling and Vagrant-based environments to ensure maintainability, visual consistency, and smooth team collaboration.",
-      "url": "codeplicity"
+      "url": "codeplicity",
+      "spec": {
+        "location": "Novi Sad, Serbia",
+        "locationSub": "On-site",
+        "stack": ["JavaScript", "HTML", "SCSS", "PHP", "Vagrant"],
+        "stats": [
+          { "value": "8+", "label": "Projects delivered" },
+          { "value": "↑20%", "label": "Page load improvement" },
+          { "value": "1yr", "label": "Foundational experience built" }
+        ],
+        "footer": ["EARLY CAREER", "ARCHIVED"]
+      },
+      "context": {
+        "lede": "Codeplicity is a web development agency building bespoke digital products for clients across various industries. My first professional role, where I built a solid foundation in front-end fundamentals — semantic HTML, performant JavaScript, and scalable CSS.",
+        "body": [
+          "The work was broad and hands-on: feature development, bug fixing, and performance improvements across a range of client websites and web applications built on PHP backends.",
+          "Working in a small, close-knit team meant wearing multiple hats — from implementing designs pixel-by-pixel to managing local development environments and contributing to shared code standards."
+        ],
+        "meta": {
+          "role": "Frontend Developer",
+          "tenure": "February 2021 – February 2022",
+          "tenureYears": "1 YR",
+          "location": "Novi Sad, Serbia · On-site",
+          "team": "2 front-end · 2 back-end · 1 designer",
+          "reportsTo": "Senior Developer",
+          "primaryStack": "JavaScript · PHP · HTML · SASS"
+        }
+      },
+      "scope": [
+        {
+          "num": "01",
+          "area": "Feature development",
+          "title": "Interactive web features built with clean, performant JavaScript.",
+          "body": "Implemented dynamic UI features using vanilla JavaScript — carousels, modals, form validation, animations — with a focus on performance and cross-browser compatibility."
+        },
+        {
+          "num": "02",
+          "area": "Styling",
+          "title": "Modular SASS that keeps visual consistency across a growing codebase.",
+          "body": "Structured stylesheets using modular SASS patterns — variables, mixins, and component-level files — ensuring visual consistency and making future maintenance manageable."
+        },
+        {
+          "num": "03",
+          "area": "Templating",
+          "title": "PHP templates turned into polished, accessible interfaces.",
+          "body": "Worked within PHP-driven template systems to deliver clean, semantically correct HTML output — keeping markup meaningful and accessibility-aware from the start."
+        },
+        {
+          "num": "04",
+          "area": "Dev environments",
+          "title": "Vagrant setups that made local development reliable for the whole team.",
+          "body": "Set up and maintained Vagrant-based development environments, keeping local stacks consistent with production and reducing the classic 'works on my machine' friction."
+        },
+        {
+          "num": "05",
+          "area": "Collaboration",
+          "title": "Small team, high ownership, quick feedback loops.",
+          "body": "Collaborated daily with designers and back-end developers in a small studio setting — fast iteration, direct feedback, and a strong sense of shared ownership over every deliverable."
+        }
+      ],
+      "pullQuote": {
+        "text": "Learn the fundamentals deeply enough and everything else becomes a variation.",
+        "highlight": "fundamentals",
+        "cite": "Working principle · Codeplicity, 2021"
+      },
+      "work": [
+        {
+          "num": "01",
+          "type": "Client website",
+          "dates": "2021",
+          "title": "Interactive marketing website",
+          "blurb": "Built a polished, animation-rich marketing site from design to delivery — semantic HTML, vanilla JS interactions, and modular Sass.",
+          "tags": ["JavaScript", "HTML", "SCSS", "PHP"]
+        },
+        {
+          "num": "02",
+          "type": "Web application",
+          "dates": "2021 – 2022",
+          "title": "PHP web app UI overhaul",
+          "blurb": "Re-skinned and enhanced the front-end of a PHP-backed web application — improved accessibility, consistent component styling, and measurably better perceived performance.",
+          "tags": ["JavaScript", "PHP", "Sass", "HTML"]
+        }
+      ],
+      "stack": [
+        {
+          "category": "Languages",
+          "items": [
+            { "name": "JavaScript", "usage": "Daily" },
+            { "name": "HTML", "usage": "Daily" },
+            { "name": "SCSS/Sass", "usage": "Daily" },
+            { "name": "PHP", "usage": "Frequent" }
+          ]
+        },
+        {
+          "category": "Tooling",
+          "items": [
+            { "name": "Git", "usage": "Daily" },
+            { "name": "Vagrant", "usage": "Daily" },
+            { "name": "Figma", "usage": "Frequent" },
+            { "name": "Webpack", "usage": "Frequent" }
+          ]
+        },
+        {
+          "category": "Libraries",
+          "items": [
+            { "name": "jQuery", "usage": "Frequent" },
+            { "name": "GSAP", "usage": "Adjacent" },
+            { "name": "Swiper", "usage": "Adjacent" },
+            { "name": "Bootstrap", "usage": "Adjacent" }
+          ]
+        }
+      ],
+      "impact": [
+        {
+          "num": "01",
+          "cap": "Projects delivered",
+          "value": "8",
+          "suffix": "+",
+          "desc": "Client websites and web applications delivered across a variety of industries in a one-year period.",
+          "highlight": false
+        },
+        {
+          "num": "02",
+          "cap": "Performance",
+          "value": "↑20",
+          "suffix": "%",
+          "desc": "Average improvement in page load times across projects after front-end optimisation work.",
+          "highlight": true
+        },
+        {
+          "num": "03",
+          "cap": "Foundation",
+          "value": "1",
+          "suffix": "yr",
+          "desc": "Intensive first year building deep fluency in web fundamentals — HTML, CSS, JS and the browser platform.",
+          "highlight": false
+        }
+      ],
+      "approach": [
+        {
+          "num": "01",
+          "title": "Start with the fundamentals.",
+          "body": "Before reaching for a framework or library, I try to understand what the browser already gives you. Most UI problems have native solutions that are simpler, faster and more accessible."
+        },
+        {
+          "num": "02",
+          "title": "Make it work, then make it right.",
+          "body": "Get a working version in front of real eyes quickly, then use that feedback to refine. A rough prototype teaches you more than a week of design reviews."
+        },
+        {
+          "num": "03",
+          "title": "Own the full surface.",
+          "body": "In a small team, specialisation is a luxury. Learning to move across the stack — HTML, CSS, JS, templating, environment setup — gave me a broader picture of how things fit together."
+        }
+      ]
     }
   ],
   "location": "/work-experience"

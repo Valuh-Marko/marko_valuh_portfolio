@@ -14,33 +14,32 @@
   padding-block: 1.5rem;
   border-top: 1px dashed $gray;
   background-color: $white;
+  align-items: start;
 
   @include respond(md) {
-    grid-template-columns: 1fr 2fr 1fr;
-    gap: 5rem;
+    grid-template-columns: 15rem 1fr 1fr;
+    gap: 4rem;
   }
 }
 
 .c-card__label {
   margin-top: 0.25rem;
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
   font-family: $suisse-intl-mono;
   text-transform: uppercase;
   font-size: 0.75rem;
-  gap: 1rem;
+  gap: 0.5rem 1rem;
 
-  &.c-section__label--alt {
-    display: none;
-    gap: 0.5rem;
-
-    @include respond(md) {
-      display: flex;
-    }
-  }
-
-  @include respond(md) {
-    grid-template-columns: 1fr 2fr 1fr;
-    gap: 5rem;
+  &::before {
+    content: "";
+    display: block;
+    width: 0.625rem;
+    aspect-ratio: 1;
+    background-color: $black;
+    flex-shrink: 0;
   }
 }
 
@@ -78,20 +77,149 @@
   }
 }
 
-.c-card__img-holder {
-  @include flex-row-center();
-  border-radius: 0.25rem;
-  background-color: $light-gray;
-  aspect-ratio: 2 / 1;
+.c-card__spec {
+  display: none;
 
   @include respond(md) {
-    min-width: 15rem;
-    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    background-color: $light-gray;
+    padding: 1.5rem;
+    align-self: start;
     grid-column: 3 / 4;
+    clip-path: polygon(
+      0 0, 100% 0,
+      100% calc(100% - 1.25rem),
+      calc(100% - 1.25rem) 100%,
+      0 100%
+    );
   }
 }
 
-.c-card__img {
-  width: 10rem;
-  height: 10rem;
+.c-card__spec-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px dashed $gray;
+  font-family: $suisse-intl-mono;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $gray;
+}
+
+.c-card__spec-id {
+  color: $black;
+  font-weight: 600;
+}
+
+.c-card__spec-fields {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: 0.75rem 1rem;
+  align-items: start;
+  margin: 0;
+
+  dt {
+    font-family: $suisse-intl-mono;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: $gray;
+    font-weight: 500;
+    padding-top: 0.25rem;
+  }
+
+  dd {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+}
+
+.c-card__spec-sub {
+  display: block;
+  font-family: $suisse-intl-mono;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: $gray;
+  margin-top: 0.25rem;
+}
+
+.c-card__spec-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  span {
+    font-family: $suisse-intl-mono;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.5rem;
+    background-color: $white;
+    color: $black;
+    border: 1px solid oklch(87% 0 0);
+  }
+}
+
+.c-card__spec-stats {
+  border-top: 1px dashed $gray;
+  padding-top: 1rem;
+  @include flex-column();
+  gap: 0.75rem;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    @include flex-column();
+    gap: 0.75rem;
+  }
+
+  li {
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+    font-size: 0.75rem;
+    line-height: 1.5;
+
+    &::before {
+      content: attr(data-i);
+      flex: 0 0 1.5rem;
+      font-family: $suisse-intl-mono;
+      font-size: 0.5rem;
+      letter-spacing: 0.1em;
+      color: $gray;
+    }
+
+    b {
+      font-family: $suisse-intl-mono;
+      font-weight: 600;
+      color: $orange;
+      padding-right: 0.25rem;
+    }
+  }
+}
+
+.c-card__spec-stats-label {
+  font-family: $suisse-intl-mono;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $gray;
+}
+
+.c-card__spec-footer {
+  border-top: 1px dashed $gray;
+  padding-top: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  font-family: $suisse-intl-mono;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $gray;
 }

@@ -1,10 +1,15 @@
 import { motion, useScroll, useTransform } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router";
 import workExperience from "../../assets/images/work_experience.webp";
-import { TechIcon } from "../../components/tech-icon/TechIcon";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import WithTransition from "../with-transition/WithTransition";
+import { ApproachSection } from "./components/ApproachSection";
+import { ContextSection } from "./components/ContextSection";
+import { Pager } from "./components/Pager";
+import { ScopeSection } from "./components/ScopeSection";
+import { StackSection } from "./components/StackSection";
+import { WorkSection } from "./components/WorkSection";
 import "./single-work-experience-page.scss";
 
 export const SingleWorkExperiencePage = WithTransition(
@@ -20,67 +25,83 @@ export const SingleWorkExperiencePage = WithTransition(
     const y = useTransform(heroScroll, [0, 1], [0, height / 4]);
 
     const [data, setData] = useState(null);
+    const [allEntries, setAllEntries] = useState([]);
 
     useEffect(() => {
-      fetch(`/work-experience/${name}.json`)
+      fetch("/data/work_experience.json")
         .then((res) => res.json())
         .then((json) => {
-          setData(json);
+          const entries = json.data;
+          const entry = entries.find((item) => item.url === name);
+          setAllEntries(entries);
+          setData(entry ?? null);
           setContentLoaded();
         })
         .catch((err) => console.error("Failed to load JSON:", err));
     }, [name]);
 
-    const subheading = `${data?.role} - ${data?.location}`;
-    const workTime = `${data?.duration.from} - ${data?.duration.to}`;
+    const meta = data?.context?.meta;
+    const subheading = meta ? `${meta.role} — ${meta.location}` : "";
+    const currentIndex = allEntries.findIndex((item) => item.url === name);
+
+    const sections = [
+      data?.context && {
+        key: "context",
+        render: (num) => <ContextSection context={data.context} num={num} />,
+      },
+      data?.scope?.length > 0 && {
+        key: "scope",
+        render: (num) => <ScopeSection scope={data.scope} num={num} />,
+      },
+      data?.work?.length > 0 && {
+        key: "work",
+        render: (num) => <WorkSection work={data.work} num={num} />,
+      },
+      data?.stack?.length > 0 && {
+        key: "stack",
+        render: (num) => <StackSection stack={data.stack} num={num} />,
+      },
+      data?.approach?.length > 0 && {
+        key: "approach",
+        render: (num) => <ApproachSection approach={data.approach} num={num} />,
+      },
+    ].filter(Boolean);
 
     return (
-      <>
-        <div className="c-single-page">
-          <div ref={container} className="c-single-page-hero">
-            <div className="c-single-page-hero-container container">
-              <h1 className="c-single-page-hero__title">{data?.company}</h1>
-              <div className="c-single-page-hero-details">
-                <h3 className="c-single-page-hero-subtitle">
-                  <span className="big-subheading">{subheading}</span>
-                  <span className="small-subheading">{workTime}</span>
-                </h3>
-              </div>
+      <div className="c-single-page">
+        {/* ── Hero ─────────────────────────────────────────────── */}
+        <div ref={container} className="c-single-page-hero">
+          <div className="c-single-page-hero-container container">
+            <h1 className="c-single-page-hero__title">{data?.company}</h1>
+            <div className="c-single-page-hero-details">
+              <h3 className="c-single-page-hero-subtitle">
+                <span className="big-subheading">{subheading}</span>
+                <span className="small-subheading">{data?.subtitle}</span>
+              </h3>
             </div>
-
-            {/* Background Paralax Image */}
-            <motion.img
-              className="c-single-page-hero-img"
-              src={workExperience}
-              alt="hero_img"
-              style={{
-                y: y,
-              }}
-            />
           </div>
-          <div className="container">
-            {data?.projects.map((project, index) => (
-              <div key={`${index}-project`} className="c-project-container">
-                <div className="c-project__label">p/00{index}</div>
-                <div className="c-project__content">
-                  <p className="c-project__excerpt">
-                    {project.description.map((desc, index) => (
-                      <li key={`${index}-desc`}>{desc}</li>
-                    ))}
-                  </p>
-                </div>
-                <div className="c-project__tech">
-                  {project?.technologies.map((tech, index) => (
-                    <div key={`${index}-tech`} className="c-tech">
-                      <TechIcon tech={tech} />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+          <motion.img
+            className="c-single-page-hero-img"
+            src={workExperience}
+            alt="hero_img"
+            style={{ y }}
+          />
         </div>
-      </>
+
+        {/* ── Sections ─────────────────────────────────────────── */}
+        {sections.map(({ key, render }, index) => (
+          <Fragment key={key}>{render(index + 1)}</Fragment>
+        ))}
+
+        {/* ── Pager ────────────────────────────────────────────── */}
+        {allEntries.length > 0 && (
+          <Pager
+            allEntries={allEntries}
+            currentIndex={currentIndex}
+            company={data?.company}
+          />
+        )}
+      </div>
     );
-  }
+  },
 );

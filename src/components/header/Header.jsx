@@ -35,7 +35,6 @@ export const Header = ({ shouldShow }) => {
   const slideOut = {
     show: {
       y: "1rem",
-      x: "1rem",
       transition: {
         duration: 0.4,
         ease: [0.76, 0, 0.24, 1],
@@ -44,7 +43,6 @@ export const Header = ({ shouldShow }) => {
 
     hide: {
       y: "-100%",
-      x: "1rem",
       transition: {
         duration: 0.4,
         delay: 0.2,
@@ -54,7 +52,6 @@ export const Header = ({ shouldShow }) => {
 
     exit: {
       y: "-100%",
-      x: "1rem",
       opacity: 0,
       transition: {
         duration: 0.4,
@@ -176,7 +173,7 @@ export const Header = ({ shouldShow }) => {
           <span className="c-header-label">download CV</span>
           <Divider vertical={true} color={"black"} />
           <a
-            href={`/files/Marko_Valuh_resume.docx`}
+            href={`/files/marko-valuh-resume.pdf`}
             download
             className="c-header-contact-download-wrapper"
           >
