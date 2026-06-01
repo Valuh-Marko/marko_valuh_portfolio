@@ -57,12 +57,8 @@
 
 .c-section-icon-wrapper {
   display: grid;
-  grid-template-columns: repeat(2, auto);
+  grid-template-columns: repeat(3, 1fr);
   justify-content: start;
   align-items: center;
-  gap: 2rem;
-
-  @include respond(md) {
-    gap: 4rem;
-  }
+  gap: 1rem;
 }

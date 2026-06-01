@@ -59,6 +59,7 @@ export const ProjectsPage = WithTransition(({ setContentLoaded }) => {
               response={response}
               long_desc={true}
               external={true}
+              speed={1.5}
             ></StackingCards>
           )}
         </div>

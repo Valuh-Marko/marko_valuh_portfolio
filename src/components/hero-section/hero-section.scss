@@ -1,65 +1,169 @@
 @use "../../styles/variables" as *;
 @use "../../styles/mixin" as *;
 
+// ─── Hero ─────────────────────────────────────────────────────────────────────
+
 .c-hero {
   position: relative;
-  height: 75vh;
-  overflow-y: hidden;
+  height: 100dvh;
+  min-height: 40rem;
+  background-color: #0a0a0a;
+  overflow: hidden;
+  color: $white;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.55);
+    z-index: 1;
+  }
 }
 
-.c-hero-container {
-  @include flex-column();
-  align-items: flex-start;
-  justify-content: flex-end;
-  position: relative;
-  color: $white;
-  text-align: left;
-  padding-top: 1rem;
-  padding-bottom: 3rem;
-  z-index: 1;
-  gap: 1rem;
+// ─── Parallax background image ────────────────────────────────────────────────
+
+.c-hero__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
 }
+
+// ─── Rails ────────────────────────────────────────────────────────────────────
+
+.c-hero__rail {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 4;
+
+  &--bot { bottom: 0; }
+}
+
+.c-hero__rail-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 1.5rem;
+  font-family: $suisse-intl-mono;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+// ─── Main content ─────────────────────────────────────────────────────────────
+
+.c-hero__wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  z-index: 3;
+}
+
+.c-hero__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+// ─── Title ────────────────────────────────────────────────────────────────────
 
 .c-hero__title {
-  @include flex-column();
-  gap: 0.5rem;
-  font-size: 4rem;
-  line-height: 4rem;
-  font-weight: 500;
+  font-family: $font-helvetica-now;
+  font-size: clamp(2.75rem, 5.5vw, 5.25rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.035em;
   text-wrap: balance;
-
-  @include respond(xs) {
-    font-size: 5rem;
-    line-height: 5rem;
-  }
-
-  @include respond(md) {
-    font-size: 5rem;
-    line-height: 5rem;
-  }
-
-  @include respond(lg) {
-    max-width: 66.67%;
-  }
+  max-width: 45rem;
+  color: $white;
 }
 
-.c-hero-details {
-  @include flex-column();
-  gap: 1rem;
+.c-hero__accent {
+  color: $orange;
+  font-style: normal;
 }
 
-.c-hero-subtitle {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+// ─── Bottom row ───────────────────────────────────────────────────────────────
+
+.c-hero__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 2.5rem;
 }
 
-.c-hero-img {
+// ─── Copy block ───────────────────────────────────────────────────────────────
+
+.c-hero__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 28rem;
+}
+
+.c-hero__sub {
+  font-family: $font-helvetica-now;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+// ─── Portrait chip ────────────────────────────────────────────────────────────
+
+.c-hero__portrait {
+  position: relative;
+  flex-shrink: 0;
+  width: 9.375rem;
+  height: 11.25rem;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 1.375rem),
+    calc(100% - 1.375rem) 100%,
+    0 100%
+  );
+  overflow: hidden;
+}
+
+.c-hero__portrait-img {
   position: absolute;
-  object-fit: cover;
-  left: 0;
-  top: 0;
+  inset: 0;
   width: 100%;
-  height: 75vh;
-  z-index: 0;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+// ─── Responsive ───────────────────────────────────────────────────────────────
+
+@media (max-width: 767px) {
+  .c-hero__title {
+    font-size: clamp(5rem, 13vw, 7rem);
+  }
+
+  .c-hero__sub {
+    font-size: 1.5rem;
+  }
+
+  .c-hero__row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .c-hero__portrait {
+    display: none;
+  }
+}
+
+@include respond(lg) {
+  .c-hero__title {
+    max-width: 70%;
+  }
 }

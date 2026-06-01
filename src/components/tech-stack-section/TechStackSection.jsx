@@ -1,10 +1,24 @@
 import React from "react";
-import { FaReact } from "react-icons/fa";
-import { FaAngular } from "react-icons/fa";
-import { RiTailwindCssFill } from "react-icons/ri";
-import { SiTypescript } from "react-icons/si";
 
 import "./tech-stack-section.scss";
+
+const STACK = [
+  "Angular",
+  "Next.js",
+  "Nest.js",
+  "TypeScript",
+  "Tailwind",
+  "MongoDB",
+];
+
+const ICON_SLUGS = {
+  Angular: "angular",
+  "Next.js": "nextdotjs",
+  "Nest.js": "nestjs",
+  TypeScript: "typescript",
+  Tailwind: "tailwindcss",
+  MongoDB: "mongodb",
+};
 
 export const TechStackSection = () => {
   return (
@@ -21,12 +35,25 @@ export const TechStackSection = () => {
             Crafting efficient solutions <br /> with industry standard tools
           </h3>
         </div>
-        <div className="c-section__column">
+        <div
+          className="c-section__column"
+          style={{
+            gridColumn: "2 / span 2",
+          }}
+        >
           <div className="c-section-icon-wrapper">
-            <FaReact className="c-tech-icon" title="React" />
-            <FaAngular className="c-tech-icon" title="Angular" />
-            <SiTypescript className="c-tech-icon" title="Typescript" />
-            <RiTailwindCssFill className="c-tech-icon" title="Tailwind" />
+            {STACK.map((name) => (
+              <div key={name} className="c-stack-tile">
+                {ICON_SLUGS[name] && (
+                  <img
+                    src={`https://cdn.simpleicons.org/${ICON_SLUGS[name]}/0a0a0a`}
+                    alt={name}
+                    className="c-stack-tile__icon c-stack-tile__icon--lg"
+                  />
+                )}
+                <span className="c-stack-tile__name">{name}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>

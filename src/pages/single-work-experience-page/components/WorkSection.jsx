@@ -8,7 +8,10 @@ const WorkCard = ({ item }) => (
   <article className="c-work-card">
     <div className="c-work-card__thumb">
       <span className="c-work-card__fig">FIG. {item.num}</span>
-      <span className="c-work-card__placeholder">NDA-protected work</span>
+      {item.image
+        ? <img src={item.image} alt={item.title} className="c-work-card__img" />
+        : <span className="c-work-card__placeholder">NDA-protected work</span>
+      }
     </div>
     <div className="c-work-card__meta">
       <span>{item.num} · {item.type}</span>
@@ -26,17 +29,30 @@ const WorkCard = ({ item }) => (
 
 const FeaturedCard = ({ item }) => (
   <div className="c-work-featured">
-    <div className="c-work-card__thumb">
+    <div className="c-work-card__thumb c-work-card__thumb--featured">
       <span className="c-work-card__fig">FIG. {item.num}</span>
-      <span className="c-work-card__placeholder">NDA-protected work</span>
+      {item.image
+        ? <img src={item.image} alt={item.title} className="c-work-card__img" />
+        : <span className="c-work-card__placeholder">NDA-protected work</span>
+      }
     </div>
     <div className="c-work-featured__details">
-      <div className="c-work-card__meta">
+      <div className="c-work-featured__eyebrow">
         <span>{item.num} · {item.type}</span>
         <span>{item.dates}</span>
       </div>
       <h3 className="c-work-card__title">{item.title}</h3>
-      <p className="c-work-card__blurb">{item.blurb}</p>
+      {item.lede && <p className="c-work-featured__lede">{item.lede}</p>}
+      {item.breakdown?.length > 0 && (
+        <dl className="c-work-featured__breakdown">
+          {item.breakdown.map((b) => (
+            <div key={b.label} className="c-work-featured__breakdown-item">
+              <dt>{b.label}</dt>
+              <dd>{b.text}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
       <div className="c-work-card__tags">
         {item.tags.map((tag) => (
           <span key={tag} className="c-work-card__tag">{tag}</span>

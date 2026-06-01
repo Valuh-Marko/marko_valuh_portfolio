@@ -11,7 +11,8 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 2.5rem;
-  padding-block: 1.5rem;
+  padding-top: 4rem;
+  padding-bottom: 8rem;
   border-top: 1px dashed $gray;
   background-color: $white;
   align-items: start;
@@ -89,7 +90,8 @@
     align-self: start;
     grid-column: 3 / 4;
     clip-path: polygon(
-      0 0, 100% 0,
+      0 0,
+      100% 0,
       100% calc(100% - 1.25rem),
       calc(100% - 1.25rem) 100%,
       0 100%

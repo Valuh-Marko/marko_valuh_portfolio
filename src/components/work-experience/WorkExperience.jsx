@@ -29,7 +29,7 @@ export const WorkExperience = ({ setContentLoaded }) => {
           <h3 className="c-section__title">The Journey Behind the Expertise</h3>
         </div>
       </div>
-      {response && <StackingCards label={"AS"} response={response} />}
+      {response && <StackingCards label={"AS"} response={response} speed={1.5} />}
     </div>
   );
 };

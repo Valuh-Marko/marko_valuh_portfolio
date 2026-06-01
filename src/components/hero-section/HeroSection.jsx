@@ -1,46 +1,67 @@
 import { motion, useScroll, useTransform } from "motion/react";
-import React, { useRef } from "react";
+import { useRef } from "react";
 import heroImg from "../../assets/images/heading.webp";
-import { useWindowSize } from "../../hooks/useWindowSize";
 import { Button } from "../button/Button";
+import { useWindowSize } from "../../hooks/useWindowSize";
 import "./hero-section.scss";
 
+
 export const HeroSection = () => {
-  const heroContainer = useRef(null);
-  const { scrollYProgress: heroScroll } = useScroll({
-    target: heroContainer,
+  const container = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
     offset: ["start start", "end start"],
   });
   const { height } = useWindowSize();
-  const y = useTransform(heroScroll, [0, 1], [0, height / 2]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, height / 3]);
 
   return (
-    <div ref={heroContainer} className="c-hero">
-      <div className="c-hero-container container">
-        <h1 className="c-hero__title">
-          Where Code Meets Canvas -
-          <br />
-          Frontend Engineering with an Artistic Touch
-        </h1>
-        <div className="c-hero-details">
-          <h3 className="c-hero-subtitle">
-            I bring solid frontend engineering skills and a sharp eye for UI/UX
-            to craft seamless digital experiences.
-          </h3>
-          <Button color="white" label={"See my projects"} to="/projects" />
+    <div ref={container} className="c-hero">
+      {/* Parallax background */}
+      <motion.img
+        className="c-hero__bg"
+        src={heroImg}
+        alt=""
+        aria-hidden="true"
+        fetchPriority="high"
+        style={{ y }}
+      />
+
+      {/* Bottom rail */}
+      <div className="c-hero__rail c-hero__rail--bot">
+        <div className="container c-hero__rail-inner">
+          <span>Novi Sad · Serbia</span>
+          <span>Portfolio © 2026</span>
         </div>
       </div>
 
-      {/* Background Paralax Image */}
-      <motion.img
-        className="c-hero-img"
-        src={heroImg}
-        alt="hero_img"
-        fetchPriority="high"
-        style={{
-          y: y,
-        }}
-      />
+      {/* Main content */}
+      <div className="c-hero__wrap">
+        <div className="container c-hero__inner">
+          <h1 className="c-hero__title">
+            Where Code Meets Canvas — Frontend Engineering with an{" "}
+            <em className="c-hero__accent">Artistic Touch</em>
+          </h1>
+
+          <div className="c-hero__row">
+            <div className="c-hero__portrait">
+              <img
+                src="/images/portrait.png"
+                alt="Marko Valuh"
+                className="c-hero__portrait-img"
+              />
+            </div>
+
+            <div className="c-hero__copy">
+              <p className="c-hero__sub">
+                I bring solid frontend engineering skills and a sharp eye for
+                UI/UX to craft seamless digital experiences.
+              </p>
+              <Button label="See my projects" color="white" variant="transparent" size="lg" to="/projects" />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

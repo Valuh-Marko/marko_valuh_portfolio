@@ -9,6 +9,7 @@ export const Button = ({
   label,
   color = "black",
   variant = "transparent",
+  size,
   onClick,
   selected = false,
   to,
@@ -24,6 +25,8 @@ export const Button = ({
       : "filled"
     : variant;
 
+  const sizeClass = size ? ` c-button--${size}` : "";
+
   useEffect(() => {
     scramble();
   }, [isInView, scramble]);
@@ -33,7 +36,7 @@ export const Button = ({
       <a href={to} target="_blank">
         <motion.div
           ref={ref}
-          className={`c-button c-button--${visualVariant} c-button--${visualVariant}--${color}`}
+          className={`c-button c-button--${visualVariant} c-button--${visualVariant}--${color}${sizeClass}`}
           onMouseEnter={() => scramble()}
         >
           <span>{text}</span>
@@ -44,7 +47,7 @@ export const Button = ({
       <Link to={to}>
         <motion.div
           ref={ref}
-          className={`c-button c-button--${visualVariant} c-button--${visualVariant}--${color}`}
+          className={`c-button c-button--${visualVariant} c-button--${visualVariant}--${color}${sizeClass}`}
           onMouseEnter={() => scramble()}
         >
           <span>{text}</span>
@@ -57,9 +60,7 @@ export const Button = ({
   return (
     <motion.div
       ref={ref}
-      className={`c-button c-button--${visualVariant} c-button--${visualVariant}--${color} ${
-        selected && "selected"
-      }`}
+      className={`c-button c-button--${visualVariant} c-button--${visualVariant}--${color}${sizeClass}${selected ? " selected" : ""}`}
       onMouseEnter={() => scramble()}
       onClick={onClick}
     >

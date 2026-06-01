@@ -9,12 +9,13 @@ export const StackingCards = ({
   className,
   long_desc,
   external = false,
+  speed = 1,
 }) => {
   const container = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: container,
-    offset: ["start end", "end start"],
+    offset: ["start start", "end start"],
   });
 
   const { data, location } = response;
@@ -29,7 +30,7 @@ export const StackingCards = ({
   const top = useTransform(
     scrollYProgress,
     [0, 1],
-    ["0rem", `-${5 * Math.floor(data.length / 2)}rem`],
+    ["0rem", `-${5 * Math.floor(data.length / 2) * speed}rem`],
   );
 
   return (
