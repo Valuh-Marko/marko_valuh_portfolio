@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from "motion/react";
 import React, { useState } from "react";
 
 import { Button } from "../button/Button";
@@ -35,9 +36,18 @@ export const AccompanyStackSection = () => {
         </div>
       </div>
       <div className="c-acc-stack-container">
-        {index === 1 && <UiUx index={index} />}
-        {index === 2 && <BackEndTech index={index} />}
-        {index === 3 && <WorkFlowTech index={index} />}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={index}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 0.4, ease: "easeOut" } }}
+            exit={{ opacity: 0, transition: { duration: 0.12, ease: "easeIn" } }}
+          >
+            {index === 1 && <UiUx index={index} />}
+            {index === 2 && <BackEndTech index={index} />}
+            {index === 3 && <WorkFlowTech index={index} />}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </div>
   );

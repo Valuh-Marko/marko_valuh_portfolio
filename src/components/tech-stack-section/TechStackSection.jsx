@@ -35,12 +35,7 @@ export const TechStackSection = () => {
             Crafting efficient solutions <br /> with industry standard tools
           </h3>
         </div>
-        <div
-          className="c-section__column"
-          style={{
-            gridColumn: "2 / span 2",
-          }}
-        >
+        <div className="c-section__column">
           <div className="c-section-icon-wrapper">
             {STACK.map((name) => (
               <div key={name} className="c-stack-tile">
