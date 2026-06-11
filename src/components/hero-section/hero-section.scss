@@ -76,10 +76,10 @@
 
 .c-hero__title {
   font-family: $font-helvetica-now;
-  font-size: clamp(2.75rem, 5.5vw, 5.25rem);
+  font-size: clamp(1.75rem, 5.5vw, 4.25rem);
   font-weight: 800;
   line-height: 1;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.02em;
   text-wrap: balance;
   max-width: 45rem;
   color: $white;
@@ -144,7 +144,7 @@
 
 @media (max-width: 767px) {
   .c-hero__title {
-    font-size: clamp(5rem, 13vw, 7rem);
+    font-size: clamp(4rem, 13vw, 6rem);
   }
 
   .c-hero__sub {

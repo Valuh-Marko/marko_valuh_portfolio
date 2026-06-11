@@ -4,12 +4,12 @@
 .c-header-wrapper {
   position: fixed;
   z-index: 100;
-  left: 1rem;
+  left: 0.5rem;
   transform-origin: top left;
   width: min(calc(100vw - 1rem), 37.5rem);
 
   @include respond(lg) {
-    left: max(2rem, calc((100vw - 1600px) / 2 + 2rem));
+    left: max(2rem, calc((100vw - 1600px) / 2 + 1.5rem));
   }
 }
 
