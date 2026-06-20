@@ -72,12 +72,14 @@ export const SingleWorkExperiencePage = WithTransition(
         {/* ── Hero ─────────────────────────────────────────────── */}
         <div ref={container} className="c-single-page-hero">
           <div className="c-single-page-hero-container container">
-            <h1 className="c-single-page-hero__title">{data?.company}</h1>
-            <div className="c-single-page-hero-details">
-              <h3 className="c-single-page-hero-subtitle">
-                <span className="big-subheading">{subheading}</span>
-                <span className="small-subheading">{data?.subtitle}</span>
-              </h3>
+            <div className="c-page-hero__content">
+              <h1 className="c-single-page-hero__title">{data?.company}</h1>
+              <div className="c-single-page-hero-details">
+                <h3 className="c-single-page-hero-subtitle">
+                  <span className="big-subheading">{subheading}</span>
+                  <span className="small-subheading">{data?.subtitle}</span>
+                </h3>
+              </div>
             </div>
           </div>
           <motion.img

@@ -4,7 +4,7 @@ import React from "react";
 export const BackEndTech = ({ index }) => {
   return (
     <motion.div className="c-auxiliary-container">
-      <div className="c-auxiliary__label">AS/00{index}</div>
+      <div className="c-section__label">AS/00{index}</div>
       <div className="c-auxiliary-content">
         <h3 className="c-auxiliary-content__title">Backend and Database</h3>
 

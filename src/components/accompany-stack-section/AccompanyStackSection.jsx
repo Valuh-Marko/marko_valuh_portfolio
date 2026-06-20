@@ -13,7 +13,7 @@ export const AccompanyStackSection = () => {
   return (
     <div className="container">
       <div className="c-acc-stack">
-        <div className="c-acc-stack__label">
+        <div className="c-section__label">
           <span>/</span>
           <span>Auxiliary Stack</span>
         </div>

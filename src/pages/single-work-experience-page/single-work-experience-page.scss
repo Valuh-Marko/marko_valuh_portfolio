@@ -19,6 +19,13 @@
   z-index: 1;
   gap: 1rem;
   height: 100%;
+
+  @include respond(md) {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 4rem;
+    align-items: end;
+  }
 }
 
 .c-single-page-hero__title {
@@ -36,7 +43,6 @@
   @include respond(md) {
     font-size: 5rem;
     line-height: 5rem;
-    max-width: 75vw;
   }
 }
 
@@ -73,18 +79,11 @@
 /* ── P/001 Context ─────────────────────────────────────────── */
 
 .c-context-section {
+  @include col-grid();
   padding-top: 6rem;
   padding-bottom: 8rem;
   border-top: 1px dashed $gray;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2.5rem;
   align-items: start;
-
-  @include respond(md) {
-    grid-template-columns: 15rem 1fr 1fr;
-    gap: 4rem;
-  }
 
   .c-section__label {
     white-space: nowrap;
@@ -120,6 +119,10 @@
   border-radius: 0.25rem;
   margin: 0;
   align-self: start;
+
+  @include respond(md) {
+    grid-column: span 5;
+  }
 }
 
 .c-context__meta-item {
@@ -167,7 +170,7 @@
   gap: 3rem;
 
   @include respond(md) {
-    grid-column: 2 / -1;
+    grid-column: 3 / -1;
   }
 }
 
@@ -233,7 +236,7 @@
   gap: 2.5rem;
 
   @include respond(md) {
-    grid-column: 2 / 4;
+    grid-column: 3 / -1;
   }
 }
 
@@ -440,7 +443,7 @@
   gap: 2.5rem;
 
   @include respond(md) {
-    grid-column: 2 / 4;
+    grid-column: 3 / -1;
   }
 }
 
@@ -502,7 +505,7 @@
   gap: 2.5rem;
 
   @include respond(md) {
-    grid-column: 2 / 4;
+    grid-column: 3 / -1;
   }
 }
 

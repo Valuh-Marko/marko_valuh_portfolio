@@ -1,0 +1,126 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixin" as *;
+
+.c-desktop-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: $white;
+  border-bottom: 1px dashed $gray;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+
+  &.is-top {
+    background-color: transparent;
+    border-bottom-color: transparent;
+
+    .c-desktop-header__link,
+    .c-desktop-header__icon {
+      color: $white;
+
+      &:hover {
+        color: rgba(255, 255, 255, 0.6);
+      }
+    }
+
+    .c-desktop-header__separator {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .c-desktop-header__link.is-active {
+      color: $orange;
+    }
+
+    .c-desktop-header__wordmark {
+      filter: invert(1);
+    }
+
+    .c-desktop-header__label {
+      color: $white;
+    }
+  }
+}
+
+.c-desktop-header__inner {
+  @include col-grid();
+  align-items: center;
+  padding-block: 1rem;
+}
+
+.c-desktop-header__label {
+  grid-column: span 2;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: $suisse-intl-mono;
+  font-size: 1.1rem;
+  line-height: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.c-desktop-header__wordmark {
+  height: 1.3rem;
+  transition: filter 0.3s ease;
+}
+
+.c-desktop-header__nav {
+  grid-column: 3 / span 7;
+  display: flex;
+  align-items: center;
+  // justify-content: center;
+  gap: 2rem;
+}
+
+.c-desktop-header__separator {
+  font-family: $suisse-intl-mono;
+  color: $gray;
+  user-select: none;
+}
+
+.c-desktop-header__link {
+  font-family: $suisse-intl-mono;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $black;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $gray;
+  }
+
+  &.is-active {
+    color: $orange;
+  }
+}
+
+.c-desktop-header__actions {
+  grid-column: 10 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.c-desktop-header__icon {
+  display: flex;
+  align-items: center;
+  font-size: 1.25rem;
+  color: $black;
+  transition: color 0.2s ease;
+
+  svg {
+    width: 1em;
+    height: 1em;
+    display: block;
+  }
+
+  &:hover {
+    color: $gray;
+  }
+}

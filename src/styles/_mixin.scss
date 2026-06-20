@@ -19,6 +19,17 @@ $breakpoints: (
   }
 }
 
+@mixin col-grid() {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+
+  @include respond(md) {
+    grid-template-columns: repeat(12, 1fr);
+    gap: 4rem;
+  }
+}
+
 @mixin flex-column() {
   display: flex;
   flex-direction: column;

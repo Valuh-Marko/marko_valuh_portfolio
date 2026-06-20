@@ -33,11 +33,19 @@ export const ProjectsPage = WithTransition(({ setContentLoaded }) => {
       <div className="c-projects">
         <div ref={container} className="c-projects-hero">
           <div className="c-projects-hero-container container">
-            <h1 className="c-projects-hero__title">Projects & Creations</h1>
-            <div className="c-projects-hero-details">
-              <h3 className="c-projects-hero-subtitle">
-                Exploring solutions through real-world projects.
-              </h3>
+            <div className="c-page-hero__row">
+              <span className="c-section__label">
+                <span>/</span>
+                <span>Projects</span>
+              </span>
+              <div className="c-page-hero__content">
+                <h1 className="c-projects-hero__title">Projects & Creations</h1>
+                <div className="c-projects-hero-details">
+                  <h3 className="c-projects-hero-subtitle">
+                    Exploring solutions through real-world projects.
+                  </h3>
+                </div>
+              </div>
             </div>
           </div>
 

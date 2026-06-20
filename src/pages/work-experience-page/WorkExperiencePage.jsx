@@ -32,13 +32,21 @@ export const WorkExperiencePage = WithTransition(({ setContentLoaded }) => {
       <div className="c-work-experience">
         <div ref={container} className="c-work-experience-hero">
           <div className="c-work-experience-hero-container container">
-            <h1 className="c-work-experience-hero__title">
-              Experience & Expertise
-            </h1>
-            <div className="c-work-experience-hero-details">
-              <h3 className="c-work-experience-hero-subtitle">
-                Over 4 years of hands-on industry experience.
-              </h3>
+            <div className="c-page-hero__row">
+              <span className="c-section__label">
+                <span>/</span>
+                <span>Work Experience</span>
+              </span>
+              <div className="c-page-hero__content">
+                <h1 className="c-work-experience-hero__title">
+                  Experience & Expertise
+                </h1>
+                <div className="c-work-experience-hero-details">
+                  <h3 className="c-work-experience-hero-subtitle">
+                    Over 4 years of hands-on industry experience.
+                  </h3>
+                </div>
+              </div>
             </div>
           </div>
 

@@ -10,7 +10,7 @@ export const Card = ({ label, index, data, top, long_desc, external = false }) =
       style={{ top: `${(index - 1) * 5}rem`, y: top }}
       className="c-card-container"
     >
-      <div className="c-card__label">
+      <div className="c-section__label">
         {label}/00{index}
       </div>
 

@@ -5,7 +5,6 @@ import { Button } from "../button/Button";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import "./hero-section.scss";
 
-
 export const HeroSection = () => {
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -39,25 +38,30 @@ export const HeroSection = () => {
       <div className="c-hero__wrap">
         <div className="container c-hero__inner">
           <h1 className="c-hero__title">
-            Where Code Meets Canvas — Frontend Engineering with an{" "}
+            Where Code Meets Canvas Frontend Engineering with an{" "}
             <em className="c-hero__accent">Artistic Touch</em>
           </h1>
 
           <div className="c-hero__row">
-            <div className="c-hero__portrait">
-              <img
-                src="/images/portrait.png"
-                alt="Marko Valuh"
-                className="c-hero__portrait-img"
-              />
-            </div>
-
             <div className="c-hero__copy">
               <p className="c-hero__sub">
                 I bring solid frontend engineering skills and a sharp eye for
                 UI/UX to craft seamless digital experiences.
               </p>
-              <Button label="See my projects" color="white" variant="transparent" size="lg" to="/projects" />
+              <div className="c-hero__buttons">
+                <Button
+                  label="Work Experience"
+                  color="white"
+                  variant="filled"
+                  to="/work-experience"
+                />
+                <Button
+                  label="See my projects"
+                  color="white"
+                  variant="transparent"
+                  to="/projects"
+                />
+              </div>
             </div>
           </div>
         </div>
