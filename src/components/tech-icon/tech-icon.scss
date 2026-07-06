@@ -1,3 +1,5 @@
+@use "../../styles/variables" as *;
+
 .c-tech-icon {
   display: flex;
   flex-direction: column;
@@ -9,9 +11,9 @@
 
 .c-icon__title {
   margin-top: 0.25rem;
-  font-family: "Suisse Int'l Mono", sans-serif;
+  font-family: $suisse-intl-mono;
   text-transform: uppercase;
-  font-size: 0.75rem;
+  font-size: $font-xs;
   text-align: center;
-  gap: 1rem;
+  gap: $spacing-1;
 }

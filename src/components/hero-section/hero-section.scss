@@ -50,7 +50,7 @@
   align-items: center;
   padding-block: 1.5rem;
   font-family: $suisse-intl-mono;
-  font-size: 0.75rem;
+  font-size: $font-xs;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   color: rgba(255, 255, 255, 0.5);
@@ -73,12 +73,12 @@
 .c-hero__inner {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: $spacing-3;
 
   @include respond(md) {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    gap: 4rem;
+    gap: $spacing-4;
     align-items: start;
   }
 }
@@ -121,19 +121,19 @@
 .c-hero__copy {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: $spacing-2;
   max-width: 28rem;
 }
 
 .c-hero__buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: $spacing-1;
 }
 
 .c-hero__sub {
   font-family: $font-helvetica-now;
-  font-size: 1.25rem;
+  font-size: $font-lg;
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.72);
 }
@@ -172,17 +172,16 @@
   }
 
   .c-hero__sub {
-    font-size: 1.5rem;
+    font-size: $font-xl;
   }
 
   .c-hero__row {
     flex-direction: column;
     align-items: flex-start;
-    gap: 2rem;
+    gap: $spacing-2;
   }
 
   .c-hero__portrait {
     display: none;
   }
 }
-

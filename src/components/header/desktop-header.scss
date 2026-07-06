@@ -47,7 +47,7 @@
 .c-desktop-header__inner {
   @include col-grid();
   align-items: center;
-  padding-block: 1rem;
+  padding-block: $spacing-1;
 }
 
 .c-desktop-header__label {
@@ -56,7 +56,7 @@
   align-items: center;
   gap: 0.5rem;
   font-family: $suisse-intl-mono;
-  font-size: 1.1rem;
+  font-size: $font-sm;
   line-height: 1.1rem;
   font-weight: bold;
   text-transform: uppercase;
@@ -72,8 +72,7 @@
   grid-column: 3 / span 7;
   display: flex;
   align-items: center;
-  // justify-content: center;
-  gap: 2rem;
+  gap: $spacing-2;
 }
 
 .c-desktop-header__separator {
@@ -84,7 +83,7 @@
 
 .c-desktop-header__link {
   font-family: $suisse-intl-mono;
-  font-size: 0.75rem;
+  font-size: $font-xs;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: $black;
@@ -104,13 +103,13 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 1rem;
+  gap: $spacing-1;
 }
 
 .c-desktop-header__icon {
   display: flex;
   align-items: center;
-  font-size: 1.25rem;
+  font-size: $font-lg;
   color: $black;
   transition: color 0.2s ease;
 

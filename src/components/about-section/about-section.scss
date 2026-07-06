@@ -8,8 +8,8 @@
 
 .c-about__inner {
   @include col-grid();
-  padding-top: 6rem;
-  padding-bottom: 8rem;
+  padding-top: $spacing-6;
+  padding-bottom: $spacing-8;
   align-items: start;
   position: relative;
   z-index: 1;
@@ -35,18 +35,24 @@
 }
 
 .c-about__title {
-  font-size: 2rem;
+  font-size: $font-h5;
   line-height: 1.2;
   font-weight: 500;
   letter-spacing: -0.02em;
 
   @include respond(md) {
-    font-size: 2.5rem;
+    font-size: $font-h4;
   }
 }
 
 .c-about__accent {
   color: $orange;
+}
+
+.c-about__sub {
+  font-size: $font-sm;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .c-about__right {
@@ -85,14 +91,14 @@
 
 .c-about-project__title {
   font-family: $suisse-intl-mono;
-  font-size: 0.8rem;
+  font-size: $font-xs;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
 
 .c-about-project__desc {
-  font-size: 0.9375rem;
+  font-size: $font-sm;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.6);
   margin: 0;
@@ -103,11 +109,6 @@
   object-fit: cover;
   left: 0;
   top: 0;
-  height: 100%;
+  width: 100%;
   z-index: 0;
-
-  @include respond(md) {
-    width: 100%;
-    height: auto;
-  }
 }

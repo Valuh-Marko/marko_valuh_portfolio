@@ -4,19 +4,19 @@
 .c-acc-stack {
   @include col-grid();
   align-items: start;
-  margin-bottom: 1rem;
+  margin-bottom: $spacing-1;
 }
 
 .c-acc-stack-container {
   width: 100%;
   border-radius: 0.25rem;
-  padding: 4rem 1rem;
+  padding: $spacing-4 $spacing-1;
   background-color: $light-gray;
 }
 
 .c-acc-button-stack {
   display: flex;
-  gap: 1rem;
+  gap: $spacing-1;
 
   @include respond(md) {
     grid-column: span 10;
@@ -30,7 +30,7 @@
 
 .c-auxiliary-content {
   @include flex-column();
-  gap: 4rem;
+  gap: $spacing-4;
 
   @include respond(md) {
     grid-column: span 10;
@@ -38,8 +38,8 @@
 }
 
 .c-auxiliary-content__title {
-  font-size: 1.5rem;
-  line-height: 1rem;
+  font-size: $font-xl;
+  line-height: $spacing-1;
   font-weight: 500;
 }
 
@@ -58,7 +58,7 @@
   display: none;
   font-family: $suisse-intl-mono;
   text-transform: uppercase;
-  font-size: 0.75rem;
+  font-size: $font-xs;
 
   @include respond(md) {
     display: block;
@@ -66,7 +66,7 @@
 }
 
 .c-auxiliary-content-stack__item-tech {
-  font-size: 1rem;
+  font-size: $font-sm;
   font-weight: 500;
   text-transform: uppercase;
 }

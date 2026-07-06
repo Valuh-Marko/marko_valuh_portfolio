@@ -15,14 +15,14 @@ a {
   gap: 2em;
   border-radius: 0.25rem;
   font-family: $suisse-intl-mono;
-  font-size: 0.75rem;
+  font-size: $font-xs;
   line-height: 1;
   text-transform: uppercase;
   transition: all 0.3s cubic-bezier(0.76, 0, 0.24, 1);
   cursor: pointer;
 
-  &--sm { font-size: 0.625rem; }
-  &--lg { font-size: 1rem; }
+  &--sm { font-size: $font-2xs; }
+  &--lg { font-size: $font-sm; }
 
   &--filled--black {
     background-color: $black;
