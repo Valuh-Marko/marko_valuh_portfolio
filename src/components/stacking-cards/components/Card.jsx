@@ -25,7 +25,12 @@ export const Card = ({ label, index, data, top, long_desc, external = false }) =
           {long_desc ? data.excerpt_xl : data.excerpt}
         </p>
         {external ? (
-          <Button label="Visit Website" blankTarget={true} to={data.external_url} />
+          <>
+            {data.external_url && (
+              <Button label="Visit Website" blankTarget={true} to={data.external_url} />
+            )}
+            {data.caseStudy && <Button label="View Case Study" to={data.url} />}
+          </>
         ) : (
           <Button label="Find out more" to={data.url} />
         )}

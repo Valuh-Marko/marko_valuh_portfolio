@@ -1,0 +1,873 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixin" as *;
+@use "../../styles/sections" as *;
+
+/* ── Hero ─────────────────────────────────────────────────────── */
+
+.c-single-page-hero {
+  position: relative;
+  height: 50vh;
+  overflow-y: hidden;
+}
+
+.c-single-page-hero-container {
+  @include flex-column();
+  align-items: flex-start;
+  justify-content: flex-end;
+  position: relative;
+  color: $white;
+  text-align: left;
+  padding-top: $spacing-1;
+  padding-bottom: $spacing-3;
+  z-index: 1;
+  gap: $spacing-1;
+  height: 100%;
+
+  @include respond(md) {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: $spacing-4;
+    align-items: end;
+  }
+}
+
+.c-single-page-hero__title {
+  @include flex-column();
+  gap: 0.5rem;
+  font-size: 4rem;
+  line-height: 4rem;
+  font-weight: 500;
+
+  @include respond(xs) {
+    font-size: 5rem;
+    line-height: 5rem;
+  }
+
+  @include respond(md) {
+    font-size: 5rem;
+    line-height: 5rem;
+  }
+}
+
+.c-single-page-hero-details {
+  @include flex-column();
+  gap: $spacing-1;
+}
+
+.c-single-page-hero-subtitle {
+  font-size: $font-xl;
+  margin-bottom: $spacing-1;
+  display: flex;
+  flex-direction: column;
+
+  .big-subheading {
+    font-size: $font-md;
+    line-height: 1.5;
+    max-width: 60ch;
+  }
+}
+
+.c-single-page-hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  span {
+    font-family: $suisse-intl-mono;
+    font-size: $font-xs;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.375rem 0.5rem;
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+.c-single-page-hero-img {
+  position: absolute;
+  object-fit: cover;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 50vh;
+  z-index: 0;
+}
+
+/* ── Shared section wrapper ───────────────────────────────────── */
+
+.c-case-section {
+  @include col-grid();
+  padding-top: $spacing-6;
+  padding-bottom: $spacing-8;
+  border-top: 1px dashed $gray;
+  align-items: start;
+
+  .c-section__label {
+    white-space: nowrap;
+  }
+}
+
+.c-context__lede {
+  font-size: $font-xl;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  margin: 0 0 1.75rem 0;
+
+  @include respond(md) {
+    font-size: $font-h6;
+  }
+}
+
+.c-context__body {
+  @include flex-column();
+  gap: $spacing-1;
+
+  p {
+    margin: 0;
+    font-size: $font-sm;
+    line-height: 1.6;
+  }
+}
+
+/* ── CS/001 Overview ──────────────────────────────────────────── */
+
+.c-context__meta {
+  background-color: $light-gray;
+  padding: 1.5rem;
+  border-radius: 0.25rem;
+  margin: 0;
+  align-self: start;
+
+  @include respond(md) {
+    grid-column: span 5;
+  }
+}
+
+.c-context__meta-item {
+  border-top: 1px dashed $gray;
+  padding-top: 0.75rem;
+  margin-top: 0.75rem;
+
+  &:first-child {
+    border-top: none;
+    margin-top: 0;
+    padding-top: 0;
+  }
+}
+
+.c-context__meta-item dt {
+  font-family: $suisse-intl-mono;
+  font-size: $font-2xs;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $gray;
+  margin-bottom: 0.3rem;
+}
+
+.c-context__meta-item dd {
+  margin: 0;
+  font-size: $font-sm;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* ── CS/002 Snapshot ───────────────────────────────────────────── */
+
+.c-snapshot-wrapper {
+  @include flex-column();
+  gap: $spacing-3;
+
+  @include respond(md) {
+    grid-column: 3 / -1;
+  }
+}
+
+.c-snapshot-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-1;
+
+  @include respond(sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.c-snapshot-card {
+  @include flex-column();
+  gap: 0.75rem;
+  padding: $spacing-2;
+  background-color: $light-gray;
+
+  &--frontend {
+    background-color: $white;
+    border: 1px solid $light-gray;
+  }
+}
+
+.c-snapshot-card__repo {
+  font-family: $suisse-intl-mono;
+  font-size: $font-sm;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.c-snapshot-card__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+.c-snapshot-card__stack-item {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: $font-sm;
+  line-height: 1.5;
+}
+
+.c-snapshot-card__stack-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: contain;
+}
+
+.c-snapshot-card__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px dashed $gray;
+  font-family: $suisse-intl-mono;
+  font-size: $font-2xs;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $gray;
+}
+
+.c-snapshot-facts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin: 0;
+
+  @include respond(sm) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.c-snapshot-fact {
+  padding: 1rem 0;
+  border-top: 1px dashed $gray;
+
+  @include respond(sm) {
+    padding: 0 $spacing-1;
+    border-top: none;
+    border-left: 1px dashed $gray;
+
+    &:first-child {
+      padding-left: 0;
+      border-left: none;
+    }
+  }
+
+  dt {
+    font-family: $suisse-intl-mono;
+    font-size: $font-2xs;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $gray;
+    margin-bottom: 0.375rem;
+  }
+
+  dd {
+    margin: 0;
+    font-size: $font-sm;
+    line-height: 1.5;
+  }
+}
+
+.c-snapshot__note {
+  font-size: $font-sm;
+  line-height: 1.6;
+  color: $gray;
+  margin: 0;
+}
+
+/* ── CS/003 Problem ────────────────────────────────────────────── */
+
+.c-problem__closing {
+  font-size: $font-sm;
+  line-height: 1.6;
+  margin: $spacing-1 0 0 0;
+}
+
+.c-hierarchy {
+  @include flex-column();
+  gap: $spacing-1;
+
+  @include respond(md) {
+    grid-column: 3 / span 5;
+    margin-top: $spacing-2;
+  }
+}
+
+.c-hierarchy__title {
+  font-family: $suisse-intl-mono;
+  font-size: $font-xs;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $gray;
+  margin: 0;
+}
+
+.c-hierarchy__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: tier;
+}
+
+.c-hierarchy__item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: $font-sm;
+  font-weight: 500;
+  counter-increment: tier;
+
+  &::before {
+    content: counter(tier) ".";
+    font-family: $suisse-intl-mono;
+    color: $gray;
+  }
+
+  &:not(:last-child)::after {
+    content: "→";
+    color: $gray;
+    margin-left: 0.75rem;
+  }
+}
+
+/* ── CS/003 Architecture ──────────────────────────────────────── */
+
+.c-arch-wrapper {
+  @include flex-column();
+  gap: $spacing-3;
+
+  @include respond(md) {
+    grid-column: 3 / -1;
+  }
+}
+
+.c-arch-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-2;
+
+  @include respond(sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.c-arch-card {
+  @include flex-column();
+  gap: 1rem;
+  padding: $spacing-2;
+  background-color: $light-gray;
+
+  &--frontend {
+    background-color: $white;
+    border: 1px solid $light-gray;
+  }
+}
+
+.c-arch-card__title {
+  font-size: $font-lg;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.c-arch-card__body {
+  font-size: $font-sm;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.c-arch-card__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+
+  span {
+    font-family: $suisse-intl-mono;
+    font-size: $font-2xs;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.375rem 0.5rem;
+    background-color: $white;
+  }
+}
+
+.c-arch-card--frontend .c-arch-card__stack span {
+  background-color: $light-gray;
+}
+
+.c-arch-layers {
+  @include flex-column();
+}
+
+.c-arch-layer {
+  display: grid;
+  grid-template-columns: 2.5rem 8rem 1fr;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-top: 1px dashed $gray;
+}
+
+.c-arch-layer__num {
+  font-family: $suisse-intl-mono;
+  font-size: $font-xs;
+  color: $gray;
+}
+
+.c-arch-layer__name {
+  font-size: $font-sm;
+  font-weight: 700;
+}
+
+.c-arch-layer__models {
+  font-family: $suisse-intl-mono;
+  font-size: $font-xs;
+  color: $gray;
+}
+
+/* ── CS/004 Data Model & Auth ──────────────────────────────────── */
+
+.c-auth-steps {
+  @include flex-column();
+  gap: $spacing-1;
+}
+
+.c-auth-step {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: 1rem;
+  padding: $spacing-1 0;
+  border-top: 1px dashed $gray;
+}
+
+.c-auth-step__num {
+  font-family: $suisse-intl-mono;
+  font-size: $font-sm;
+  color: $gray;
+}
+
+.c-auth-step__title {
+  font-size: $font-sm;
+  font-weight: 700;
+  margin: 0 0 0.25rem 0;
+  grid-column: 2;
+}
+
+.c-auth-step__body {
+  font-size: $font-sm;
+  line-height: 1.6;
+  margin: 0;
+  grid-column: 2;
+}
+
+/* ── CS/005 Business Logic ─────────────────────────────────────── */
+
+.c-logic-wrapper {
+  @include flex-column();
+  gap: $spacing-3;
+
+  @include respond(md) {
+    grid-column: 3 / -1;
+  }
+}
+
+.c-logic-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-1;
+
+  @include respond(sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.c-logic-card {
+  @include flex-column();
+  gap: 0.75rem;
+  padding: $spacing-2;
+  background-color: $light-gray;
+}
+
+.c-logic-card__title {
+  font-size: $font-lg;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.c-logic-card__body {
+  font-size: $font-sm;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── CS/006 Frontend ───────────────────────────────────────────── */
+
+.c-standout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-2;
+  margin-top: $spacing-3;
+
+  @include respond(md) {
+    grid-column: 1 / -1;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.c-standout__thumb {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      oklch(80% 0 0) 0 1px,
+      transparent 1px 12px
+    ),
+    $light-gray;
+}
+
+.c-standout__placeholder {
+  font-family: $suisse-intl-mono;
+  font-size: $font-2xs;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $gray;
+}
+
+.c-standout__details {
+  @include flex-column();
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.c-standout__title {
+  font-size: $font-lg;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.c-standout__intro {
+  font-size: $font-sm;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.c-standout__steps {
+  @include flex-column();
+  gap: 0.5rem;
+  margin: 0;
+  padding-left: 1.25rem;
+
+  li {
+    font-size: $font-sm;
+    line-height: 1.5;
+  }
+}
+
+/* ── CS/007 Feature Inventory ──────────────────────────────────── */
+
+.c-inventory-wrapper {
+  @include flex-column();
+  gap: $spacing-3;
+
+  @include respond(md) {
+    grid-column: 3 / -1;
+  }
+}
+
+.c-inventory-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+
+  @include respond(sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.c-inventory-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background-color: $light-gray;
+}
+
+.c-inventory-item__tag {
+  font-family: $suisse-intl-mono;
+  font-size: $font-2xs;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $gray;
+  white-space: nowrap;
+}
+
+.c-inventory-item__name {
+  font-size: $font-sm;
+  font-weight: 500;
+}
+
+/* ── CS/008 Design System ─────────────────────────────────────── */
+
+.c-swatches {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-1;
+  margin-top: $spacing-2;
+
+  @include respond(md) {
+    grid-column: 3 / -1;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+  }
+}
+
+.c-swatch {
+  @include flex-column();
+  gap: 0.5rem;
+}
+
+.c-swatch__chip {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.c-swatch__name {
+  font-family: $suisse-intl-mono;
+  font-size: $font-sm;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.c-swatch__usage {
+  font-size: $font-sm;
+  color: $gray;
+}
+
+.c-fonts {
+  @include flex-column();
+  gap: $spacing-1;
+  margin-top: $spacing-2;
+
+  @include respond(md) {
+    grid-column: 3 / -1;
+  }
+}
+
+.c-font-sample {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1rem 0;
+  border-top: 1px dashed $gray;
+}
+
+.c-font-sample__name {
+  font-size: $font-lg;
+  font-weight: 700;
+}
+
+.c-font-sample__usage {
+  font-family: $suisse-intl-mono;
+  font-size: $font-xs;
+  color: $gray;
+}
+
+/* ── CS/009 War Story ──────────────────────────────────────────── */
+
+.c-war-story__title {
+  font-size: $font-h6;
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 1.25rem 0;
+}
+
+.c-war-story__body {
+  font-size: $font-sm;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ── CS/010 Scope & Deferrals ──────────────────────────────────── */
+
+.c-deferrals-wrapper {
+  @include flex-column();
+  gap: $spacing-3;
+
+  @include respond(md) {
+    grid-column: 3 / -1;
+  }
+}
+
+.c-deferrals-list {
+  @include flex-column();
+  gap: $spacing-1;
+}
+
+.c-deferral-item {
+  @include flex-column();
+  gap: 0.5rem;
+  padding: $spacing-1 0;
+  border-top: 1px dashed $gray;
+}
+
+.c-deferral-item__tag {
+  font-family: $suisse-intl-mono;
+  font-size: $font-2xs;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $gray;
+}
+
+.c-deferral-item__title {
+  font-size: $font-lg;
+  font-weight: 700;
+  margin: 0;
+}
+
+.c-deferral-item__note {
+  font-size: $font-sm;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── CS/012 Timeline ───────────────────────────────────────────── */
+
+.c-timeline-wrapper {
+  @include flex-column();
+  gap: $spacing-3;
+
+  @include respond(md) {
+    grid-column: 3 / -1;
+  }
+}
+
+.c-timeline-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-3;
+
+  @include respond(sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.c-timeline-col__heading {
+  font-family: $suisse-intl-mono;
+  font-size: $font-xs;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $gray;
+  margin: 0 0 1rem 0;
+}
+
+.c-timeline {
+  @include flex-column();
+}
+
+.c-timeline-item {
+  @include flex-column();
+  gap: 0.25rem;
+  padding: 1rem 0;
+  border-top: 1px dashed $gray;
+}
+
+.c-timeline-item__milestone {
+  font-size: $font-sm;
+  font-weight: 700;
+}
+
+.c-timeline-item__detail {
+  font-size: $font-sm;
+  color: $gray;
+  line-height: 1.5;
+}
+
+/* ── Pager ─────────────────────────────────────────────────────── */
+
+.c-pager {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: $spacing-2;
+  padding-block: $spacing-4;
+  border-top: 1px dashed $gray;
+}
+
+.c-pager__prev,
+.c-pager__next {
+  @include flex-column();
+  gap: 0.5rem;
+}
+
+.c-pager__next {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.c-pager__label {
+  font-family: $suisse-intl-mono;
+  font-size: $font-2xs;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $gray;
+}
+
+.c-pager__link {
+  font-size: $font-h6;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $orange;
+  }
+}
+
+.c-pager__index {
+  font-family: $suisse-intl-mono;
+  font-size: $font-xs;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $gray;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.c-pager__empty {
+  color: $gray;
+}

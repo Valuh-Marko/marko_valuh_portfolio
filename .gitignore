@@ -48,7 +48,9 @@ Thumbs.db
 out/
 
 # Mac system files
+docs
 *.DS_Store
 
 #AI
 CLAUDE.md
+.claude
