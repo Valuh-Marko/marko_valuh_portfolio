@@ -6,6 +6,7 @@
       "excerpt": "Full-stack, role-based property-management platform for residential buildings in Serbia, digitizing the relationship between building managers, board members, and residents.",
       "excerpt_xl": "Upravnik Platform is a full-stack, role-based property-management system for residential buildings in Serbia. It digitizes the relationship between building managers, elected board members, and residents, replacing informal WhatsApp and Viber groups as well as paper notices with a structured, closed platform for announcements, community forums, private support tickets, real-time chat, and document sharing.\n\nIt's a solo-built project spanning a NestJS/Prisma/PostgreSQL API and a Next.js/React frontend, designed and built end-to-end, data model, permissions, business logic, and UI, all built by one engineer.",
       "url": "upravnik-platform",
+      "img_url": "/images/upravnik_logo.svg",
       "spec": {
         "domain": "PropTech / Property Management",
         "stack": [
