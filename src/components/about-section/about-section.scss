@@ -109,6 +109,12 @@
   object-fit: cover;
   left: 0;
   top: 0;
-  width: 100%;
+  width: auto;
+  height: 130vh;
   z-index: 0;
+
+  @include respond(md) {
+    width: 100%;
+    height: auto;
+  }
 }
