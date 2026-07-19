@@ -8,6 +8,8 @@ import "./projects_page.scss";
 
 export const ProjectsPage = WithTransition(({ setContentLoaded }) => {
   const [response, setResponse] = useState();
+  const [dataLoaded, setDataLoaded] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const container = useRef(null);
   const { scrollYProgress: heroScroll } = useScroll({
@@ -22,11 +24,17 @@ export const ProjectsPage = WithTransition(({ setContentLoaded }) => {
       const res = await fetch("/data/projects.json");
       const data = await res.json();
       setResponse(data);
-      setContentLoaded();
+      setDataLoaded(true);
     }
 
     fetchData();
-  });
+  }, []);
+
+  useEffect(() => {
+    if (dataLoaded && imageLoaded) {
+      setContentLoaded();
+    }
+  }, [dataLoaded, imageLoaded, setContentLoaded]);
 
   return (
     <>
@@ -54,6 +62,7 @@ export const ProjectsPage = WithTransition(({ setContentLoaded }) => {
             className="c-projects-hero-img"
             src={projects}
             alt="hero_img"
+            onLoad={() => setImageLoaded(true)}
             style={{
               y: y,
             }}

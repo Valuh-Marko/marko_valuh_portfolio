@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { FaLinkedin } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { Link, useLocation } from "react-router";
@@ -28,11 +28,16 @@ const slideY = {
   },
 };
 
+const HIDE_ANIMATION_MS =
+  (slideY.hide.transition.delay + slideY.hide.transition.duration) * 1000;
+
 export const DesktopHeader = ({ shouldShow }) => {
   const { directionRef, scrollYRef, lenis } = useContext(ScrollContext);
   const [direction, setDirection] = useState("hide");
   const [isAtTop, setIsAtTop] = useState(true);
   const location = useLocation();
+  const pendingAtTopRef = useRef(true);
+  const colorTimeoutRef = useRef(null);
 
   const handleLogoClick = (e) => {
     if (location.pathname === "/") {
@@ -40,6 +45,10 @@ export const DesktopHeader = ({ shouldShow }) => {
       lenis.current?.scrollTo(0);
     }
   };
+
+  useEffect(() => {
+    return () => clearTimeout(colorTimeoutRef.current);
+  }, []);
 
   useEffect(() => {
     let lastDirection = direction;
@@ -55,7 +64,21 @@ export const DesktopHeader = ({ shouldShow }) => {
         setDirection(next);
       }
 
-      setIsAtTop(scrollYRef.current <= 10);
+      const nextAtTop = scrollYRef.current <= 100;
+      if (nextAtTop !== pendingAtTopRef.current) {
+        pendingAtTopRef.current = nextAtTop;
+        clearTimeout(colorTimeoutRef.current);
+
+        if (nextAtTop) {
+          setIsAtTop(true);
+        } else {
+          colorTimeoutRef.current = setTimeout(
+            () => setIsAtTop(false),
+            HIDE_ANIMATION_MS
+          );
+        }
+      }
+
       requestAnimationFrame(check);
     };
 

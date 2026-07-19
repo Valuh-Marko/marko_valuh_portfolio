@@ -8,6 +8,8 @@ import "./work_experience.scss";
 
 export const WorkExperiencePage = WithTransition(({ setContentLoaded }) => {
   const [response, setResponse] = useState();
+  const [dataLoaded, setDataLoaded] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const container = useRef(null);
   const { scrollYProgress: heroScroll } = useScroll({
     target: container,
@@ -21,11 +23,17 @@ export const WorkExperiencePage = WithTransition(({ setContentLoaded }) => {
       const res = await fetch("/data/work_experience.json");
       const data = await res.json();
       setResponse(data);
-      setContentLoaded();
+      setDataLoaded(true);
     }
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (dataLoaded && imageLoaded) {
+      setContentLoaded();
+    }
+  }, [dataLoaded, imageLoaded, setContentLoaded]);
 
   return (
     <>
@@ -55,6 +63,7 @@ export const WorkExperiencePage = WithTransition(({ setContentLoaded }) => {
             className="c-work-experience-hero-img"
             src={workExperience}
             alt="hero_img"
+            onLoad={() => setImageLoaded(true)}
             style={{
               y: y,
             }}

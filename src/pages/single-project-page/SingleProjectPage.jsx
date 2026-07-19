@@ -34,6 +34,8 @@ export const SingleProjectPage = WithTransition(
 
     const [data, setData] = useState(null);
     const [allEntries, setAllEntries] = useState([]);
+    const [dataLoaded, setDataLoaded] = useState(false);
+    const [imageLoaded, setImageLoaded] = useState(false);
 
     useEffect(() => {
       fetch("/data/projects.json")
@@ -43,10 +45,16 @@ export const SingleProjectPage = WithTransition(
           const entry = entries.find((item) => item.url === name);
           setAllEntries(entries.filter((item) => item.caseStudy));
           setData(entry ?? null);
-          setContentLoaded();
+          setDataLoaded(true);
         })
         .catch((err) => console.error("Failed to load JSON:", err));
     }, [name]);
+
+    useEffect(() => {
+      if (dataLoaded && imageLoaded) {
+        setContentLoaded();
+      }
+    }, [dataLoaded, imageLoaded, setContentLoaded]);
 
     const caseStudy = data?.caseStudy;
     const currentIndex = allEntries.findIndex((item) => item.url === name);
@@ -143,6 +151,7 @@ export const SingleProjectPage = WithTransition(
             className="c-single-page-hero-img"
             src={projects}
             alt="hero_img"
+            onLoad={() => setImageLoaded(true)}
             style={{ y }}
           />
         </div>

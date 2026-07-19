@@ -26,6 +26,8 @@ export const SingleWorkExperiencePage = WithTransition(
 
     const [data, setData] = useState(null);
     const [allEntries, setAllEntries] = useState([]);
+    const [dataLoaded, setDataLoaded] = useState(false);
+    const [imageLoaded, setImageLoaded] = useState(false);
 
     useEffect(() => {
       fetch("/data/work_experience.json")
@@ -35,10 +37,16 @@ export const SingleWorkExperiencePage = WithTransition(
           const entry = entries.find((item) => item.url === name);
           setAllEntries(entries);
           setData(entry ?? null);
-          setContentLoaded();
+          setDataLoaded(true);
         })
         .catch((err) => console.error("Failed to load JSON:", err));
     }, [name]);
+
+    useEffect(() => {
+      if (dataLoaded && imageLoaded) {
+        setContentLoaded();
+      }
+    }, [dataLoaded, imageLoaded, setContentLoaded]);
 
     const meta = data?.context?.meta;
     const subheading = meta ? `${meta.role} — ${meta.location}` : "";
@@ -86,6 +94,7 @@ export const SingleWorkExperiencePage = WithTransition(
             className="c-single-page-hero-img"
             src={workExperience}
             alt="hero_img"
+            onLoad={() => setImageLoaded(true)}
             style={{ y }}
           />
         </div>

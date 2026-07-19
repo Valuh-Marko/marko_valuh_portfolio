@@ -5,7 +5,7 @@ import { Button } from "../button/Button";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import "./hero-section.scss";
 
-export const HeroSection = () => {
+export const HeroSection = ({ onImageLoad }) => {
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
@@ -23,6 +23,7 @@ export const HeroSection = () => {
         alt=""
         aria-hidden="true"
         fetchPriority="high"
+        onLoad={onImageLoad}
         style={{ y }}
       />
 
