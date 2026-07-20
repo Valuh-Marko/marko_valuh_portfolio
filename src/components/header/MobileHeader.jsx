@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { useContext, useEffect, useState } from "react";
-import { FaLinkedin } from "react-icons/fa6";
+import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { Link } from "react-router";
 import { useWindowSize } from "../../hooks/useWindowSize";
@@ -158,6 +158,12 @@ export const MobileHeader = ({ shouldShow }) => {
           <div className="c-header-contact__center">
             <span>LET'S TALK</span>
             <div className="c-socials-holder">
+              <a
+                href="https://github.com/Valuh-Marko"
+                target="_blank"
+              >
+                <FaGithub />
+              </a>
               <a
                 href="https://www.linkedin.com/in/marko-valuh/"
                 target="_blank"

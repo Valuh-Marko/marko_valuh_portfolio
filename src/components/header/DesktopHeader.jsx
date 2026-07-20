@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { useContext, useEffect, useRef, useState } from "react";
-import { FaLinkedin } from "react-icons/fa6";
+import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { Link, useLocation } from "react-router";
 import { ScrollContext } from "../../context/ScrollContext";
@@ -111,6 +111,13 @@ export const DesktopHeader = ({ shouldShow }) => {
             </Link>
           ))}
           <span className="c-desktop-header__separator">|</span>
+          <a
+            href="https://github.com/Valuh-Marko"
+            target="_blank"
+            className="c-desktop-header__icon"
+          >
+            <FaGithub />
+          </a>
           <a
             href="https://www.linkedin.com/in/marko-valuh/"
             target="_blank"
