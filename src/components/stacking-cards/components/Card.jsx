@@ -3,7 +3,6 @@ import { Button } from "../../button/Button";
 
 export const Card = ({ label, index, data, top, long_desc, external = false }) => {
   const spec = data.spec;
-  const cardId = `${label}/${String(index).padStart(3, "0")}`;
 
   return (
     <motion.div
@@ -38,11 +37,6 @@ export const Card = ({ label, index, data, top, long_desc, external = false }) =
 
       {spec && (
         <aside className="c-card__spec">
-          <header className="c-card__spec-head">
-            <span className="c-card__spec-id">{cardId}</span>
-            <span>SPEC SHEET</span>
-          </header>
-
           <dl className="c-card__spec-fields">
             {external ? (
               <>

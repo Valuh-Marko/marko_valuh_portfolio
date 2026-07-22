@@ -75,24 +75,6 @@
   }
 }
 
-.c-card__spec-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px dashed $gray;
-  font-family: $suisse-intl-mono;
-  font-size: $font-xs;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: $gray;
-}
-
-.c-card__spec-id {
-  color: $black;
-  font-weight: 600;
-}
-
 .c-card__spec-fields {
   display: grid;
   grid-template-columns: 5rem 1fr;
