@@ -7,30 +7,60 @@
   position: relative;
   height: 100dvh;
   min-height: 40rem;
-  background-color: #0a0a0a;
   overflow: hidden;
   color: $white;
+}
 
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.55);
-    z-index: 1;
+// ─── Background ───────────────────────────────────────────────────────────────
+
+@property --glow-radius {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 26rem;
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    --glow-radius: 26rem;
+  }
+  50% {
+    --glow-radius: 27rem;
   }
 }
 
-// ─── Parallax background image ────────────────────────────────────────────────
-
 .c-hero__bg {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  z-index: 0;
+  inset: 0;
+  z-index: 1;
+  background-color: $black;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 4rem 4rem;
+  transform: scale(1.25);
+  will-change: transform;
+}
+
+.c-hero__bg-glow {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.4) 1px, transparent 1px);
+  background-size: 4rem 4rem;
+  -webkit-mask-image: radial-gradient(
+    circle var(--glow-radius) at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    black 0%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    circle var(--glow-radius) at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    black 0%,
+    transparent 100%
+  );
+  animation: glow-pulse 4s ease-in-out infinite;
+  pointer-events: none;
 }
 
 // ─── Rails ────────────────────────────────────────────────────────────────────
@@ -41,7 +71,9 @@
   right: 0;
   z-index: 4;
 
-  &--bot { bottom: 0; }
+  &--bot {
+    bottom: 0;
+  }
 }
 
 .c-hero__rail-inner {
@@ -73,12 +105,12 @@
 .c-hero__inner {
   display: flex;
   flex-direction: column;
-  gap: $spacing-3;
+  gap: $spacing-1;
 
   @include respond(md) {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    gap: $spacing-4;
+    gap: $spacing-2;
     align-items: start;
   }
 }
@@ -93,9 +125,11 @@
   letter-spacing: -0.02em;
   text-wrap: balance;
   color: $white;
+  text-align: center;
+  user-select: none;
 
   @include respond(md) {
-    grid-column: 3 / span 7;
+    grid-column: 4 / span 6;
   }
 }
 
@@ -109,10 +143,11 @@
 .c-hero__row {
   display: flex;
   align-items: flex-start;
+  justify-content: center;
   gap: 2.5rem;
 
   @include respond(md) {
-    grid-column: 3 / span 7;
+    grid-column: 4 / span 6;
   }
 }
 
@@ -121,6 +156,7 @@
 .c-hero__copy {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: $spacing-2;
   max-width: 28rem;
 }
@@ -128,6 +164,7 @@
 .c-hero__buttons {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: $spacing-1;
 }
 
@@ -135,7 +172,9 @@
   font-family: $font-helvetica-now;
   font-size: $font-lg;
   line-height: 1.5;
+  text-align: center;
   color: rgba(255, 255, 255, 0.72);
+  user-select: none;
 }
 
 // ─── Portrait chip ────────────────────────────────────────────────────────────
@@ -177,7 +216,7 @@
 
   .c-hero__row {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: $spacing-2;
   }
 

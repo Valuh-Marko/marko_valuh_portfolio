@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import WithTransition from "../with-transition/WithTransition";
 
 import { AboutSection } from "../../components/about-section/AboutSection";
@@ -8,9 +9,13 @@ import { WorkExperience } from "../../components/work-experience/WorkExperience"
 import "./homepage.scss";
 
 export const HomePage = WithTransition(({ setContentLoaded }) => {
+  useEffect(() => {
+    setContentLoaded();
+  }, [setContentLoaded]);
+
   return (
     <>
-      <HeroSection onImageLoad={setContentLoaded} />
+      <HeroSection />
       <TechStackSection />
       <AccompanyStackSection />
       <WorkExperience />

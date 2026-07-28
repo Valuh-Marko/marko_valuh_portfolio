@@ -35,21 +35,19 @@ export const TechStackSection = () => {
             Crafting efficient solutions <br /> with industry standard tools
           </h3>
         </div>
-        <div className="c-section__column">
-          <div className="c-section-icon-wrapper">
-            {STACK.map((name) => (
-              <div key={name} className="c-stack-tile">
-                {ICON_SLUGS[name] && (
-                  <img
-                    src={`https://cdn.simpleicons.org/${ICON_SLUGS[name]}/0a0a0a`}
-                    alt={name}
-                    className="c-stack-tile__icon c-stack-tile__icon--lg"
-                  />
-                )}
-                <span className="c-stack-tile__name">{name}</span>
-              </div>
-            ))}
-          </div>
+        <div className="c-section-icon-wrapper">
+          {STACK.map((name) => (
+            <div key={name} className="c-stack-tile">
+              {ICON_SLUGS[name] && (
+                <img
+                  src={`https://cdn.simpleicons.org/${ICON_SLUGS[name]}/0a0a0a`}
+                  alt={name}
+                  className="c-stack-tile__icon c-stack-tile__icon--lg"
+                />
+              )}
+              <span className="c-stack-tile__name">{name}</span>
+            </div>
+          ))}
         </div>
       </div>
     </div>

@@ -1,29 +1,35 @@
 @use "../../styles/variables" as *;
 @use "../../styles/mixin" as *;
 
+$header-scrolled-padding-block: 0.5rem;
+
 .c-desktop-header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
-  background-color: $white;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border-bottom: 1px dashed $gray;
   transition:
-    background-color 0.3s ease,
-    border-color 0.3s ease;
+    background-color 0.93s ease,
+    border-color 0.93s ease;
 
   &.is-top {
     background-color: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     border-bottom-color: transparent;
+
+    .c-desktop-header__inner {
+      padding-block: $spacing-1;
+    }
 
     .c-desktop-header__link,
     .c-desktop-header__icon {
       color: $white;
-
-      &:hover {
-        color: rgba(255, 255, 255, 0.6);
-      }
     }
 
     .c-desktop-header__separator {
@@ -47,7 +53,8 @@
 .c-desktop-header__inner {
   @include col-grid();
   align-items: center;
-  padding-block: $spacing-1;
+  padding-block: $header-scrolled-padding-block;
+  transition: padding-block 0.64s ease;
 }
 
 .c-desktop-header__label {
@@ -61,6 +68,7 @@
   font-weight: bold;
   text-transform: uppercase;
   transition: color 0.3s ease;
+  user-select: none;
 }
 
 .c-desktop-header__wordmark {
@@ -69,9 +77,10 @@
 }
 
 .c-desktop-header__nav {
-  grid-column: 3 / span 7;
+  grid-column: 3 / span 8;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: $spacing-2;
 }
 
@@ -87,19 +96,22 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: $black;
-  transition: color 0.2s ease;
-
-  &:hover {
-    color: $gray;
-  }
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
 
   &.is-active {
     color: $orange;
   }
 }
 
+.c-desktop-header__nav:has(.c-desktop-header__link:hover)
+  .c-desktop-header__link:not(:hover) {
+  opacity: 0.5;
+}
+
 .c-desktop-header__actions {
-  grid-column: 10 / -1;
+  grid-column: 11 / -1;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -111,15 +123,18 @@
   align-items: center;
   font-size: $font-lg;
   color: $black;
-  transition: color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
 
   svg {
     width: 1em;
     height: 1em;
     display: block;
   }
+}
 
-  &:hover {
-    color: $gray;
-  }
+.c-desktop-header__nav:has(.c-desktop-header__icon:hover)
+  .c-desktop-header__icon:not(:hover) {
+  opacity: 0.5;
 }

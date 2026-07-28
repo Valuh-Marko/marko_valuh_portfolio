@@ -1,31 +1,52 @@
-import { motion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
-import heroImg from "../../assets/images/heading.webp";
+import { useEffect, useRef } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import { Button } from "../button/Button";
-import { useWindowSize } from "../../hooks/useWindowSize";
+import { HeroBackground } from "./components/HeroBackground";
 import "./hero-section.scss";
 
-export const HeroSection = ({ onImageLoad }) => {
-  const container = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ["start start", "end start"],
-  });
-  const { height } = useWindowSize();
-  const y = useTransform(scrollYProgress, [0, 1], [0, height / 3]);
+const MAX_OFFSET = 8;
+
+export const HeroSection = () => {
+  const heroRef = useRef(null);
+
+  const mouseX = useMotionValue(0.5);
+  const mouseY = useMotionValue(0.5);
+  const springX = useSpring(mouseX, { stiffness: 60, damping: 15, mass: 0.5 });
+  const springY = useSpring(mouseY, { stiffness: 60, damping: 15, mass: 0.5 });
+  const x = useTransform(springX, (v) => (v - 0.5) * 2 * MAX_OFFSET);
+  const y = useTransform(springY, (v) => (v - 0.5) * 2 * MAX_OFFSET);
+
+  useEffect(() => {
+    const hero = heroRef.current;
+
+    const handleMouseMove = (e) => {
+      const rect = hero.getBoundingClientRect();
+      const isInside =
+        e.clientX >= rect.left &&
+        e.clientX <= rect.right &&
+        e.clientY >= rect.top &&
+        e.clientY <= rect.bottom;
+
+      if (!isInside) {
+        mouseX.set(0.5);
+        mouseY.set(0.5);
+        return;
+      }
+
+      mouseX.set((e.clientX - rect.left) / rect.width);
+      mouseY.set((e.clientY - rect.top) / rect.height);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [mouseX, mouseY]);
 
   return (
-    <div ref={container} className="c-hero">
-      {/* Parallax background */}
-      <motion.img
-        className="c-hero__bg"
-        src={heroImg}
-        alt=""
-        aria-hidden="true"
-        fetchPriority="high"
-        onLoad={onImageLoad}
-        style={{ y }}
-      />
+    <div className="c-hero" ref={heroRef}>
+      <HeroBackground />
 
       {/* Bottom rail */}
       <div className="c-hero__rail c-hero__rail--bot">
@@ -38,18 +59,18 @@ export const HeroSection = ({ onImageLoad }) => {
       {/* Main content */}
       <div className="c-hero__wrap">
         <div className="container c-hero__inner">
-          <h1 className="c-hero__title">
-            Where Code Meets Canvas Frontend Engineering with an{" "}
+          <motion.h1 className="c-hero__title" style={{ x, y }}>
+            Frontend Engineering with an{" "}
             <em className="c-hero__accent">Artistic Touch</em>
-          </h1>
+          </motion.h1>
 
           <div className="c-hero__row">
             <div className="c-hero__copy">
-              <p className="c-hero__sub">
+              <motion.p className="c-hero__sub" style={{ x, y }}>
                 I bring solid frontend engineering skills and a sharp eye for
                 UI/UX to craft seamless digital experiences.
-              </p>
-              <div className="c-hero__buttons">
+              </motion.p>
+              <motion.div className="c-hero__buttons" style={{ x, y }}>
                 <Button
                   label="Work Experience"
                   color="white"
@@ -62,7 +83,7 @@ export const HeroSection = ({ onImageLoad }) => {
                   variant="transparent"
                   to="/projects"
                 />
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>

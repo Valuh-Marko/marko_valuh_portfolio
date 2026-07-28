@@ -5,7 +5,6 @@ const META_FIELDS = [
   { key: "tenure",       label: "Tenure",       asideKey: "tenureYears" },
   { key: "location",     label: "Location" },
   { key: "team",         label: "Team" },
-  { key: "reportsTo",    label: "Reports to" },
   { key: "primaryStack", label: "Primary stack" },
 ];
 

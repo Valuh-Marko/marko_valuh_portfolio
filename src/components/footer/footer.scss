@@ -55,6 +55,7 @@
   @include flex-column();
   gap: 0.5rem;
   grid-column: 2/3;
+  text-transform: uppercase;
 }
 
 .c-footer__navigation {
@@ -67,6 +68,12 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  transition: opacity 0.2s ease;
+}
+
+.c-footer__links:has(.c-footer-link:hover) .c-footer-link:not(:hover),
+.c-footer__navigation:has(.c-footer-link:hover) .c-footer-link:not(:hover) {
+  opacity: 0.5;
 }
 
 .c-footer__disclaimer {

@@ -60,7 +60,7 @@
   @include respond(md) {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1.75rem;
     background-color: $light-gray;
     padding: 1.5rem;
     align-self: start;
@@ -77,8 +77,8 @@
 
 .c-card__spec-fields {
   display: grid;
-  grid-template-columns: 5rem 1fr;
-  gap: 0.75rem $spacing-1;
+  grid-template-columns: auto 1fr;
+  gap: 1.25rem 0.5rem;
   align-items: start;
   margin: 0;
 
@@ -90,6 +90,11 @@
     color: $gray;
     font-weight: 500;
     padding-top: 0.25rem;
+
+    svg {
+      width: 1.4em;
+      height: 1.4em;
+    }
   }
 
   dd {
@@ -97,6 +102,10 @@
     font-size: $font-sm;
     line-height: 1.4;
   }
+}
+
+.c-card__spec-chips-row {
+  grid-column: 1 / -1;
 }
 
 .c-card__spec-sub {
@@ -146,15 +155,6 @@
     font-size: $font-xs;
     line-height: 1.5;
 
-    &::before {
-      content: attr(data-i);
-      flex: 0 0 1.5rem;
-      font-family: $suisse-intl-mono;
-      font-size: 0.5rem;
-      letter-spacing: 0.1em;
-      color: $gray;
-    }
-
     b {
       font-family: $suisse-intl-mono;
       font-weight: 600;
@@ -162,14 +162,6 @@
       padding-right: 0.25rem;
     }
   }
-}
-
-.c-card__spec-stats-label {
-  font-family: $suisse-intl-mono;
-  font-size: $font-xs;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: $gray;
 }
 
 .c-card__spec-footer {

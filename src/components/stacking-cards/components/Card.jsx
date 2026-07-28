@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { FaLocationDot } from "react-icons/fa6";
 import { Button } from "../../button/Button";
 
 export const Card = ({ label, index, data, top, long_desc, external = false }) => {
@@ -39,13 +40,12 @@ export const Card = ({ label, index, data, top, long_desc, external = false }) =
         <aside className="c-card__spec">
           <dl className="c-card__spec-fields">
             {external ? (
-              <>
-                <dt>Domain</dt>
-                <dd>{spec.domain}</dd>
-              </>
+              <dd className="c-card__spec-chips-row">{spec.domain}</dd>
             ) : (
               <>
-                <dt>Location</dt>
+                <dt>
+                  <FaLocationDot aria-label="Location" />
+                </dt>
                 <dd>
                   {spec.location}
                   {spec.locationSub && (
@@ -55,23 +55,19 @@ export const Card = ({ label, index, data, top, long_desc, external = false }) =
               </>
             )}
             {spec.stack?.length > 0 && (
-              <>
-                <dt>Stack</dt>
-                <dd>
-                  <div className="c-card__spec-chips">
-                    {spec.stack.map((s) => <span key={s}>{s}</span>)}
-                  </div>
-                </dd>
-              </>
+              <dd className="c-card__spec-chips-row">
+                <div className="c-card__spec-chips">
+                  {spec.stack.map((s) => <span key={s}>{s}</span>)}
+                </div>
+              </dd>
             )}
           </dl>
 
           {spec.stats?.length > 0 && (
             <div className="c-card__spec-stats">
-              <div className="c-card__spec-stats-label">Selected outcomes</div>
               <ul>
                 {spec.stats.map((stat, i) => (
-                  <li key={i} data-i={String(i + 1).padStart(2, "0")}>
+                  <li key={i}>
                     <span><b>{stat.value}</b> {stat.label}</span>
                   </li>
                 ))}

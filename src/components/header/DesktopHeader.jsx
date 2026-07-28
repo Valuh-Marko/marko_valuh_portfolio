@@ -4,6 +4,7 @@ import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { Link, useLocation } from "react-router";
 import { ScrollContext } from "../../context/ScrollContext";
+import { useScrambleText } from "../../hooks/useScrambleText";
 import { Button } from "../button/Button";
 import "./desktop-header.scss";
 
@@ -30,6 +31,20 @@ const slideY = {
 
 const HIDE_ANIMATION_MS =
   (slideY.hide.transition.delay + slideY.hide.transition.duration) * 1000;
+
+const HeaderNavLink = ({ label, to, isActive }) => {
+  const [text, scramble] = useScrambleText(label);
+
+  return (
+    <Link
+      to={to}
+      className={`c-desktop-header__link${isActive ? " is-active" : ""}`}
+      onMouseEnter={() => scramble()}
+    >
+      {text}
+    </Link>
+  );
+};
 
 export const DesktopHeader = ({ shouldShow }) => {
   const { directionRef, scrollYRef, lenis } = useContext(ScrollContext);
@@ -74,7 +89,7 @@ export const DesktopHeader = ({ shouldShow }) => {
         } else {
           colorTimeoutRef.current = setTimeout(
             () => setIsAtTop(false),
-            HIDE_ANIMATION_MS
+            HIDE_ANIMATION_MS,
           );
         }
       }
@@ -94,21 +109,27 @@ export const DesktopHeader = ({ shouldShow }) => {
       variants={slideY}
     >
       <div className="container c-desktop-header__inner">
-
-        <Link to="/" className="c-desktop-header__label" onClick={handleLogoClick}>
-          <img src="/marko_valuh_logo.png" alt="Marko Valuh" className="c-desktop-header__wordmark" />
+        <Link
+          to="/"
+          className="c-desktop-header__label"
+          onClick={handleLogoClick}
+        >
+          <img
+            src="/marko_valuh_logo.png"
+            alt="Marko Valuh"
+            className="c-desktop-header__wordmark"
+          />
           <h5>Marko Valuh</h5>
         </Link>
 
         <nav className="c-desktop-header__nav">
           {NAV_LINKS.map(({ label, to }) => (
-            <Link
+            <HeaderNavLink
               key={to}
+              label={label}
               to={to}
-              className={`c-desktop-header__link${location.pathname === to ? " is-active" : ""}`}
-            >
-              {label}
-            </Link>
+              isActive={location.pathname === to}
+            />
           ))}
           <span className="c-desktop-header__separator">|</span>
           <a
@@ -139,10 +160,8 @@ export const DesktopHeader = ({ shouldShow }) => {
             to="/files/marko-valuh-resume.pdf"
             blankTarget={true}
             color={isAtTop ? "white" : "black"}
-            variant="filled"
           />
         </div>
-
       </div>
     </motion.header>
   );
