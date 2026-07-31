@@ -1,26 +1,43 @@
 import React from "react";
+import { motion } from "motion/react";
 import { Divider } from "../divider/Divider";
 import { Link } from "react-router";
 import { MdOutlineArrowOutward } from "react-icons/md";
 import { useScrambleText } from "../../hooks/useScrambleText";
 import "./footer.scss";
 
+const MotionLink = motion.create(Link);
+const TAP_SCALE = { scale: 0.95 };
+const TAP_TRANSITION = { duration: 0.1 };
+
 const FooterLink = ({ label, href, to, showIcon = false }) => {
   const [text, scramble] = useScrambleText(label);
 
   if (to) {
     return (
-      <Link className="c-footer-link" to={to} onMouseEnter={() => scramble()}>
+      <MotionLink
+        className="c-footer-link"
+        to={to}
+        onMouseEnter={() => scramble()}
+        whileTap={TAP_SCALE}
+        transition={TAP_TRANSITION}
+      >
         {text}
         {showIcon && <MdOutlineArrowOutward />}
-      </Link>
+      </MotionLink>
     );
   }
 
   return (
-    <a className="c-footer-link" href={href} onMouseEnter={() => scramble()}>
+    <motion.a
+      className="c-footer-link"
+      href={href}
+      onMouseEnter={() => scramble()}
+      whileTap={TAP_SCALE}
+      transition={TAP_TRANSITION}
+    >
       {text}
-    </a>
+    </motion.a>
   );
 };
 

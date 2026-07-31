@@ -1,0 +1,51 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixin" as *;
+
+.c-tooltip__trigger {
+  display: contents;
+  cursor: pointer;
+}
+
+.c-tooltip {
+  --tt-bg: #{$orange};
+  --tt-fg: #{$black};
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  pointer-events: none;
+  width: 14rem;
+  height: auto;
+  display: grid;
+  grid-template-areas: "tooltip";
+
+  @include respond(md) {
+    width: 19rem;
+  }
+}
+
+.c-tooltip__bg {
+  grid-area: tooltip;
+  box-shadow: 0 0.25rem 0.5rem color-mix(in oklch, $black 35%, transparent);
+}
+
+.c-tooltip__grid {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(var(--tt-cols), 1fr);
+  grid-template-rows: repeat(var(--tt-rows), 1fr);
+  overflow: hidden;
+}
+
+.c-tooltip__cell {
+  background: var(--tt-bg);
+}
+
+.c-tooltip__content {
+  grid-area: tooltip;
+  position: relative;
+  padding: 1rem;
+  color: var(--tt-fg);
+  font-family: $font-helvetica-now;
+}

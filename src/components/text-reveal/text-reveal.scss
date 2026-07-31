@@ -1,0 +1,14 @@
+.c-text-reveal__mask {
+  display: inline-block;
+  overflow: hidden;
+  line-height: inherit;
+  padding-bottom: 0.2em;
+  margin-bottom: -0.2em;
+  vertical-align: top;
+}
+
+.c-text-reveal__unit {
+  display: inline-block;
+  line-height: inherit;
+  white-space: pre;
+}

@@ -16,16 +16,16 @@
 @property --glow-radius {
   syntax: "<length>";
   inherits: false;
-  initial-value: 26rem;
+  initial-value: 36rem;
 }
 
 @keyframes glow-pulse {
   0%,
   100% {
-    --glow-radius: 26rem;
+    --glow-radius: 36rem;
   }
   50% {
-    --glow-radius: 27rem;
+    --glow-radius: 37rem;
   }
 }
 
@@ -177,6 +177,52 @@
   user-select: none;
 }
 
+@keyframes name-flicker {
+  0% {
+    opacity: 1;
+    text-shadow: none;
+  }
+  8% {
+    opacity: 0.35;
+    text-shadow: none;
+  }
+  16% {
+    opacity: 1;
+    text-shadow: 0 0 6px color-mix(in oklch, $orange 70%, transparent);
+  }
+  24% {
+    opacity: 0.5;
+    text-shadow: none;
+  }
+  32%,
+  70% {
+    opacity: 1;
+    text-shadow:
+      0 0 8px color-mix(in oklch, $orange 85%, transparent),
+      0 0 18px color-mix(in oklch, $orange 55%, transparent);
+  }
+  100% {
+    opacity: 1;
+    text-shadow: none;
+  }
+}
+
+.c-hero__name {
+  color: $white;
+
+  &--flicker {
+    // Duration intentionally < useFlicker's burstDuration (550ms) so this
+    // always finishes before React removes the modifier class.
+    animation: name-flicker 480ms ease-in-out;
+  }
+}
+
+// Lets the glow spill past each word's mask box instead of being clipped
+// by the reveal mask's overflow:hidden.
+.c-hero__name--flicker .c-text-reveal__mask {
+  overflow: visible;
+}
+
 // ─── Portrait chip ────────────────────────────────────────────────────────────
 
 .c-hero__portrait {
@@ -201,6 +247,54 @@
   height: 100%;
   object-fit: cover;
   object-position: center top;
+}
+
+// ─── Name tooltip ─────────────────────────────────────────────────────────────
+
+.c-hero__tt-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.c-hero__tt-avatar {
+  flex-shrink: 0;
+  width: 6rem;
+  height: 6rem;
+  object-fit: cover;
+}
+
+.c-hero__tt-name {
+  margin: 0 0 0.5rem;
+  font-size: $font-xl;
+  font-weight: 500;
+}
+
+.c-hero__tt-meta {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  row-gap: 0.5rem;
+  column-gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.c-hero__tt-meta-row {
+  display: contents;
+  font-family: $suisse-intl-mono;
+  font-size: $font-2xs;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.c-hero__tt-meta-label {
+  color: color-mix(in oklch, var(--tt-fg) 65%, transparent);
+}
+
+.c-hero__tt-meta-value {
+  font-weight: 600;
+  text-align: right;
 }
 
 // ─── Responsive ───────────────────────────────────────────────────────────────

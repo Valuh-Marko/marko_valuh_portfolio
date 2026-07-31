@@ -14,6 +14,13 @@ const NAV_LINKS = [
   { label: "Work Experience", to: "/work-experience" },
 ];
 
+const HERO_SELECTOR =
+  ".c-hero, .c-projects-hero, .c-work-experience-hero, .c-single-page-hero";
+
+const MotionLink = motion.create(Link);
+const TAP_SCALE = { scale: 0.95 };
+const TAP_TRANSITION = { duration: 0.1 };
+
 const slideY = {
   show: {
     y: 0,
@@ -36,13 +43,15 @@ const HeaderNavLink = ({ label, to, isActive }) => {
   const [text, scramble] = useScrambleText(label);
 
   return (
-    <Link
+    <MotionLink
       to={to}
       className={`c-desktop-header__link${isActive ? " is-active" : ""}`}
       onMouseEnter={() => scramble()}
+      whileTap={TAP_SCALE}
+      transition={TAP_TRANSITION}
     >
       {text}
-    </Link>
+    </MotionLink>
   );
 };
 
@@ -51,8 +60,9 @@ export const DesktopHeader = ({ shouldShow }) => {
   const [direction, setDirection] = useState("hide");
   const [isAtTop, setIsAtTop] = useState(true);
   const location = useLocation();
-  const pendingAtTopRef = useRef(true);
+  const pendingAtTopRef = useRef(isAtTop);
   const colorTimeoutRef = useRef(null);
+  const headerRef = useRef(null);
 
   const handleLogoClick = (e) => {
     if (location.pathname === "/") {
@@ -67,6 +77,7 @@ export const DesktopHeader = ({ shouldShow }) => {
 
   useEffect(() => {
     let lastDirection = direction;
+    const heroEl = document.querySelector(HERO_SELECTOR);
 
     const check = () => {
       const next =
@@ -79,7 +90,11 @@ export const DesktopHeader = ({ shouldShow }) => {
         setDirection(next);
       }
 
-      const nextAtTop = scrollYRef.current <= 100;
+      const headerHeight = headerRef.current?.offsetHeight ?? 0;
+      const nextAtTop = heroEl
+        ? heroEl.getBoundingClientRect().bottom > headerHeight
+        : false;
+
       if (nextAtTop !== pendingAtTopRef.current) {
         pendingAtTopRef.current = nextAtTop;
         clearTimeout(colorTimeoutRef.current);
@@ -103,24 +118,26 @@ export const DesktopHeader = ({ shouldShow }) => {
 
   return (
     <motion.header
-      className={`c-desktop-header${isAtTop ? " is-top" : ""}`}
+      ref={headerRef}
+      className={`c-desktop-header${isAtTop ? "" : " is-scrolled"}`}
       initial="hide"
       animate={direction}
       variants={slideY}
     >
       <div className="container c-desktop-header__inner">
-        <Link
+        <MotionLink
           to="/"
           className="c-desktop-header__label"
           onClick={handleLogoClick}
+          whileTap={TAP_SCALE}
+          transition={TAP_TRANSITION}
         >
           <img
             src="/marko_valuh_logo.png"
             alt="Marko Valuh"
             className="c-desktop-header__wordmark"
           />
-          <h5>Marko Valuh</h5>
-        </Link>
+        </MotionLink>
 
         <nav className="c-desktop-header__nav">
           {NAV_LINKS.map(({ label, to }) => (
@@ -132,26 +149,32 @@ export const DesktopHeader = ({ shouldShow }) => {
             />
           ))}
           <span className="c-desktop-header__separator">|</span>
-          <a
+          <motion.a
             href="https://github.com/Valuh-Marko"
             target="_blank"
             className="c-desktop-header__icon"
+            whileTap={TAP_SCALE}
+            transition={TAP_TRANSITION}
           >
             <FaGithub />
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="https://www.linkedin.com/in/marko-valuh/"
             target="_blank"
             className="c-desktop-header__icon"
+            whileTap={TAP_SCALE}
+            transition={TAP_TRANSITION}
           >
             <FaLinkedin />
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="mailto:marko.valuh@gmail.com"
             className="c-desktop-header__icon"
+            whileTap={TAP_SCALE}
+            transition={TAP_TRANSITION}
           >
             <MdEmail />
-          </a>
+          </motion.a>
         </nav>
 
         <div className="c-desktop-header__actions">

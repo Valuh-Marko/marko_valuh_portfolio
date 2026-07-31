@@ -38,6 +38,8 @@ export const Button = ({
           ref={ref}
           className={`c-button c-button--${visualVariant} c-button--${visualVariant}--${color}${sizeClass}`}
           onMouseEnter={() => scramble()}
+          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.1 }}
         >
           <span>{text}</span>
           <FaArrowRight className="c-button-icon" />
@@ -49,6 +51,8 @@ export const Button = ({
           ref={ref}
           className={`c-button c-button--${visualVariant} c-button--${visualVariant}--${color}${sizeClass}`}
           onMouseEnter={() => scramble()}
+          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.1 }}
         >
           <span>{text}</span>
           <FaArrowRight className="c-button-icon" />
@@ -63,6 +67,8 @@ export const Button = ({
       className={`c-button c-button--${visualVariant} c-button--${visualVariant}--${color}${sizeClass}${selected ? " selected" : ""}`}
       onMouseEnter={() => scramble()}
       onClick={onClick}
+      whileTap={{ scale: 0.95 }}
+      transition={{ duration: 0.1 }}
     >
       <span>{text}</span>
     </motion.div>
