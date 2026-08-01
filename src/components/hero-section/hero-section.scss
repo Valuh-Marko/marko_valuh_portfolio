@@ -51,7 +51,7 @@
   inset: 0;
   background-image:
     radial-gradient(
-      22rem circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      40rem circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
       color-mix(in oklch, $orange 28%, transparent) 0%,
       transparent 70%
     ),

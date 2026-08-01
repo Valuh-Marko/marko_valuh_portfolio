@@ -41,10 +41,8 @@ export const HeroBackground = () => {
     return `scale(${BASE_SCALE}) skewX(${skewX}deg) skewY(${skewY}deg)`;
   });
 
-  const glowSpringX = useSpring(mouseX, { stiffness: 55, damping: 9, mass: 1 });
-  const glowSpringY = useSpring(mouseY, { stiffness: 55, damping: 9, mass: 1 });
-  const glowX = useTransform(glowSpringX, (x) => `${x * 100}%`);
-  const glowY = useTransform(glowSpringY, (y) => `${y * 100}%`);
+  const glowX = useTransform(mouseX, (x) => `${x * 100}%`);
+  const glowY = useTransform(mouseY, (y) => `${y * 100}%`);
   const glowOpacity = useSpring(glowOpacityTarget, {
     stiffness: 200,
     damping: 25,
