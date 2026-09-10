@@ -3,10 +3,11 @@
     {
       "id": 0,
       "title": "Upravnik Platform",
-      "excerpt": "Full-stack, role-based property-management platform for residential buildings in Serbia, digitizing the relationship between building managers, board members, and residents.",
-      "excerpt_xl": "Upravnik Platform is a full-stack, role-based property-management system for residential buildings in Serbia. It digitizes the relationship between building managers, elected board members, and residents, replacing informal WhatsApp and Viber groups as well as paper notices with a structured, closed platform for announcements, community forums, private support tickets, real-time chat, and document sharing.\n\nIt's a solo-built project spanning a NestJS/Prisma/PostgreSQL API and a Next.js/React frontend, designed and built end-to-end, data model, permissions, business logic, and UI, all built by one engineer.",
+      "excerpt": "Property-management platform for residential buildings in Serbia. Building managers, board members, and residents each get their own view of the same building.",
+      "excerpt_xl": "Upravnik Platform is a role-based property-management system for residential buildings in Serbia. It replaces the WhatsApp group and the paper notice in the lobby with one place for announcements, forum threads, private support tickets, chat, and shared documents.\n\nI built both halves: a NestJS/Prisma/PostgreSQL API and a Next.js/React frontend. The data model, the permission rules, and every screen are mine.",
       "url": "upravnik-platform",
       "img_url": "/images/upravnik_logo.svg",
+      "image": "/images/up.webp",
       "spec": {
         "domain": "PropTech / Property Management",
         "stack": [
@@ -19,29 +20,29 @@
         ],
         "stats": [
           {
-            "value": "1",
-            "label": "Shared record"
+            "value": "46",
+            "label": "API endpoints across 13 feature areas"
           },
-          { "value": "0", "label": "Apps required, it works in any browser" },
-          { "value": "5-in-1", "label": "Tools  replaced by one platform" }
+          { "value": "17", "label": "Data models behind the permission rules" },
+          { "value": "1", "label": "Engineer, backend and frontend" }
         ],
         "footer": ["PRE-1.0", "SOLO PROJECT"]
       },
       "caseStudy": {
         "overview": {
-          "lede": "Upravnik Platform is a full-stack, role-based property-management system for residential buildings in Serbia. It digitizes the relationship between building managers, elected board members, and residents, replacing informal WhatsApp and Viber groups as well as paper notices with a single, structured platform for announcements, community forums, private support tickets, real-time chat, and document sharing.",
+          "lede": "Upravnik Platform is a role-based property-management system for residential buildings in Serbia. Announcements, forum threads, private support tickets, chat, and shared documents all live behind one login, in place of the WhatsApp group and the paper notice in the lobby.",
           "results": [
             {
-              "label": "Transparency",
-              "value": "Every announcement, ticket, and reply lives in one shared, searchable record."
+              "label": "Shared record",
+              "value": "Every announcement, ticket, and reply stays searchable in one place."
             },
             {
-              "label": "Web-based",
-              "value": "Runs entirely in the browser — no additional apps required."
+              "label": "No install",
+              "value": "Runs in the browser. Residents download nothing."
             },
             {
-              "label": "All in one place",
-              "value": "Announcements, forum, support tickets, chat, and documents"
+              "label": "Five tools in one",
+              "value": "Announcements, forum, support tickets, chat, and documents."
             }
           ]
         },
@@ -54,21 +55,21 @@
             "repo": "Frontend Web App",
             "stack": "Next.js, React, TypeScript"
           },
-          "realTime": "Socket.IO-powered chat with instant read-receipts and automatic notifications",
+          "realTime": "Socket.IO chat with read receipts and automatic notifications",
           "apiSurface": "46 API endpoints across 13 feature areas, plus real-time chat",
-          "contractDiscipline": "Every API change ships with full, up-to-date documentation",
-          "soloNote": "Solo-developer project, meaning one person designed the data model, wrote the permission logic, built the API, and built the entire frontend."
+          "contractDiscipline": "Every endpoint change lands in the Postman collection the same day",
+          "soloNote": "I designed the data model, wrote the permission logic, and built both the API and the frontend."
         },
         "problem": {
-          "lede": "Residential buildings in Serbia, especially larger complexes made up of multiple connected blocks, are typically run on an ad hoc basis: a building manager pins notices to a physical board, residents raise issues in a WhatsApp group, and nothing keeps a durable record of who asked for what, or whether a maintenance issue was ever actually resolved.",
+          "lede": "Residential buildings in Serbia, especially larger complexes built from several connected blocks, run informally. The manager pins a notice to the board in the lobby, residents raise problems in a WhatsApp group, and nothing records who asked for what or whether the leak ever got fixed.",
           "body": [
-            "A Complex is an optional grouping of buildings that share something physical, a courtyard, a parking structure, a shared boiler room. Not every building belongs to one.",
+            "A Complex is an optional grouping of buildings that share something physical: a courtyard, a parking structure, a boiler room. Not every building belongs to one.",
             "A Building always belongs to at most one Complex, and owns its own units, announcements, documents, forum threads, tickets, and chat.",
             "A Unit (apartment, office, or commercial space) belongs to exactly one Building and can be linked to at most one account, enforced at the database level, not just in application logic.",
-            "Accounts are never self-registered, there's no public sign-up flow. A building manager provisions every resident's account and hands out the login credentials directly, mirroring the real-world process where a manager already knows who lives where. This closed model sidesteps the trust and verification problems a public registration flow would otherwise introduce."
+            "Accounts are never self-registered. There is no public sign-up. A building manager creates each resident's account and hands over the credentials, which matches how it already works, since the manager knows who lives in which apartment. A public sign-up would mean verifying that claim; this way there is nothing to verify."
           ],
           "hierarchy": ["Complex (optional)", "Building", "Unit"],
-          "closing": "This closed, hierarchical model is the foundation everything else in the system builds on, every authorization decision in the backend ultimately traces back to \"which Building(s) is this user a member of, and with what role.\""
+          "closing": "Everything else builds on this hierarchy. Every authorization decision in the backend comes down to one question: which buildings is this user a member of, and with what role."
         },
         "architecture": {
           "backend": {
@@ -81,7 +82,7 @@
               "Real-time chat (Socket.IO)",
               "API documentation (Swagger)"
             ],
-            "body": "Built on NestJS with Prisma and a PostgreSQL database (containerized for consistent local and production environments), JWT-based authentication, a real-time chat layer, and auto-generated API documentation. Every incoming request is strictly validated, any field the API doesn't explicitly expect is rejected automatically, closing off a common class of security issues."
+            "body": "NestJS and Prisma over PostgreSQL, containerized so local and production behave the same, with JWT authentication, a real-time chat layer, and generated API docs. The validation pipe rejects any field an endpoint didn't declare, so a client can't smuggle in an extra property and overwrite something it shouldn't."
           },
           "frontend": {
             "title": "Frontend",
@@ -93,84 +94,84 @@
               "Axios",
               "Tailwind CSS + shadcn/ui"
             ],
-            "body": "Built with Next.js, React, and TypeScript, using role-based routing to give each type of user, residents, board members, building managers, their own tailored experience, backed by a consistent design system. Choosing the newest versions of Next.js and React was a deliberate bet on staying current with the fastest-moving parts of the ecosystem."
+            "body": "Next.js, React, and TypeScript. Routing decides which experience you get: residents, board members, and building managers land in different app shells assembled from the same component set. Running the newest Next.js and React was a deliberate bet on the fastest-moving part of the stack."
           },
           "layers": [
             {
               "name": "Identity",
-              "models": "One unified account system for every person on the platform —> admins, building managers, board members, and residents alike."
+              "models": "One account system for everyone on the platform: admins, building managers, board members, and residents."
             },
             {
               "name": "Structure",
-              "models": "The physical hierarchy: complexes, buildings, and individual units."
+              "models": "The physical hierarchy: complexes, buildings, and units."
             },
             {
               "name": "Membership",
-              "models": "Role-based access control, scoped to the specific building each person belongs to, permissions never leak across buildings."
+              "models": "Role-based access scoped to the building each person belongs to. Permissions never leak across buildings."
             },
             {
               "name": "Content",
-              "models": "Announcements and shared documents —> low-interaction, building-scoped content."
+              "models": "Announcements and shared documents. Building-scoped, low interaction."
             },
             {
               "name": "Interaction",
-              "models": "Everything with back-and-forth conversation: forum threads, support tickets, cross-building discussions, and live chat."
+              "models": "Anything with a back-and-forth: forum threads, support tickets, cross-building discussions, and live chat."
             },
             {
               "name": "System",
-              "models": "Cross-cutting concerns like activity logging and notifications."
+              "models": "Activity logging and notifications."
             }
           ]
         },
         "dataModel": {
-          "rolesIntro": "The permission system separates who someone is from what they can do. Every person is either platform staff or a resident tied to a specific unit, and separately holds a role scoped to one building: building manager, board member, or resident. A small number of platform administrators sit above the building-level roles entirely, with system-wide access. The database itself guarantees a person can only hold one role per building, so permissions can never become ambiguous.",
+          "rolesIntro": "The permission system separates who someone is from what they can do. Every person is either platform staff or a resident tied to a unit, and separately holds one role in one building: manager, board member, or resident. A handful of platform administrators sit above all of that with system-wide access. A unique constraint in the database stops anyone from holding two roles in the same building, so permissions can't go ambiguous.",
           "authLayers": [
             {
               "num": "01",
               "title": "Platform-level access control",
-              "body": "The simplest layer: a single check that gates platform-wide operations, like creating new buildings or administrator accounts, to platform administrators only."
+              "body": "One check that gates platform-wide operations. Creating a building or an administrator account is admin-only, and nothing further down needs to know about it."
             },
             {
               "num": "02",
               "title": "Role-based permissions",
-              "body": "A declarative layer that restricts specific actions to specific roles. For example, only building managers and board members can post announcements."
+              "body": "A declarative guard that restricts actions by role. Only building managers and board members can post an announcement."
             },
             {
               "num": "03",
               "title": "Ownership-aware permissions",
-              "body": "The most nuanced layer, used in the two most complex areas of the product: support tickets and cross-building discussions. Here, access depends not just on role but on ownership. A resident can view and reply to their own support ticket, while staff can act on any ticket in the building."
+              "body": "The nuanced one, used in the two hardest areas of the product: support tickets and cross-building discussions. Access depends on ownership as well as role. A resident can read and reply to their own ticket; staff can act on any ticket in the building."
             }
           ],
-          "callerRoleNote": "The trickiest permission logic lives in the cross-building forum: since a complex can span multiple buildings, and someone might be a resident in one building but a board member in another, the system automatically grants them their highest applicable role across the whole complex, and only blocks access if they have no connection to any building in it at all."
+          "callerRoleNote": "The trickiest permission logic sits in the cross-building forum. A complex can span several buildings, and the same person might be a resident in one and a board member in another. The system gives them their highest role anywhere in the complex, and blocks them only if they hold no membership in any of its buildings."
         },
         "businessLogic": [
           {
-            "title": "Smart read-tracking & notifications",
-            "body": "Opening a ticket automatically marks it as read; replying does the same. Unread status updates instantly with no extra infrastructure required. Every ticket event triggers the right notifications automatically: creating a ticket alerts building staff, a resident's reply re-notifies staff, and a staff reply notifies only the resident who opened it keeping everyone informed without notification overload. All in-app messaging is written natively in Serbian, matching the platform's real-world audience."
+            "title": "Read tracking and notifications",
+            "body": "Opening a ticket marks it read, and so does replying, without a background job or a separate tracking table. Each ticket event notifies exactly the people it should: a new ticket alerts building staff, a resident's reply alerts them again, and a staff reply goes only to the resident who opened it. Every in-app message is written in Serbian, because that is who uses this."
           },
           {
-            "title": "Reliable bulk setup",
-            "body": "Setting up a new complex, along with all of its buildings and every individual unit, happens as a single, all-or-nothing operation. If any part fails, nothing is partially created, avoiding the mess a failed multi-step setup would otherwise leave behind. This was built specifically to power the admin bulk-setup wizard on the frontend. The backend and frontend were designed together as one feature, not built separately."
+            "title": "All-or-nothing setup",
+            "body": "Creating a complex with its buildings and every unit runs inside one transaction. If unit 47 fails, buildings 1 through 3 don't survive either, so there is no half-built complex to clean up by hand. It exists because the admin bulk-setup wizard needed it, and the endpoint and the wizard were designed as one thing."
           }
         ],
         "process": {
           "body": [
-            "Every API change is fully documented as it happens, complete with example requests, responses, permission requirements, and error cases, so the frontend (or any future collaborator) always has an accurate, up-to-date reference. A running changelog tracks every change chronologically, giving a clear, readable history of how the API evolved.",
-            "Documentation is treated as a real deliverable, not an afterthought: a living design document covers the project's mission, the account and role model, the data structure, and an explicit roadmap for what gets built in what order. A complete handoff specification, covering layout, data format, and behavior, was written for the bulk-setup wizard before it was built, so the frontend and backend could be designed together as one feature.",
-            "The real build order tells its own story: start with the core structure (buildings, units, accounts, and roles), then add platform administration, then operational details, then the private ticketing system, then read receipts, then cross-building discussions. It's a steady, logical progression, get the foundation right first, then layer in product features."
+            "Every API change goes into the collection as it happens, with example requests, responses, required permissions, and error cases, so the frontend always has an accurate reference. A changelog tracks the same changes in order, which is the readable version of that history.",
+            "Documentation is a deliverable here. A living design document holds the mission, the account and role model, the data structure, and the order things get built in. The bulk-setup wizard got a full handoff spec covering layout, data format, and behavior before a line of it existed, which is why the two sides fit together on the first try.",
+            "The build order tells its own story. Structure first: buildings, units, accounts, roles. Then platform administration, operational details, private ticketing, read receipts, and cross-building discussions. Foundation first, product features after."
           ]
         },
         "frontendDeepDive": {
-          "body": "The frontend is split into fully separate experiences for each type of user, residents, board members, building managers, and platform administrators. Each has its own tailored navigation and layout, automatically enforced at the routing level. Role-based design goes well beyond navigation: the same page can render an entirely different view depending on who's logged in. For example, the support-tickets page shows building managers a full management view, while residents see a simplified view of just their own tickets. Data fetching and caching are handled by a single, consistent layer across the whole app, kept carefully in sync with every backend change.",
+          "body": "The frontend splits into separate experiences per user type: residents, board members, building managers, and platform administrators. Each gets its own navigation and layout, enforced at the routing level so nobody wanders into a page meant for someone else. The same route can also render a different page depending on who is logged in. Support tickets show a building manager the full queue and a resident only their own threads. One data layer handles fetching and caching for the whole app, kept in sync with every backend change.",
           "standoutFeature": {
             "title": "Bulk Setup Wizard",
-            "intro": "The single most elaborate feature in the frontend, and the clearest example of the backend and frontend being designed together as one feature.",
+            "intro": "The most elaborate thing in the frontend, and the clearest case of the API and the UI being designed together.",
             "steps": [
               "A 3-step guided wizard: Scope, Buildings, Review. This lets an administrator set up a single building, several standalone buildings, or an entire complex in one flow.",
               "Units can be generated automatically (by floor count and units per floor, with a choice of numbering style) or entered manually, building by building.",
               "A CSV import mode that automatically detects whether the file describes one building, several buildings, or a full complex, and flags row-level errors before anything is submitted.",
-              "A live preview that reflects the in-progress setup in real time as an easy-to-scan structure tree, so the admin can sanity-check everything before committing.",
-              "The entire structure, complex, buildings, and units are created in one reliable step, and the admin is taken straight to the new building list afterward."
+              "A live tree of the structure so far, so the admin can check it before committing.",
+              "One request creates the complex, its buildings, and every unit, then drops the admin on the new building list."
             ]
           }
         },
@@ -192,7 +193,7 @@
             "status": "Shipped"
           },
           {
-            "name": "Private support tickets creation, reply to resolution, with unread indicators",
+            "name": "Private support tickets from first message to resolution, with unread indicators",
             "status": "Shipped"
           },
           {
@@ -201,7 +202,7 @@
           }
         ],
         "designSystem": {
-          "intro": "The interface uses a custom color system built for clarity: a teal brand color, warm neutral tones, and three accent colors used consistently to color-code content types throughout the app. Announcements, forum, chat, and documents each have their own recognizable color. Typography pairs a clean UI typeface with a monospace font for numbers and timestamps.",
+          "intro": "The interface runs on a custom palette: teal for the brand, warm neutrals for surfaces and text, and three accents that color-code content types. Announcements, forum, chat, and documents keep their own color everywhere they appear. Type pairs a UI sans with a monospace face for numbers and timestamps.",
           "swatches": [
             {
               "name": "pine",
@@ -224,24 +225,24 @@
         },
         "warStory": {
           "title": "The sidebar bug",
-          "body": "During a particularly dense feature push, shipping the ticket system, color-coded categories, and the bulk setup wizard all at once, a real bug turned up in the building navigation sidebar: expanding a building would immediately collapse again, making it impossible to browse between buildings. The fix was small and targeted: track which building was previously active, and only reset its expand/collapse state when that actually changes."
+          "body": "One push shipped the ticket system, color-coded categories, and the bulk setup wizard together, and it broke the building sidebar. Expanding a building collapsed it again immediately, so you couldn't browse between buildings at all. A state reset was firing on every render instead of on a change. The fix was small: remember which building was active last, and reset the expand state only when that value changes."
         },
         "scopeDeferrals": [
           {
             "title": "Real-time chat interface",
-            "note": "The backend fully supports secure, real-time messaging per building, but the frontend doesn't have a chat interface yet — that page currently shows a \"coming soon\" placeholder."
+            "note": "The backend does secure per-building messaging today. There is no chat UI yet, so that page shows a placeholder."
           },
           {
             "title": "Full document management",
-            "note": "Documents can be listed and linked to today; uploading and previewing files directly in the app is still on the roadmap."
+            "note": "Documents can be listed and linked. Uploading and previewing files in the app is not built."
           },
           {
             "title": "Building manager dashboard widgets",
-            "note": "Pinned content, personal to-dos, and an activity feed are planned but not yet built — currently shown as a roadmap preview."
+            "note": "Pinned content, personal to-dos, and an activity feed are planned. The page shows a preview of them for now."
           },
           {
             "title": "Settings & cross-building member directory",
-            "note": "Planned, not yet built."
+            "note": "Planned, not built."
           }
         ],
         "timeline": {
@@ -289,17 +290,18 @@
       "id": 1,
       "title": "STK Vojvodina, Novi Sad",
       "excerpt": "STK Vojvodina is one of Serbia's most historic table tennis clubs, known for decades of competitive success and youth development in Novi Sad.",
-      "excerpt_xl": "STK Vojvodina is a table tennis club based in Novi Sad, founded in the mid-20th century, with a track record of competing at the highest domestic levels and a long-running youth development program.\n\nThe site brings that together in one place — club history, competition results, youth programs, and news updates — organized into a structure that stays easy to maintain as the club adds new content.\n\nPerformance, accessibility, and responsive design were treated as requirements, not afterthoughts, since the audience ranges from players and parents checking results on a phone to supporters and partners browsing on a desktop.",
+      "excerpt_xl": "STK Vojvodina is a table tennis club in Novi Sad, founded in the mid-20th century, with a record of competing at the top domestic level and a youth program that has run for decades.\n\nThe site collects club history, competition results, youth programs, and news into one structure the club can keep adding to without it falling apart.\n\nHalf the audience is a parent checking a result on a phone between matches; the rest are supporters and partners on a desktop. The site had to be fast and readable for both.",
       "url": "stk_vojvodina",
       "external_url": "https://www.stkvojvodina.org.rs/",
       "img_url": "/images/stk_vojvodina_logo.svg",
+      "image": "/images/stkvojvodinapng.webp",
       "spec": {
         "domain": "Sports & Community",
         "stack": ["React", "SCSS", "Vite", "JavaScript"],
         "stats": [
           { "value": "100%", "label": "Mobile responsive" },
           { "value": "95+", "label": "Lighthouse performance score" },
-          { "value": "1", "label": "Club, decades of history online" }
+          { "value": "1", "label": "Club, decades of results in one archive" }
         ],
         "footer": ["LIVE", "NON-PROFIT"]
       }
@@ -308,10 +310,11 @@
       "id": 2,
       "title": "World Best Brands",
       "excerpt": "Distribution company based in Belgrade, Serbia, specializing in import and export of FMCG products from top global brands.",
-      "excerpt_xl": "World Best Brands LLC is a distribution and trading company headquartered in Belgrade, Serbia, founded in August 2020. It imports and exports fast-moving consumer goods — groceries, toiletries, household, and laundry items — carrying products from brands including Coca-Cola, Mars, Jacobs, Ferrero, Red Bull, Milka, Procter & Gamble, and Unilever, alongside its own private label line.",
+      "excerpt_xl": "World Best Brands LLC is a distribution and trading company in Belgrade, Serbia, founded in August 2020. It imports and exports fast-moving consumer goods: groceries, toiletries, household and laundry items, carrying brands including Coca-Cola, Mars, Jacobs, Ferrero, Red Bull, Milka, Procter & Gamble, and Unilever, alongside its own private label.",
       "url": "world_best_brands",
       "external_url": "https://worldbestbrands.net/",
       "img_url": "https://worldbestbrands.net/wp-content/uploads/2024/12/cropped-viber_image_2024-12-13_13-26-03-573-150x150.png",
+      "image": "/images/wbb.webp",
       "spec": {
         "domain": "E-commerce & FMCG",
         "stack": ["WordPress", "PHP", "CSS", "JavaScript"],
@@ -331,13 +334,14 @@
       "url": "dr-bean",
       "external_url": "https://www.drbean.org/",
       "img_url": "/images/dr_bean_logo.webp",
+      "image": "/images/drbean.webp",
       "spec": {
         "domain": "Food & Hospitality",
         "stack": ["React", "SCSS", "Vite"],
         "stats": [
           { "value": "100%", "label": "Mobile optimised" },
           { "value": "4.8★", "label": "Customer satisfaction" },
-          { "value": "1", "label": "Artisan roastery, digital presence" }
+          { "value": "1", "label": "Roastery, one storefront online" }
         ],
         "footer": ["LIVE", "LOCAL BUSINESS"]
       }
@@ -350,6 +354,7 @@
       "url": "advokat_u_novom_sadu",
       "external_url": "https://advokatunovomsadu.rs/",
       "img_url": "/images/ans_logo.png",
+      "image": "/images/adk.webp",
       "spec": {
         "domain": "Legal Services",
         "stack": ["WordPress", "PHP", "JavaScript", "CSS"],
@@ -359,25 +364,6 @@
           { "value": "100%", "label": "GDPR compliant" }
         ],
         "footer": ["LIVE", "COMMERCIAL"]
-      }
-    },
-    {
-      "id": 5,
-      "title": "Pelemiš Dental Care",
-      "excerpt": "Dental clinic in Novi Sad providing check-ups, cleanings, treatments, and oral surgeries.",
-      "excerpt_xl": "Pelemiš Dental Care is a dental clinic in Novi Sad offering routine check-ups, dental cleanings, treatments, and oral surgeries.",
-      "url": "pelemis_dental_care",
-      "external_url": "https://www.drpelemis.rs",
-      "img_url": "/images/pelemis_dental_care.webp",
-      "spec": {
-        "domain": "Healthcare",
-        "stack": ["React", "SCSS", "JavaScript"],
-        "stats": [
-          { "value": "100%", "label": "Responsive across devices" },
-          { "value": "96", "label": "Lighthouse accessibility score" },
-          { "value": "5+", "label": "Service categories showcased" }
-        ],
-        "footer": ["LIVE", "HEALTHCARE"]
       }
     }
   ],

@@ -1,10 +1,7 @@
 import { motion } from "motion/react";
-import { FaLocationDot } from "react-icons/fa6";
 import { Button } from "../../button/Button";
 
 export const Card = ({ label, index, data, top, long_desc, external = false }) => {
-  const spec = data.spec;
-
   return (
     <motion.div
       style={{ top: `${(index - 1) * 5}rem`, y: top }}
@@ -24,6 +21,11 @@ export const Card = ({ label, index, data, top, long_desc, external = false }) =
         <p className="c-card__excerpt">
           {long_desc ? data.excerpt_xl : data.excerpt}
         </p>
+        {data.spec?.stack?.length > 0 && (
+          <ul className="c-card__tech">
+            {data.spec.stack.map((tech) => <li key={tech}>{tech}</li>)}
+          </ul>
+        )}
         {external ? (
           <>
             {data.external_url && (
@@ -32,56 +34,22 @@ export const Card = ({ label, index, data, top, long_desc, external = false }) =
             {data.caseStudy && <Button label="View Case Study" to={data.url} />}
           </>
         ) : (
-          <Button label="Find out more" to={data.url} />
+          data.url && <Button label="Find out more" to={data.url} />
         )}
       </div>
 
-      {spec && (
-        <aside className="c-card__spec">
-          <dl className="c-card__spec-fields">
-            {external ? (
-              <dd className="c-card__spec-chips-row">{spec.domain}</dd>
-            ) : (
-              <>
-                <dt>
-                  <FaLocationDot aria-label="Location" />
-                </dt>
-                <dd>
-                  {spec.location}
-                  {spec.locationSub && (
-                    <span className="c-card__spec-sub">{spec.locationSub}</span>
-                  )}
-                </dd>
-              </>
-            )}
-            {spec.stack?.length > 0 && (
-              <dd className="c-card__spec-chips-row">
-                <div className="c-card__spec-chips">
-                  {spec.stack.map((s) => <span key={s}>{s}</span>)}
-                </div>
-              </dd>
-            )}
-          </dl>
-
-          {spec.stats?.length > 0 && (
-            <div className="c-card__spec-stats">
-              <ul>
-                {spec.stats.map((stat, i) => (
-                  <li key={i}>
-                    <span><b>{stat.value}</b> {stat.label}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {spec.footer?.length > 0 && (
-            <footer className="c-card__spec-footer">
-              {spec.footer.map((f) => <span key={f}>{f}</span>)}
-            </footer>
-          )}
-        </aside>
-      )}
+      <figure className="c-card__visual">
+        {data.image ? (
+          <img
+            src={data.image}
+            alt={data.title}
+            className="c-card__visual-img"
+            loading="lazy"
+          />
+        ) : (
+          <span className="c-card__visual-placeholder">Screenshot pending</span>
+        )}
+      </figure>
     </motion.div>
   );
 };

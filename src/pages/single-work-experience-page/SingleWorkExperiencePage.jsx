@@ -35,7 +35,7 @@ export const SingleWorkExperiencePage = WithTransition(
         .then((json) => {
           const entries = json.data;
           const entry = entries.find((item) => item.url === name);
-          setAllEntries(entries);
+          setAllEntries(entries.filter((item) => item.url));
           setData(entry ?? null);
           setDataLoaded(true);
         })
@@ -49,7 +49,7 @@ export const SingleWorkExperiencePage = WithTransition(
     }, [dataLoaded, imageLoaded, setContentLoaded]);
 
     const meta = data?.context?.meta;
-    const subheading = meta ? `${meta.role} — ${meta.location}` : "";
+    const subheading = meta ? `${meta.role} · ${meta.location}` : "";
     const currentIndex = allEntries.findIndex((item) => item.url === name);
 
     const sections = [

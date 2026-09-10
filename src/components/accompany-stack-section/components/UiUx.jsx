@@ -17,9 +17,8 @@ export const UiUx = ({ index }) => {
             </span>
             <h5 className="c-auxiliary-content-stack__item-tech">Figma</h5>
             <span className="c-auxiliary-content-stack__item-description">
-              Figma is a collaborative design tool used to create user
-              interfaces, prototypes, and design systems directly in the
-              browser.
+              Where the designs arrive. I live in the inspect panel, pulling
+              spacing and type scales straight into the component library.
             </span>
           </div>
           <div className="c-auxiliary-content-stack__item">
@@ -31,8 +30,9 @@ export const UiUx = ({ index }) => {
               Motion
             </h5>
             <span className="c-auxiliary-content-stack__item-description">
-              Framer Motion is a powerful animation library for React that makes
-              it easy to add smooth, interactive transitions and gestures.
+              The animation library behind most of the motion on this site.
+              Transitions declared in the component, not in a timeline
+              somewhere else.
             </span>
           </div>
           <div className="c-auxiliary-content-stack__item">
@@ -41,9 +41,8 @@ export const UiUx = ({ index }) => {
             </span>
             <h5 className="c-auxiliary-content-stack__item-tech">SCSS</h5>
             <span className="c-auxiliary-content-stack__item-description">
-              SCSS is a CSS preprocessor that extends regular CSS with
-              variables, nesting, mixins, and other handy features to make
-              stylesheets more maintainable.
+              Variables, nesting and mixins. Enough structure to keep a large
+              stylesheet navigable without moving styling into JavaScript.
             </span>
           </div>
         </div>

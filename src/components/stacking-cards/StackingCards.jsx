@@ -23,7 +23,7 @@ export const StackingCards = ({
   const parsedData = data.map((item) => {
     return {
       ...item,
-      url: `${location}/${item.url}`,
+      url: item.url ? `${location}/${item.url}` : null,
     };
   });
 

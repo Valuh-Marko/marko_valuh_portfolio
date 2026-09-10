@@ -48,7 +48,7 @@ export const SnapshotSection = ({ snapshot, num }) => (
             <dd>{snapshot.realTime}</dd>
           </div>
           <div className="c-snapshot-fact">
-            <dt>API surface</dt>
+            <dt>Endpoints</dt>
             <dd>{snapshot.apiSurface}</dd>
           </div>
           <div className="c-snapshot-fact">

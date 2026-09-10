@@ -32,7 +32,7 @@ export const TechStackSection = () => {
         {/* second column */}
         <div className="c-section__column">
           <h3 className="c-section__title">
-            Crafting efficient solutions <br /> with industry standard tools
+            The tools I reach for <br /> before anything else
           </h3>
         </div>
         <div className="c-section-icon-wrapper">

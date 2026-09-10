@@ -15,9 +15,9 @@ export const BackEndTech = ({ index }) => {
             </span>
             <h5 className="c-auxiliary-content-stack__item-tech">NestJS</h5>
             <span className="c-auxiliary-content-stack__item-description">
-              NestJS is a progressive Node.js framework for building efficient,
-              scalable, and maintainable server-side applications, using modern
-              JavaScript/TypeScript features and design patterns.
+              What I reach for on the Node side. Modules, dependency injection
+              and decorators give a backend the same shape a large Angular app
+              has, which is most of why I picked it.
             </span>
           </div>
           <div className="c-auxiliary-content-stack__item">
@@ -26,9 +26,9 @@ export const BackEndTech = ({ index }) => {
             </span>
             <h5 className="c-auxiliary-content-stack__item-tech">PostgreSQL</h5>
             <span className="c-auxiliary-content-stack__item-description">
-              PostgreSQL is a powerful, open-source relational database system
-              known for its robustness, scalability, and support for advanced
-              querying and ACID compliance.
+              My default database. Relational, strict about constraints, and
+              willing to enforce the rules the application layer would
+              eventually forget.
             </span>
           </div>
           <div className="c-auxiliary-content-stack__item">
@@ -37,10 +37,9 @@ export const BackEndTech = ({ index }) => {
             </span>
             <h5 className="c-auxiliary-content-stack__item-tech">MongoDB</h5>
             <span className="c-auxiliary-content-stack__item-description">
-              MongoDB is a NoSQL database that stores data in flexible,
-              JSON-like documents, providing scalability and agility for
-              applications that require high performance and rapid development
-              cycles.
+              Document storage for the cases where the shape of the data keeps
+              moving and a migration per change would cost more than it is
+              worth.
             </span>
           </div>
         </div>

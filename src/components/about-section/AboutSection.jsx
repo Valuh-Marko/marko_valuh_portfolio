@@ -37,8 +37,8 @@ export const AboutSection = () => {
         <div className="c-about__left">
           <h2 className="c-about__title">
             Based in <span className="c-about__accent">Novi Sad - Serbia</span>,
-            in support of local projects, helping ideas grow into something
-            bigger.
+            building for local businesses that need a site to work, not just
+            exist.
           </h2>
         </div>
 

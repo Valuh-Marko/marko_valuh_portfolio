@@ -15,9 +15,9 @@ export const WorkFlowTech = ({ index }) => {
             </span>
             <h5 className="c-auxiliary-content-stack__item-tech">Docker</h5>
             <span className="c-auxiliary-content-stack__item-description">
-              A tool for creating isolated, consistent environments, enabling
-              smooth development and deployment across different systems without
-              conflicts.
+              The same environment on my machine and in production, which is
+              how "works on my machine" stops being an explanation anyone
+              accepts.
             </span>
           </div>
           <div className="c-auxiliary-content-stack__item">
@@ -29,9 +29,9 @@ export const WorkFlowTech = ({ index }) => {
               GitLab
             </h5>
             <span className="c-auxiliary-content-stack__item-description">
-              Version control platforms for managing code, enabling
-              collaboration, and automating workflows with features like pull
-              requests, CI/CD, and project tracking.
+              Where the code lives, where review happens, and where CI runs.
+              Most standards I introduce to a team end up as a pipeline step
+              here.
             </span>
           </div>
           <div className="c-auxiliary-content-stack__item">
@@ -43,9 +43,9 @@ export const WorkFlowTech = ({ index }) => {
               Jest
             </h5>
             <span className="c-auxiliary-content-stack__item-description">
-              Playwright is used for end-to-end testing across multiple
-              browsers, while Jest provides a robust testing framework for unit
-              and integration tests, ensuring code reliability and quality.
+              Playwright for end-to-end runs across browsers, Jest for units
+              and integration. Both exist so that a refactor is a decision
+              rather than a gamble.
             </span>
           </div>
         </div>

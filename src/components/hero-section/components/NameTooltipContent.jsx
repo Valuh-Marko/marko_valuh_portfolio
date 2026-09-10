@@ -2,7 +2,6 @@ const META = [
   { label: "Role", value: "Frontend Developer" },
   { label: "Location", value: "Novi Sad, Serbia" },
   { label: "Experience", value: "5+ Years" },
-  { label: "Status", value: "Employed" },
 ];
 
 export const NameTooltipContent = () => (

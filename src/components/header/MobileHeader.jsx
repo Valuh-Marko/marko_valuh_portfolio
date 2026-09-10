@@ -178,7 +178,7 @@ export const MobileHeader = ({ shouldShow }) => {
           <span className="c-header-label">download CV</span>
           <Divider vertical={true} color={"black"} />
           <a
-            href={`/files/marko-valuh-resume.pdf`}
+            href={`/files/Marko Valuh - Frontend Developer.pdf`}
             download
             className="c-header-contact-download-wrapper"
           >

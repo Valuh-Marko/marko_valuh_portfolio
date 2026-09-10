@@ -180,7 +180,7 @@ export const DesktopHeader = ({ shouldShow }) => {
         <div className="c-desktop-header__actions">
           <Button
             label="Download CV"
-            to="/files/marko-valuh-resume.pdf"
+            to="/files/Marko Valuh - Frontend Developer.pdf"
             blankTarget={true}
             color={isAtTop ? "white" : "black"}
           />

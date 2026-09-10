@@ -1,115 +1,50 @@
-# 🌐 Marko Valuh - Developer Portfolio
+# Marko Valuh - Portfolio
 
-A modern, smooth, and minimal **React + Vite** portfolio project showcasing my full-stack development work, built with performance and design in mind.
+Source for [marko-valuh.com](https://marko-valuh.com). A React + Vite site with
+case-study pages for client work and one full-stack project of my own.
 
----
+## Stack
 
-## 🚀 Features
+- Vite 6 and React 19
+- React Router 7 for routing and page transitions
+- Motion for animation, Lenis for smooth scroll
+- Sass for styling
+- React Helmet Async for per-page meta tags
 
-- ⚡ **Vite 6** — Lightning-fast builds and hot reloading  
-- ⚛️ **React 19** — Modern components and concurrent rendering  
-- 💫 **Lenis** — Smooth scrolling and refined user motion  
-- 🎞️ **Motion** — Declarative animations with simplicity  
-- 🧭 **React Router 7** — Seamless page transitions  
-- 🎨 **Sass** — Clean and scalable styling  
-- 🧠 **React Helmet Async** — SEO-friendly meta handling  
-
----
-
-## 🛠️ Installation
-
-Clone the repository and install dependencies:
+## Running it
 
 ```bash
-git clone https://github.com/your-username/mv-port-2.git
-cd mv-port-2
 npm install
+npm run dev      # dev server, usually http://localhost:5173
+npm run build    # production build
+npm run preview  # serve the production build locally
+npm run lint     # eslint
 ```
 
----
+Node 19 or newer.
 
-## 💻 Development
-
-Start a local development server:
-
-```bash
-npm run dev
-```
-
-Then open the provided localhost URL (usually [http://localhost:5173](http://localhost:5173)).
-
----
-
-## 🏗️ Build
-
-Generate an optimized production build:
-
-```bash
-npm run build
-```
-
-Preview the production build locally:
-
-```bash
-npm run preview
-```
-
----
-
-## 🧹 Linting
-
-Run ESLint to maintain clean, consistent code:
-
-```bash
-npm run lint
-```
-
----
-
-## 📂 Project Structure
+## Layout
 
 ```
-mv-port-2/
-├── public/              # Static assets
-├── src/
-│   ├── components/      # Reusable UI components
-│   ├── pages/           # Route pages
-│   ├── styles/          # Global and modular SCSS
-│   ├── hooks/           # Custom React hooks
-│   ├── context/         # React context providers
-│   ├── App.jsx          # Root component
-│   └── main.jsx         # Entry file
-├── index.html
-├── package.json
-└── vite.config.js
+public/
+  data/               # projects.json and work_experience.json drive every page
+src/
+  components/         # shared UI
+  pages/              # one folder per route
+  styles/             # global and modular SCSS
+  hooks/              # custom hooks
+  context/            # context providers
+  App.jsx
+  main.jsx
 ```
 
----
+Page copy lives in `public/data/`, not in the components. Editing a case study
+means editing JSON.
 
-## 🌱 Environment
+## License
 
-- **Node.js** 19+  
-- **npm** or **pnpm** recommended  
-- **Modern browsers** supported
+Private. All rights reserved, Marko Valuh.
 
----
+## Contact
 
-## 📸 Preview
-
-https://marko-valuh.com
-
----
-
-## 📜 License
-
-This project is private and not open-source.  
-All rights reserved © 2025 — **Marko Valuh**
-
----
-
-## 👨‍💻 Author
-
-**Marko Valuh**  
-💼 Full Stack Developer  
-🌍 [https://marko-valuh.com](https://marko-valuh.com)  
-📧 [marko.valuh@gmail.com]
+marko.valuh@gmail.com

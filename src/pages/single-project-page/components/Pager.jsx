@@ -23,7 +23,7 @@ export const Pager = ({ allEntries, currentIndex, title }) => {
         </div>
 
         <div className="c-pager__index">
-          {pad(currentIndex + 1)} / {pad(allEntries.length)} — {title}
+          {pad(currentIndex + 1)} / {pad(allEntries.length)} · {title}
         </div>
 
         <div className="c-pager__next">

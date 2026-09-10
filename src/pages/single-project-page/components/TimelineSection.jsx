@@ -6,7 +6,7 @@ export const TimelineSection = ({ timeline, num }) => (
       <SectionLabel num={num} label="Timeline" />
 
       <div className="c-timeline-wrapper">
-        <h2 className="c-section__title">Build order & velocity.</h2>
+        <h2 className="c-section__title">Build order.</h2>
 
         <div className="c-timeline-columns">
           <div className="c-timeline-col">

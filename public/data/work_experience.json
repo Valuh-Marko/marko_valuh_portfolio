@@ -2,10 +2,23 @@
   "data": [
     {
       "id": 1,
+      "company": "AxiomQ",
+      "title": "Front-end Developer at AxiomQ",
+      "subtitle": "August 2026 – Present",
+      "excerpt": "Where I am now. AxiomQ is a software company out of Novi Sad with a second office in Harrisburg, Pennsylvania, building eLearning platforms, enterprise tools, and business process software for clients in the US and Europe. I work on the front end in React. The product itself sits under a strict NDA, so that is as much as I can say about it.",
+      "image": "/images/axiomq.webp",
+      "spec": {
+        "location": "Novi Sad, Serbia",
+        "stack": ["React", "React Native", "Nest.js"]
+      }
+    },
+    {
+      "id": 2,
       "company": "NQode",
       "title": "Front-end Developer at NQode",
       "subtitle": "April 2024 – May 2026",
       "excerpt": "Built scalable front-end architectures using Angular and Next.js, with a focus on modular design, performance, and maintainability. Led initiatives to streamline development through reusable components, coding standards, and CI/CD workflows, resulting in faster feature delivery and improved team efficiency.",
+      "image": "/images/owow.webp",
       "url": "nqode",
       "spec": {
         "location": "Novi Sad, Serbia",
@@ -79,7 +92,7 @@
           "title": "Source AG",
           "blurb": "Embedded across multiple front-end teams at a large-scale greenhouse intelligence platform — contributed to data-dense dashboards and cultivation tooling used by commercial growers across Europe.",
           "tags": ["Next.js", "GraphQL", "Nest.js", "Vercel"],
-          "image": "/images/source.png"
+          "image": "/images/source.webp"
         },
         {
           "num": "02",
@@ -88,7 +101,7 @@
           "title": "BrightFunded",
           "blurb": "Sole front-end owner for a funded trading platform — built and owned the entire client-facing UI from the ground up, across trader evaluation flows, dashboards, and account management.",
           "tags": ["Angular", "RxJS", "Figma", "Framer"],
-          "image": "/images/brightfunded.png"
+          "image": "/images/brightfunded.webp"
         },
         {
           "num": "03",
@@ -97,7 +110,7 @@
           "title": "Owow",
           "blurb": "Built high-fidelity, animation-driven websites for a digital agency known for pushing the visual bar — precise GSAP work, CMS-driven content, and a strong focus on motion quality.",
           "tags": ["Next.js", "Payload CMS", "Tailwind", "GSAP"],
-          "image": "/images/owow.png"
+          "image": "/images/owow.webp"
         }
       ],
       "stack": [
@@ -157,11 +170,12 @@
       ]
     },
     {
-      "id": 2,
+      "id": 3,
       "company": "EPAM Systems",
       "title": "Frontend Developer at EPAM Systems",
       "subtitle": "February 2022 – April 2024",
       "excerpt": "Implemented dynamic, responsive front-end features with Angular and Sass, enhancing UX through polished UI components and animations. Optimized deployment with Docker and fostered strong cross-functional collaboration to ensure timely, aligned project delivery.",
+      "image": "/images/meridianbet.webp",
       "url": "epam",
       "spec": {
         "location": "Novi Sad, Serbia",
@@ -244,7 +258,7 @@
             }
           ],
           "tags": ["Angular", "TypeScript", "Sass", "NgRx", "Docker"],
-          "image": "/images/meridianbet.png"
+          "image": "/images/meridianbet.webp"
         }
       ],
       "stack": [
@@ -304,7 +318,7 @@
       ]
     },
     {
-      "id": 3,
+      "id": 4,
       "company": "Codeplicity",
       "title": "Frontend Developer at Codeplicity.",
       "subtitle": "February 2021 – February 2022",
