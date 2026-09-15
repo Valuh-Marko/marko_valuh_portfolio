@@ -5,11 +5,11 @@ export const useScrollLock = (lock) => {
     // Lock the root too: if html ever gains its own overflow value the body's
     // stops propagating to the viewport and the page keeps scrolling.
     const targets = [document.documentElement, document.body];
-    const value = lock ? "hidden" : "auto";
+    const value = lock ? "hidden" : "";
     targets.forEach((el) => (el.style.overflow = value));
 
     return () => {
-      targets.forEach((el) => (el.style.overflow = "auto"));
+      targets.forEach((el) => (el.style.overflow = ""));
     };
   }, [lock]);
 };

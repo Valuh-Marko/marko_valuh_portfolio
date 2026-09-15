@@ -2,6 +2,14 @@
 @use "../../styles/mixin" as *;
 
 .c-stacking-cards {
+  // Own formatting context so the track's negative bottom margin shrinks
+  // this box instead of collapsing through it; `clip` (not `hidden`) keeps
+  // this from becoming a scroll container, which would break the sticky cards.
+  display: flow-root;
+  overflow: clip;
+}
+
+.c-stacking-cards__track {
   position: relative;
 }
 
