@@ -1,261 +1,377 @@
 @use "../../styles/variables" as *;
 @use "../../styles/mixin" as *;
 
-.c-header-wrapper {
-  position: fixed;
-  z-index: 100;
-  left: 0.5rem;
-  transform-origin: top left;
-  width: min(calc(100vw - 1rem), 37.5rem);
-
-  @include respond(lg) {
-    left: max(2rem, calc((100vw - 1600px) / 2 + 1.5rem));
-  }
-}
+$header-scrolled-padding-block: 0.5rem;
+// One clock for the top-to-scrolled change: ground, rule and row height
+// move together on the site's standard ease.
+$header-state-transition: 0.5s cubic-bezier(0.61, 0.16, 0.17, 0.93);
+// Hairline on the black menu ground, same alpha as the hero's rings.
+$menu-hairline: rgba(255, 255, 255, 0.18);
 
 .c-header {
-  @include flex-column();
-  justify-content: space-between;
-  position: relative;
-  background-color: oklab(91.592% 0.0001 -0.0043);
-  border-radius: 0.25rem;
-  height: calc(100vh - 2rem);
-  overflow-y: hidden;
-  clip-path: polygon(
-    100% 0,
-    100% 100%,
-    17.75rem 100%,
-    17.25rem calc(100% - 0.5rem),
-    7rem calc(100% - 0.5rem),
-    6.5rem 100%,
-    1.5rem 100%,
-    0 100%,
-    0 1.5rem,
-    1.5rem 0
-  );
-}
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px dashed transparent;
+  transition:
+    background-color $header-state-transition,
+    border-color $header-state-transition;
 
-.c-header-bar {
-  display: flex;
-  height: fit-content;
-  gap: $spacing-1;
-}
+  .c-header__inner {
+    padding-block: $spacing-1;
+  }
 
-.c-header-bar__logo {
-  padding-left: 0.75rem;
-  padding-top: 0.75rem;
-  min-width: 6rem;
-  font-family: $suisse-intl-mono;
-  font-size: $font-h3;
-  line-height: $font-h3;
-  font-weight: bold;
-}
+  .c-header__link {
+    color: $white;
+  }
 
-.c-logo {
-  width: 4.5rem;
-  object-fit: contain;
-}
+  .c-header__link.is-active {
+    color: $orange;
+  }
 
-.c-header-bar__info {
-  @include flex-column();
-  padding-top: 0.75rem;
-  font-size: $font-xs;
-  line-height: $spacing-1;
-  font-family: $suisse-intl-mono;
-  justify-content: space-between;
-  text-transform: uppercase;
-  width: 100%;
-  height: 6.5rem;
-  padding-bottom: $spacing-1;
-}
+  .c-header__wordmark {
+    filter: invert(1);
+  }
 
-.c-header-bar__info-title {
-  @include flex-column();
-}
+  .c-header__label {
+    color: $white;
+  }
 
-.c-header-bar__menu-icon {
-  @include flex-row-center();
-  min-width: 5.5rem;
-  padding-right: $spacing-1;
+  .c-header__burger {
+    color: $white;
+  }
 
-  &:hover {
-    .c-bar-line::before {
-      left: 100%;
+  &.is-scrolled {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom-color: $gray;
+
+    .c-header__inner {
+      padding-block: $header-scrolled-padding-block;
+    }
+
+    .c-header__link {
+      color: $black;
+    }
+
+    .c-header__link.is-active {
+      color: $orange;
+    }
+
+    .c-header__wordmark {
+      filter: none;
+    }
+
+    .c-header__label {
+      color: $black;
+    }
+
+    .c-header__burger {
+      color: $black;
+    }
+  }
+
+  // The open menu paints the black ground itself; the bar goes clear so the
+  // scrolled blur never sits on top of it.
+  &.is-open {
+    background-color: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom-color: transparent;
+
+    .c-header__wordmark {
+      filter: invert(1);
+    }
+
+    .c-header__label,
+    .c-header__burger {
+      color: $white;
     }
   }
 }
 
-.c-bar-holder {
-  @include flex-row-center();
-  flex-direction: column;
-  gap: 0.25rem;
+// Wordmark and burger sit at the edges below `md`; the twelve-column grid
+// takes over once the inline nav appears.
+.c-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: $header-scrolled-padding-block;
+  transition: padding-block $header-state-transition;
+
+  // Plain 1fr is minmax(auto, 1fr): tracks under wide content (the CV
+  // button) grow and pull the nav off centre. Pin all twelve equal.
+  @include respond(md) {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 4rem;
+  }
 }
 
-.c-bar-line {
+// 3 / 6 / 3 columns keep the nav on the page's centre axis.
+.c-header__label {
+  grid-column: 1 / span 3;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: $suisse-intl-mono;
+  font-size: $font-sm;
+  line-height: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+// Matches the Download CV button's height (0.75rem type + 1em padding).
+.c-header__wordmark {
+  height: 1.75rem;
+  transition: filter 0.3s ease;
+}
+
+.c-header__nav {
+  grid-column: 4 / span 6;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-2;
+
+  @include respond(md) {
+    display: flex;
+  }
+}
+
+.c-header__link {
+  font-family: $suisse-intl-mono;
+  font-size: $font-xs;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $black;
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
+
+  &.is-active {
+    color: $orange;
+  }
+}
+
+.c-header__nav:has(.c-header__link:hover) .c-header__link:not(:hover),
+.c-header__actions:has(.c-header__link:hover) .c-header__link:not(:hover) {
+  opacity: 0.5;
+}
+
+// Socials as mono text links at the nav's scale, then the CV button.
+.c-header__actions {
+  grid-column: 10 / -1;
+  display: none;
+  align-items: center;
+  justify-content: flex-end;
+  gap: $spacing-2;
+
+  @include respond(md) {
+    display: flex;
+  }
+}
+
+// ─── Burger ───────────────────────────────────────────────────────────────────
+
+// The original mobile header's three-line glyph inside a 44px hit area,
+// pulled right so the lines sit on the container edge like the nav text
+// does on desktop. --burger-ground is the colour behind the bar; the hover
+// sweep uses it to cut a moving gap through each line.
+.c-header__burger {
+  --burger-ground: #{$black};
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-right: -12px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: $white;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+
+  &:focus-visible {
+    outline: 2px solid $orange;
+    outline-offset: 2px;
+  }
+
+  @media (hover: hover) {
+    &:hover .c-header__burger-line::before {
+      left: 100%;
+    }
+  }
+
+  @include respond(md) {
+    display: none;
+  }
+}
+
+.c-header.is-scrolled .c-header__burger {
+  --burger-ground: #{$white};
+}
+
+.c-header.is-open .c-header__burger {
+  --burger-ground: #{$black};
+}
+
+.c-header__burger-lines {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.c-header__burger-line {
   position: relative;
-  height: 1px;
-  border-radius: 1px;
-  background-color: $black;
-  transform-origin: center;
   width: 1.5rem;
+  height: 2px;
+  background-color: currentColor;
+  transform-origin: center;
 
   &::before {
     content: "";
     position: absolute;
-    background-color: oklch(91.592% 0.0043 271.368);
-    border-radius: 1px;
-    height: 1px;
-    width: 0.75rem;
-    left: -0.75rem;
     top: 0;
+    left: -0.75rem;
     z-index: 2;
-    transition: all 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+    width: 0.75rem;
+    height: 1px;
+    background-color: var(--burger-ground);
+    transition: left 0.4s cubic-bezier(0.76, 0, 0.24, 1);
   }
 
-  &:nth-of-type(1) {
-    &::before {
-      transition-delay: 0.1s;
-    }
+  &:nth-of-type(1)::before {
+    transition-delay: 0.1s;
   }
 
-  &:nth-of-type(2) {
-    &::before {
-      transition-delay: 0.15s;
-    }
+  &:nth-of-type(2)::before {
+    transition-delay: 0.15s;
   }
 
-  &:nth-of-type(3) {
-    &::before {
-      transition-delay: 0.2s;
-    }
+  &:nth-of-type(3)::before {
+    transition-delay: 0.2s;
   }
 }
 
-.c-link {
+// ─── Menu ─────────────────────────────────────────────────────────────────────
+
+// Sits behind the bar inside the header's stacking context and covers the
+// viewport from the bar's top edge. The links centre in the free space; the
+// action row is anchored to the bottom so it lands under the thumb.
+.c-header__menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 100dvh;
   display: flex;
-  align-items: center;
-  border-top: 1px dashed $gray;
-  overflow-y: hidden;
-  transition: color 0.3s ease-in;
-  white-space: nowrap;
-  overflow: hidden;
-  user-select: none;
-  cursor: pointer;
+  flex-direction: column;
+  padding: 0 1rem max(1.5rem, env(safe-area-inset-bottom));
+  background-color: $black;
+  color: $white;
+  touch-action: none;
+  overscroll-behavior: contain;
 
-  &:hover {
-    color: $orange;
+  ::selection {
+    background: $orange;
+    color: $black;
+  }
 
-    .c-link__icon {
-      transform: translateX(-100%);
-    }
+  @include respond(md) {
+    display: none;
   }
 }
 
-.c-link__indicator {
-  padding: $spacing-1 0 $spacing-1 0.75rem;
-  font-family: $suisse-intl-mono;
-  text-transform: uppercase;
-  font-size: $font-xs;
-  min-width: 25%;
-}
-
-.c-link__text {
-  position: relative;
-  font-weight: 500;
-}
-
-.c-link__icon {
-  margin-left: 25%;
-  transition: transform 0.62s cubic-bezier(0.25, 1, 0.5, 1);
-  transform: translateX(0);
-}
-
-.c-header-contact {
-  background-color: $orange;
-  min-height: fit-content;
-  height: 7.5rem;
+.c-header__menu-nav {
+  flex: 1;
   display: flex;
-  gap: $spacing-1;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.c-header-contact__left {
-  padding-left: 0.75rem;
-  padding-top: 0.75rem;
-  font-size: $font-xs;
-  line-height: $spacing-1;
-  min-width: 6rem;
-  font-family: $suisse-intl-mono;
-  white-space: pre-line;
-  text-transform: uppercase;
+.c-header__menu-row {
+  & + & {
+    border-top: 1px dashed $menu-hairline;
+  }
 }
 
-.c-header-contact__center {
-  @include flex-column();
-  justify-content: space-between;
-  padding-left: 0.75rem;
-  padding-top: 0.75rem;
-  padding-bottom: $spacing-1;
-  font-size: $font-xs;
-  font-family: $suisse-intl-mono;
+// Display type, not mono: these are the destinations, not chrome.
+.c-header__menu-link {
+  display: block;
   width: 100%;
+  max-width: none;
+  padding-block: clamp(1rem, 2.5vh, 1.5rem);
+  font-family: $font-helvetica-now;
+  font-size: clamp($font-h5, 9vw, $font-h3);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: $white;
+  transition: color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
 
-  span:first-of-type {
-    text-transform: uppercase;
-    font-family: $font-helvetica-now;
-    font-weight: 500;
-    font-size: $font-xl;
-    line-height: $font-xl;
+  &.is-active {
+    color: $orange;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $orange;
+    outline-offset: 2px;
   }
 }
 
-.c-socials-holder {
+// CV button on the left, the three contact icons on the right.
+.c-header__menu-footer {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: $spacing-1;
+  margin-top: $spacing-2;
+}
+
+.c-header__menu-socials {
+  display: flex;
+  align-items: center;
+  gap: $spacing-2;
+}
+
+.c-header__menu-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: $white;
+  transition: color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
 
   svg {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 2rem;
+    height: 2rem;
   }
-}
 
-.c-header-label {
-  font-size: 0.5rem;
-  text-align: center;
-  writing-mode: vertical-lr;
-  font-family: $suisse-intl-mono;
-  text-orientation: upright;
-  text-transform: uppercase;
-  letter-spacing: -0.125rem;
-  line-height: 0.5rem;
-  margin-right: -0.5rem;
-}
-
-.c-header-contact-download-wrapper {
-  @include flex-row-center();
-  min-width: 5.5rem;
-
-  &:hover {
-    svg {
-      transform: translateY(0);
+  @media (hover: hover) {
+    &:hover {
+      color: $orange;
     }
   }
-}
 
-.c-header-contact-download {
-  overflow: hidden;
-  align-self: center;
-  padding-right: $spacing-1;
-  max-height: $spacing-2;
-
-  svg {
-    width: $spacing-2;
-    height: $spacing-2;
-    transform: translateY(calc(-100% - 1.5rem));
-    transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
-
-    &:first-of-type {
-      margin-bottom: 1.5rem;
-    }
+  &:focus-visible {
+    outline: 2px solid $orange;
+    outline-offset: 2px;
   }
 }

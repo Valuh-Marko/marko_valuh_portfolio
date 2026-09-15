@@ -2,14 +2,14 @@ import { useEffect } from "react";
 
 export const useScrollLock = (lock) => {
   useEffect(() => {
-    if (lock) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
+    // Lock the root too: if html ever gains its own overflow value the body's
+    // stops propagating to the viewport and the page keeps scrolling.
+    const targets = [document.documentElement, document.body];
+    const value = lock ? "hidden" : "auto";
+    targets.forEach((el) => (el.style.overflow = value));
 
     return () => {
-      document.body.style.overflow = "auto";
+      targets.forEach((el) => (el.style.overflow = "auto"));
     };
   }, [lock]);
 };

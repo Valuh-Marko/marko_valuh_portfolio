@@ -32,8 +32,10 @@ export const Button = ({
   }, [isInView, scramble]);
 
   if (to) {
-    return blankTarget ? (
-      <a href={to} target="_blank">
+    const isExternal = blankTarget || /^(https?:|mailto:)/.test(to);
+
+    return isExternal ? (
+      <a href={to} target={blankTarget ? "_blank" : undefined}>
         <motion.div
           ref={ref}
           className={`c-button c-button--${visualVariant} c-button--${visualVariant}--${color}${sizeClass}`}

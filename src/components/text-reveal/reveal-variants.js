@@ -5,8 +5,8 @@ export const revealVariants = {
   show: (i) => ({
     y: "0%",
     transition: {
-      duration: 0.62,
-      delay: (i - 0.5) * 0.025,
+      duration: 0.42,
+      delay: (i - 0.5) * 0.015,
       ease: [0.61, 0.16, 0.17, 0.93],
     },
   }),
