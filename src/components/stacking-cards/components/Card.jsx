@@ -29,11 +29,6 @@ export const Card = ({
         <p className="c-card__excerpt">
           {long_desc ? data.excerpt_xl : data.excerpt}
         </p>
-        {data.spec?.stack?.length > 0 && (
-          <ul className="c-card__tech">
-            {data.spec.stack.map((tech) => <li key={tech}>{tech}</li>)}
-          </ul>
-        )}
         {external ? (
           <>
             {data.external_url && (
