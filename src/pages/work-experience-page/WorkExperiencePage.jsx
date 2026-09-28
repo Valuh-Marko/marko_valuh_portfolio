@@ -75,7 +75,7 @@ export const WorkExperiencePage = WithTransition(({ setContentLoaded }) => {
               className="c-work-experience__cards"
               label={"WE"}
               response={response}
-              speed={3.5}
+              speed={1.5}
             ></StackingCards>
           )}
         </div>

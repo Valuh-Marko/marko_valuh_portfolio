@@ -323,6 +323,7 @@
       "title": "Frontend Developer at Codeplicity.",
       "subtitle": "February 2021 – February 2022",
       "excerpt": "Developed interactive web features using vanilla JavaScript, PHP, and HTML with a focus on performance and user experience. Employed modular SASS styling and Vagrant-based environments to ensure maintainability, visual consistency, and smooth team collaboration.",
+      "image": "/images/codeplicity.webp",
       "url": "codeplicity",
       "spec": {
         "location": "Novi Sad, Serbia",

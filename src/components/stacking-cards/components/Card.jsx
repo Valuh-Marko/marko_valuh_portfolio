@@ -1,18 +1,10 @@
 import { motion } from "motion/react";
 import { Button } from "../../button/Button";
 
-export const Card = ({
-  label,
-  index,
-  data,
-  top,
-  offset,
-  long_desc,
-  external = false,
-}) => {
+export const Card = ({ label, index, data, top, long_desc, external = false }) => {
   return (
     <motion.div
-      style={{ top: offset ?? `${(index - 1) * 5}rem`, y: top }}
+      style={{ top: `${(index - 1) * 5}rem`, y: top }}
       className="c-card-container"
     >
       <div className="c-section__label">
