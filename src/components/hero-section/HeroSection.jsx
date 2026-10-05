@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from "motion/react";
 import { Button } from "../button/Button";
+import { CV_FILE } from "../header/Header";
 import { RevealMask } from "../text-reveal/RevealMask";
 import { TextReveal } from "../text-reveal/TextReveal";
 import { Tooltip } from "../tooltip/Tooltip";
@@ -111,10 +112,11 @@ export const HeroSection = () => {
           <div className="c-hero__action">
             <RevealMask index={34}>
               <Button
-                label="Work Experience"
+                label="Download CV"
                 color="white"
                 variant="filled"
-                to="/work-experience"
+                to={CV_FILE}
+                blankTarget={true}
               />
             </RevealMask>
           </div>

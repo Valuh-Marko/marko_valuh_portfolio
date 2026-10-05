@@ -2,97 +2,221 @@
 @use "../../styles/mixin" as *;
 @use "../../styles/sections" as *;
 
-/* ── Hero ─────────────────────────────────────────────────────── */
+// Text on white needs more than $gray to reach 4.5:1; text on black sits
+// at the quiet white from DESIGN.md.
+$ink-muted: rgba(0, 0, 0, 0.6);
+$ink-quiet: rgba(255, 255, 255, 0.55);
+$rule-on-black: rgba(255, 255, 255, 0.18);
 
-.c-single-page-hero {
-  position: relative;
-  height: 50vh;
-  overflow-y: hidden;
+@mixin label {
+  font-family: $suisse-intl-mono;
+  font-size: max($font-xs, 11px);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
 }
 
-.c-single-page-hero-container {
-  @include flex-column();
-  align-items: flex-start;
-  justify-content: flex-end;
-  position: relative;
-  color: $white;
-  text-align: left;
-  padding-top: $spacing-1;
-  padding-bottom: $spacing-3;
-  z-index: 1;
-  gap: $spacing-1;
-  height: 100%;
+@mixin code {
+  font-family: $suisse-intl-mono;
+  font-size: $font-xs;
+  letter-spacing: 0.02em;
+}
 
-  @include respond(md) {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: $spacing-4;
-    align-items: end;
+/* ── Page ──────────────────────────────────────────────────────── */
+
+.c-case {
+  ::selection {
+    background-color: $orange;
+    color: $black;
+  }
+
+  :focus-visible {
+    outline: 2px solid $orange;
+    outline-offset: 2px;
+  }
+
+  table {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .c-section__title {
+    margin: 0 0 1.5rem 0;
+    max-width: 22ch;
+    text-wrap: balance;
   }
 }
 
-.c-single-page-hero__title {
-  @include flex-column();
-  gap: 0.5rem;
-  font-size: 4rem;
-  line-height: 4rem;
-  font-weight: 500;
-
-  @include respond(xs) {
-    font-size: 5rem;
-    line-height: 5rem;
-  }
-
-  @include respond(md) {
-    font-size: 5rem;
-    line-height: 5rem;
-  }
-}
-
-.c-single-page-hero-details {
-  @include flex-column();
-  gap: $spacing-1;
-}
-
-.c-single-page-hero-subtitle {
-  font-size: $font-xl;
-  margin-bottom: $spacing-1;
-  display: flex;
-  flex-direction: column;
-
-  .big-subheading {
-    font-size: $font-md;
-    line-height: 1.5;
-    max-width: 60ch;
-  }
-}
-
-.c-single-page-hero-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-
-  span {
-    font-family: $suisse-intl-mono;
-    font-size: $font-xs;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.375rem 0.5rem;
-    background-color: rgba(255, 255, 255, 0.15);
-  }
-}
-
-.c-single-page-hero-img {
+.u-visually-hidden {
   position: absolute;
-  object-fit: cover;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 50vh;
-  z-index: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
-/* ── Shared section wrapper ───────────────────────────────────── */
+/* ── Hero ──────────────────────────────────────────────────────── */
+
+.c-case-hero {
+  background-color: $black;
+  color: $white;
+  padding-top: $spacing-7;
+  padding-bottom: $spacing-4;
+
+  &--full {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    min-height: max(44rem, 100svh);
+    padding-top: $spacing-4;
+    padding-bottom: 0;
+  }
+}
+
+.c-case-hero__body {
+  display: flex;
+  align-items: center;
+
+  .c-case-hero--full & {
+    padding-block: $spacing-3;
+  }
+}
+
+.c-case-hero__main {
+  @include flex-column();
+  align-items: center;
+  width: 100%;
+  gap: 1.5rem;
+  text-align: center;
+
+  @include respond(md) {
+    gap: 1.75rem;
+  }
+}
+
+.c-case-hero__title {
+  margin: 0;
+  font-size: clamp($font-h3, 7vw, $font-h1);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.c-case-hero__hook {
+  margin: 0;
+  max-width: 40ch;
+  font-size: $font-lg;
+  line-height: 1.4;
+  color: $ink-quiet;
+  text-wrap: pretty;
+
+  @include respond(md) {
+    font-size: $font-xl;
+  }
+}
+
+.c-case-hero__asterisk {
+  display: block;
+  width: 0.75rem;
+  height: 0.75rem;
+  color: $orange;
+}
+
+.c-case-hero__spec {
+  @include flex-column();
+  gap: 0.375rem;
+}
+
+.c-case-hero__spec-line {
+  @include label;
+  margin: 0;
+  color: $ink-quiet;
+}
+
+.c-case-hero__highlight {
+  color: $white;
+}
+
+.c-case-hero__toc {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include respond(sm) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// Stacked rows below sm; from sm the cells sit side by side and every cell
+// after the first takes a divider and an inset.
+.c-case-hero__toc-item {
+  --toc-inset: 0;
+  border-top: 1px dashed $rule-on-black;
+
+  @include respond(sm) {
+    &:not(:first-child) {
+      --toc-inset: 1rem;
+      border-left: 1px dashed $rule-on-black;
+    }
+  }
+}
+
+.c-case-hero__toc-link {
+  @include flex-column();
+  gap: 0.5rem;
+  height: 100%;
+  padding: 1rem 1rem 1.25rem var(--toc-inset);
+
+  @include respond(sm) {
+    padding-block: 1.25rem 2rem;
+  }
+  color: $white;
+  text-decoration: none;
+
+  &:hover .c-case-hero__toc-note {
+    color: $white;
+  }
+
+  &:hover .c-case-hero__toc-arrow {
+    transform: translateY(3px);
+  }
+}
+
+.c-case-hero__toc-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: $font-lg;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.c-case-hero__toc-arrow {
+  width: 0.75rem;
+  height: 0.75rem;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.c-case-hero__toc-note {
+  max-width: 30ch;
+  font-size: $font-sm;
+  line-height: 1.45;
+  color: $ink-quiet;
+  transition: color 0.2s ease;
+}
+
+/* ── Shared section parts ──────────────────────────────────────── */
+
+// Section wrappers take focus after the hero's contents scroll to them;
+// the ring would outline the whole section, so it stays off.
+.c-case .c-case-anchor:focus {
+  outline: none;
+}
 
 .c-case-section {
   @include col-grid();
@@ -101,17 +225,23 @@
   border-top: 1px dashed $gray;
   align-items: start;
 
+  @include respond(md) {
+    row-gap: $spacing-3;
+  }
+
   .c-section__label {
     white-space: nowrap;
   }
 }
 
 .c-context__lede {
+  max-width: 44ch;
+  margin: 0 0 1.75rem 0;
   font-size: $font-xl;
   font-weight: 500;
   line-height: 1.35;
   letter-spacing: -0.015em;
-  margin: 0 0 1.75rem 0;
+  text-wrap: pretty;
 
   @include respond(md) {
     font-size: $font-h6;
@@ -121,6 +251,7 @@
 .c-context__body {
   @include flex-column();
   gap: $spacing-1;
+  max-width: 68ch;
 
   p {
     margin: 0;
@@ -129,156 +260,461 @@
   }
 }
 
-/* ── CS/001 Overview ──────────────────────────────────────────── */
-
-.c-context__meta {
-  background-color: $light-gray;
-  padding: 1.5rem;
-  border-radius: 0.25rem;
-  margin: 0;
-  align-self: start;
-
-  @include respond(md) {
-    grid-column: span 5;
-  }
-}
-
-.c-context__meta-item {
-  border-top: 1px dashed $gray;
-  padding-top: 0.75rem;
-  margin-top: 0.75rem;
-
-  &:first-child {
-    border-top: none;
-    margin-top: 0;
-    padding-top: 0;
-  }
-}
-
-.c-context__meta-item dt {
-  font-family: $suisse-intl-mono;
-  font-size: $font-2xs;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: $gray;
-  margin-bottom: 0.3rem;
-}
-
-.c-context__meta-item dd {
-  margin: 0;
-  font-size: $font-sm;
-  font-weight: 500;
-  line-height: 1.5;
-}
-
-/* ── CS/002 Snapshot ───────────────────────────────────────────── */
-
-.c-snapshot-wrapper {
+.c-wide {
   @include flex-column();
-  gap: $spacing-3;
+  min-width: 0;
 
   @include respond(md) {
     grid-column: 3 / -1;
   }
 }
 
-.c-snapshot-grid {
+.c-figure-caption {
+  max-width: 68ch;
+  margin-top: 0.875rem;
+  font-size: $font-sm;
+  line-height: 1.5;
+  color: $ink-muted;
+  text-align: left;
+}
+
+.c-tags {
+  @include label;
+  margin: 0;
+  color: $ink-muted;
+}
+
+.c-note {
+  max-width: 68ch;
+  padding-top: 1.25rem;
+  border-top: 1px solid $black;
+
+  .c-wide > & {
+    margin-top: $spacing-3;
+  }
+
+  .c-case-section > & {
+    @include respond(md) {
+      grid-column: 3 / span 8;
+    }
+  }
+}
+
+.c-note__title {
+  margin: 0 0 0.5rem 0;
+  font-size: $font-lg;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.c-note__body {
+  margin: 0;
+  font-size: $font-sm;
+  line-height: 1.6;
+}
+
+/* ── Screenshot slot ───────────────────────────────────────────── */
+
+.c-shot {
+  margin: 0;
+  min-width: 0;
+}
+
+.c-shot__frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background:
+    repeating-linear-gradient(45deg, oklch(80% 0 0) 0 1px, transparent 1px 12px),
+    $light-gray;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 1.25rem),
+    calc(100% - 1.25rem) 100%,
+    0 100%
+  );
+}
+
+.c-shot__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.c-shot__pending {
+  @include label;
+  padding: 0.375rem 0.5rem;
+  background-color: $light-gray;
+  color: $ink-muted;
+}
+
+.c-shot__caption {
+  @include label;
+  margin-top: 0.625rem;
+  color: $ink-muted;
+}
+
+/* ── The building ──────────────────────────────────────────────── */
+
+.c-building__text {
+  @include respond(md) {
+    grid-column: 3 / span 7;
+  }
+
+  @include respond(xl) {
+    grid-column: 3 / span 5;
+  }
+}
+
+.c-tree {
+  margin: 0;
+
+  @include respond(md) {
+    grid-column: 3 / -1;
+  }
+
+  @include respond(xl) {
+    grid-column: 9 / -1;
+    margin-top: 0.5rem;
+  }
+}
+
+.c-tree__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// Each tier hangs off the one above it: a staircase of elbows, drawn in
+// the same hairline as the rest of the page.
+.c-tree__tier {
+  position: relative;
+  @include flex-column();
+  gap: 0.25rem;
+  padding-block: 0.75rem;
+
+  &:not(:first-child) {
+    padding-left: 1.5rem;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0.25rem;
+      width: 0.875rem;
+      height: 1.5rem;
+      border-left: 1px solid $black;
+      border-bottom: 1px solid $black;
+    }
+  }
+
+  @for $i from 3 through 6 {
+    &:nth-child(#{$i}) {
+      margin-left: ($i - 2) * 1.5rem;
+    }
+  }
+}
+
+.c-tree__name {
+  font-size: $font-lg;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.c-tree__note {
+  max-width: 36ch;
+  font-size: $font-sm;
+  line-height: 1.5;
+  color: $ink-muted;
+}
+
+.c-tree__caption {
+  max-width: 52ch;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px dashed $gray;
+  font-size: $font-sm;
+  line-height: 1.6;
+}
+
+/* ── Three seats ───────────────────────────────────────────────── */
+
+.c-seats__head {
+  @include respond(md) {
+    grid-column: 3 / span 7;
+  }
+}
+
+.c-seats {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: $spacing-1;
+  gap: $spacing-4;
+
+  @include respond(md) {
+    grid-column: 3 / -1;
+  }
+
+  @include respond(xl) {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 2.5rem;
+    row-gap: 0;
+  }
+}
+
+.c-seat {
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+  min-width: 0;
+  padding-top: 1.5rem;
+  border-top: 1px dashed $gray;
+
+  .c-shot {
+    margin-block: 0.75rem;
+  }
+
+  // Between md and xl each seat is a row: words left, screen right.
+  @include respond(md) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(5, auto) 1fr;
+    column-gap: 2.5rem;
+
+    > :not(.c-shot) {
+      grid-column: 1;
+    }
+
+    .c-shot {
+      grid-column: 2;
+      grid-row: 1 / -1;
+      margin-block: 0;
+    }
+  }
+
+  // At xl the seats stand side by side and share rows, so the three
+  // screens line up across the page.
+  @include respond(xl) {
+    grid-row: span 6;
+    grid-template-columns: 1fr;
+    grid-template-rows: subgrid;
+    row-gap: 0.75rem;
+
+    > :not(.c-shot) {
+      grid-column: 1;
+    }
+
+    .c-shot {
+      grid-column: 1;
+      grid-row: auto;
+      margin-block: 0.75rem;
+    }
+  }
+}
+
+.c-seat__name {
+  margin: 0;
+  font-size: $font-h6;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.c-seat__role {
+  @include code;
+  color: $ink-muted;
+}
+
+.c-seat__summary {
+  max-width: 48ch;
+  margin: 0;
+  font-size: $font-md;
+  line-height: 1.5;
+}
+
+.c-seat__can {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    padding-block: 0.5rem;
+    border-top: 1px dashed $gray;
+    font-size: $font-sm;
+    line-height: 1.5;
+  }
+}
+
+.c-seat__guard {
+  max-width: 52ch;
+  margin: 0;
+  font-size: $font-sm;
+  line-height: 1.6;
+  color: $ink-muted;
+
+  strong {
+    font-weight: 700;
+    color: $black;
+  }
+}
+
+/* ── Engineer band ─────────────────────────────────────────────── */
+
+.c-engineer {
+  padding-block: $spacing-6;
+  background-color: $black;
+  color: $white;
+
+  @include respond(md) {
+    padding-block: $spacing-8;
+  }
+}
+
+.c-engineer__inner {
+  @include col-grid();
+  align-items: end;
+}
+
+.c-engineer__title {
+  margin: 0;
+  max-width: 16ch;
+  font-size: clamp($font-h4, 4.5vw, $font-h2);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+
+  @include respond(md) {
+    grid-column: 3 / -1;
+  }
+
+  @include respond(lg) {
+    grid-column: 3 / span 6;
+  }
+}
+
+.c-engineer__body {
+  max-width: 44ch;
+  margin: 0;
+  font-size: $font-md;
+  line-height: 1.55;
+  color: $ink-quiet;
+
+  @include respond(md) {
+    grid-column: 3 / span 7;
+  }
+
+  @include respond(lg) {
+    grid-column: 9 / -1;
+  }
+}
+
+/* ── Architecture ──────────────────────────────────────────────── */
+
+.c-arch-apps {
+  display: grid;
+  gap: $spacing-2 $spacing-3;
+  margin-top: 1rem;
 
   @include respond(sm) {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-.c-snapshot-card {
+.c-arch-app {
   @include flex-column();
   gap: 0.75rem;
-  padding: $spacing-2;
-  background-color: $light-gray;
-
-  &--frontend {
-    background-color: $white;
-    border: 1px solid $light-gray;
-  }
+  padding-top: 1.25rem;
+  border-top: 1px solid $black;
 }
 
-.c-snapshot-card__repo {
-  font-family: $suisse-intl-mono;
-  font-size: $font-sm;
-  letter-spacing: 0.05em;
-  font-weight: 600;
-}
-
-.c-snapshot-card__stack {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1rem;
-}
-
-.c-snapshot-card__stack-item {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: $font-sm;
-  line-height: 1.5;
-}
-
-.c-snapshot-card__stack-icon {
-  width: 2.5rem;
-  height: 2.5rem;
-  object-fit: contain;
-}
-
-.c-snapshot-card__meta {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-top: auto;
-  padding-top: 0.75rem;
-  border-top: 1px dashed $gray;
-  font-family: $suisse-intl-mono;
-  font-size: $font-2xs;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: $gray;
-}
-
-.c-snapshot-facts {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
+.c-arch-app__name {
   margin: 0;
-
-  @include respond(sm) {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  font-size: $font-xl;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
-.c-snapshot-fact {
-  padding: 1rem 0;
-  border-top: 1px dashed $gray;
+.c-arch-app__body {
+  max-width: 60ch;
+  margin: 0;
+  font-size: $font-sm;
+  line-height: 1.6;
+}
 
-  @include respond(sm) {
-    padding: 0 $spacing-1;
-    border-top: none;
-    border-left: 1px dashed $gray;
+.c-layers {
+  width: 100%;
+  margin-top: $spacing-4;
+  border-collapse: collapse;
 
-    &:first-child {
-      padding-left: 0;
-      border-left: none;
+  caption {
+    @include label;
+    margin: 0;
+    padding-bottom: 0.75rem;
+    caption-side: top;
+    color: $ink-muted;
+  }
+
+  tr {
+    border-top: 1px dashed $gray;
+
+    &:last-child {
+      border-bottom: 1px dashed $gray;
     }
   }
 
-  dt {
-    font-family: $suisse-intl-mono;
-    font-size: $font-2xs;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: $gray;
-    margin-bottom: 0.375rem;
+  th,
+  td {
+    padding-block: 0.875rem;
+    font-size: $font-sm;
+    line-height: 1.5;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    width: 1%;
+    padding-right: $spacing-2;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+}
+
+/* ── Access ────────────────────────────────────────────────────── */
+
+.c-access__text {
+  @include respond(md) {
+    grid-column: 3 / span 7;
+  }
+}
+
+.c-policies {
+  margin: 0;
+
+  @include respond(md) {
+    grid-column: 3 / span 8;
+  }
+}
+
+.c-policies__row {
+  display: grid;
+  gap: 0.25rem 2rem;
+  padding-block: 0.875rem;
+  border-top: 1px dashed $gray;
+
+  &:last-child {
+    border-bottom: 1px dashed $gray;
+  }
+
+  @include respond(sm) {
+    grid-template-columns: 14rem 1fr;
+    align-items: baseline;
+  }
+
+  dt code {
+    @include code;
+    font-size: $font-sm;
   }
 
   dd {
@@ -288,532 +724,473 @@
   }
 }
 
-.c-snapshot__note {
-  font-size: $font-sm;
-  line-height: 1.6;
-  color: $gray;
-  margin: 0;
-}
-
-/* ── CS/003 Problem ────────────────────────────────────────────── */
-
-.c-problem__closing {
-  font-size: $font-sm;
-  line-height: 1.6;
-  margin: $spacing-1 0 0 0;
-}
-
-.c-hierarchy {
-  @include flex-column();
-  gap: $spacing-1;
-
+.c-access__body {
   @include respond(md) {
-    grid-column: 3 / span 5;
-    margin-top: $spacing-2;
+    grid-column: 3 / span 8;
   }
 }
 
-.c-hierarchy__title {
-  font-family: $suisse-intl-mono;
-  font-size: $font-xs;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: $gray;
+.c-matrix {
+  min-width: 0;
   margin: 0;
+
+  @include respond(md) {
+    grid-column: 3 / -1;
+  }
 }
 
-.c-hierarchy__list {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem;
+// Positioned so the cells' visually hidden labels (position: absolute) are
+// clipped by the scroller instead of widening the page.
+.c-matrix__scroll {
+  position: relative;
+  overflow-x: auto;
+}
+
+// Allowed reads sit on light gray, refusals invert to black: the shape of
+// the black cells is the access model.
+.c-matrix__table {
+  width: 100%;
+  min-width: 46rem;
+  border-collapse: separate;
+  border-spacing: 2px;
+
+  thead th {
+    @include label;
+    padding: 0 0.75rem 0.75rem;
+    color: $ink-muted;
+    text-align: left;
+    vertical-align: bottom;
+  }
+
+  tbody th {
+    min-width: 11rem;
+    padding: 0.625rem 1rem 0.625rem 0;
+    font-size: $font-sm;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: left;
+  }
+}
+
+.c-matrix__cell {
+  @include label;
+  padding: 0.625rem 0.75rem;
+  background-color: $light-gray;
+  color: $black;
+
+  &--denied {
+    background-color: $black;
+    color: $white;
+  }
+
+  &--none {
+    background-color: transparent;
+    color: $ink-muted;
+  }
+}
+
+/* ── Money ─────────────────────────────────────────────────────── */
+
+.c-money__text {
+  @include respond(md) {
+    grid-column: 3 / span 7;
+  }
+}
+
+.c-money__shot {
+  @include respond(md) {
+    grid-column: 3 / -1;
+  }
+
+  @include respond(xl) {
+    grid-column: 3 / span 5;
+  }
+}
+
+.c-ledger {
+  min-width: 0;
   margin: 0;
+
+  @include respond(md) {
+    grid-column: 3 / -1;
+  }
+
+  @include respond(xl) {
+    grid-column: 8 / -1;
+  }
+}
+
+.c-ledger__table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 0.75rem 0.75rem 0.75rem 0;
+    font-size: $font-sm;
+    line-height: 1.4;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  thead th {
+    @include label;
+    padding-top: 0;
+    padding-bottom: 0.625rem;
+    border-bottom: 1px solid $black;
+    color: $ink-muted;
+  }
+
+  tbody tr + tr {
+    border-top: 1px dashed $gray;
+  }
+
+  .c-ledger__amount {
+    padding-right: 0;
+    text-align: right;
+    white-space: nowrap;
+  }
+}
+
+.c-ledger__id {
+  @include code;
+  color: $ink-muted;
+
+  .c-ledger__table & {
+    font-size: $font-xs;
+    padding-top: 0.95rem;
+  }
+}
+
+.c-ledger__link {
+  @include label;
+  display: block;
+  margin-top: 0.25rem;
+  color: $ink-muted;
+}
+
+// A published report closes the period with the bookkeeper's double rule.
+.c-ledger__lock td {
+  @include label;
+  border-top: 3px double $black;
+}
+
+.c-ledger__refused {
+  color: $ink-muted;
+}
+
+.c-ledger__status {
+  @include label;
+  display: inline-block;
+  padding: 0.125rem 0.375rem;
+  background-color: $black;
+  color: $white;
+}
+
+.c-points {
+  display: grid;
+  gap: $spacing-2 $spacing-3;
+  margin: 0;
+
+  @include respond(sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include respond(md) {
+    grid-column: 3 / -1;
+  }
+
+  @include respond(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.c-points__item {
+  padding-top: 1rem;
+  border-top: 1px dashed $gray;
+
+  dt {
+    margin-bottom: 0.5rem;
+    font-size: $font-md;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  dd {
+    margin: 0;
+    font-size: $font-sm;
+    line-height: 1.6;
+  }
+}
+
+/* ── Provisioning ──────────────────────────────────────────────── */
+
+.c-steps {
+  display: grid;
+  gap: $spacing-2 $spacing-3;
+  margin: 1rem 0 0 0;
   padding: 0;
   list-style: none;
-  counter-reset: tier;
-}
-
-.c-hierarchy__item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: $font-sm;
-  font-weight: 500;
-  counter-increment: tier;
-
-  &::before {
-    content: counter(tier) ".";
-    font-family: $suisse-intl-mono;
-    color: $gray;
-  }
-
-  &:not(:last-child)::after {
-    content: "→";
-    color: $gray;
-    margin-left: 0.75rem;
-  }
-}
-
-/* ── CS/003 Architecture ──────────────────────────────────────── */
-
-.c-arch-wrapper {
-  @include flex-column();
-  gap: $spacing-3;
 
   @include respond(md) {
-    grid-column: 3 / -1;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-.c-arch-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: $spacing-2;
-
-  @include respond(sm) {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.c-arch-card {
+.c-steps__item {
   @include flex-column();
-  gap: 1rem;
-  padding: $spacing-2;
-  background-color: $light-gray;
-
-  &--frontend {
-    background-color: $white;
-    border: 1px solid $light-gray;
-  }
-}
-
-.c-arch-card__title {
-  font-size: $font-lg;
-  font-weight: 700;
-  line-height: 1.2;
-  margin: 0;
-}
-
-.c-arch-card__body {
-  font-size: $font-sm;
-  line-height: 1.6;
-  margin: 0;
-}
-
-.c-arch-card__stack {
-  display: flex;
-  flex-wrap: wrap;
   gap: 0.5rem;
-  margin-top: auto;
-
-  span {
-    font-family: $suisse-intl-mono;
-    font-size: $font-2xs;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.375rem 0.5rem;
-    background-color: $white;
-  }
+  padding-top: 1rem;
+  border-top: 1px solid $black;
 }
 
-.c-arch-card--frontend .c-arch-card__stack span {
-  background-color: $light-gray;
+.c-steps__num {
+  @include label;
+  color: $ink-muted;
 }
 
-.c-arch-layers {
-  @include flex-column();
-}
-
-.c-arch-layer {
-  display: grid;
-  grid-template-columns: 2.5rem 8rem 1fr;
-  align-items: baseline;
-  gap: 1rem;
-  padding: 1rem 0;
-  border-top: 1px dashed $gray;
-}
-
-.c-arch-layer__num {
-  font-family: $suisse-intl-mono;
-  font-size: $font-xs;
-  color: $gray;
-}
-
-.c-arch-layer__name {
-  font-size: $font-sm;
-  font-weight: 700;
-}
-
-.c-arch-layer__models {
-  font-family: $suisse-intl-mono;
-  font-size: $font-xs;
-  color: $gray;
-}
-
-/* ── CS/004 Data Model & Auth ──────────────────────────────────── */
-
-.c-auth-steps {
-  @include flex-column();
-  gap: $spacing-1;
-}
-
-.c-auth-step {
-  display: grid;
-  grid-template-columns: 2.5rem 1fr;
-  gap: 1rem;
-  padding: $spacing-1 0;
-  border-top: 1px dashed $gray;
-}
-
-.c-auth-step__num {
-  font-family: $suisse-intl-mono;
-  font-size: $font-sm;
-  color: $gray;
-}
-
-.c-auth-step__title {
-  font-size: $font-sm;
-  font-weight: 700;
-  margin: 0 0 0.25rem 0;
-  grid-column: 2;
-}
-
-.c-auth-step__body {
-  font-size: $font-sm;
-  line-height: 1.6;
+.c-steps__name {
   margin: 0;
-  grid-column: 2;
-}
-
-/* ── CS/005 Business Logic ─────────────────────────────────────── */
-
-.c-logic-wrapper {
-  @include flex-column();
-  gap: $spacing-3;
-
-  @include respond(md) {
-    grid-column: 3 / -1;
-  }
-}
-
-.c-logic-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: $spacing-1;
-
-  @include respond(sm) {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.c-logic-card {
-  @include flex-column();
-  gap: 0.75rem;
-  padding: $spacing-2;
-  background-color: $light-gray;
-}
-
-.c-logic-card__title {
-  font-size: $font-lg;
+  font-size: $font-xl;
   font-weight: 700;
   line-height: 1.2;
-  margin: 0;
 }
 
-.c-logic-card__body {
+.c-steps__note {
+  margin: 0;
   font-size: $font-sm;
   line-height: 1.6;
-  margin: 0;
 }
 
-/* ── CS/006 Frontend ───────────────────────────────────────────── */
-
-.c-standout {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: $spacing-2;
+.c-provisioning__details {
   margin-top: $spacing-3;
+}
 
-  @include respond(md) {
-    grid-column: 1 / -1;
-    grid-template-columns: 1fr 1fr;
+/* ── Process ───────────────────────────────────────────────────── */
+
+.c-tests {
+  margin: $spacing-3 0 0 0;
+}
+
+.c-tests__table {
+  width: 100%;
+  border-collapse: collapse;
+
+  tbody tr {
+    border-top: 1px dashed $gray;
+  }
+
+  tfoot tr {
+    border-top: 1px solid $black;
+  }
+
+  th,
+  td {
+    padding-block: 0.875rem;
+    text-align: left;
+    vertical-align: top;
   }
 }
 
-.c-standout__thumb {
-  position: relative;
-  aspect-ratio: 16 / 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background:
-    repeating-linear-gradient(
-      45deg,
-      oklch(80% 0 0) 0 1px,
-      transparent 1px 12px
-    ),
-    $light-gray;
-}
-
-.c-standout__placeholder {
-  font-family: $suisse-intl-mono;
-  font-size: $font-2xs;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: $gray;
-}
-
-.c-standout__details {
-  @include flex-column();
-  gap: 0.75rem;
-  justify-content: center;
-}
-
-.c-standout__title {
-  font-size: $font-lg;
+.c-tests__count {
+  width: 1%;
+  padding-right: 1.5rem;
+  font-size: $font-xl;
   font-weight: 700;
-  line-height: 1.2;
-  margin: 0;
+  line-height: 1.1;
+
+  .c-tests__table & {
+    text-align: right;
+  }
 }
 
-.c-standout__intro {
+.c-tests__name {
   font-size: $font-sm;
-  line-height: 1.6;
-  margin: 0;
+  font-weight: 700;
+  line-height: 1.4;
 }
 
-.c-standout__steps {
-  @include flex-column();
-  gap: 0.5rem;
-  margin: 0;
-  padding-left: 1.25rem;
-
-  li {
-    font-size: $font-sm;
-    line-height: 1.5;
-  }
+.c-tests__note {
+  display: block;
+  max-width: 52ch;
+  margin-top: 0.125rem;
+  font-weight: 400;
+  color: $ink-muted;
 }
 
-/* ── CS/007 Feature Inventory ──────────────────────────────────── */
-
-.c-inventory-wrapper {
-  @include flex-column();
-  gap: $spacing-3;
-
-  @include respond(md) {
-    grid-column: 3 / -1;
-  }
-}
-
-.c-inventory-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.5rem;
+.c-tests__bar-cell {
+  display: none;
 
   @include respond(sm) {
+    display: table-cell;
+    width: 35%;
+    padding-left: 1.5rem;
+    background: linear-gradient($light-gray, $light-gray) right 1.25rem / calc(100% - 1.5rem) 0.625rem
+      no-repeat;
+  }
+
+  .c-tests__table & {
+    vertical-align: top;
+  }
+}
+
+.c-tests__bar {
+  display: block;
+  height: 0.625rem;
+  margin-top: 0.375rem;
+  background-color: $black;
+}
+
+/* ── Growth ────────────────────────────────────────────────────── */
+
+.c-bursts {
+  margin: 1rem 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.c-bursts__item {
+  display: grid;
+  gap: 0.375rem 2rem;
+  padding-block: 1.25rem;
+  border-top: 1px dashed $gray;
+
+  @include respond(sm) {
+    grid-template-columns: 8rem 1fr;
+  }
+}
+
+.c-bursts__date {
+  @include label;
+  padding-top: 0.25rem;
+  color: $ink-muted;
+
+  @include respond(sm) {
+    grid-row: span 2;
+  }
+}
+
+.c-bursts__title {
+  margin: 0;
+  font-size: $font-lg;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.c-bursts__body {
+  max-width: 68ch;
+  margin: 0;
+  font-size: $font-sm;
+  line-height: 1.6;
+}
+
+/* ── Not yet ───────────────────────────────────────────────────── */
+
+.c-not-yet__list {
+  display: grid;
+  column-gap: $spacing-3;
+  margin: 1rem 0 0 0;
+  padding: 0;
+  list-style: none;
+
+  @include respond(md) {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-.c-inventory-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 1.25rem;
-  background-color: $light-gray;
+.c-not-yet__item {
+  @include flex-column();
+  gap: 0.25rem;
+  padding-block: 1rem;
+  border-top: 1px dashed $gray;
 }
 
-.c-inventory-item__tag {
-  font-family: $suisse-intl-mono;
-  font-size: $font-2xs;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: $gray;
-  white-space: nowrap;
+.c-not-yet__title {
+  font-size: $font-md;
+  font-weight: 700;
+  line-height: 1.3;
 }
 
-.c-inventory-item__name {
+.c-not-yet__note {
+  max-width: 52ch;
   font-size: $font-sm;
-  font-weight: 500;
+  line-height: 1.55;
+  color: $ink-muted;
 }
 
-/* ── CS/008 Design System ─────────────────────────────────────── */
+/* ── Design system ─────────────────────────────────────────────── */
 
 .c-swatches {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: $spacing-1;
-  margin-top: $spacing-2;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem 1rem;
+  margin: 1rem 0 0 0;
+  padding: 0;
+  list-style: none;
 
-  @include respond(md) {
-    grid-column: 3 / -1;
-    grid-template-columns: none;
-    grid-auto-flow: column;
-    grid-auto-columns: 1fr;
+  @include respond(sm) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include respond(lg) {
+    grid-template-columns: repeat(7, 1fr);
   }
 }
 
 .c-swatch {
   @include flex-column();
-  gap: 0.5rem;
+  gap: 0.375rem;
+  min-width: 0;
 }
 
 .c-swatch__chip {
   display: block;
   width: 100%;
   aspect-ratio: 1;
+  margin-bottom: 0.375rem;
 }
 
 .c-swatch__name {
-  font-family: $suisse-intl-mono;
-  font-size: $font-sm;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-weight: 600;
+  @include code;
+  color: $black;
+}
+
+.c-swatch__value {
+  @include code;
+  color: $ink-muted;
+  overflow-wrap: anywhere;
 }
 
 .c-swatch__usage {
   font-size: $font-sm;
-  color: $gray;
+  line-height: 1.4;
 }
 
 .c-fonts {
-  @include flex-column();
-  gap: $spacing-1;
-  margin-top: $spacing-2;
-
-  @include respond(md) {
-    grid-column: 3 / -1;
-  }
+  margin: $spacing-3 0 0 0;
 }
 
-.c-font-sample {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 1rem 0;
-  border-top: 1px dashed $gray;
-}
-
-.c-font-sample__name {
-  font-size: $font-lg;
-  font-weight: 700;
-}
-
-.c-font-sample__usage {
-  font-family: $suisse-intl-mono;
-  font-size: $font-xs;
-  color: $gray;
-}
-
-/* ── CS/009 War Story ──────────────────────────────────────────── */
-
-.c-war-story__title {
-  font-size: $font-h6;
-  font-weight: 700;
-  line-height: 1.15;
-  margin: 0 0 1.25rem 0;
-}
-
-.c-war-story__body {
-  font-size: $font-sm;
-  line-height: 1.7;
-  margin: 0;
-}
-
-/* ── CS/010 Scope & Deferrals ──────────────────────────────────── */
-
-.c-deferrals-wrapper {
-  @include flex-column();
-  gap: $spacing-3;
-
-  @include respond(md) {
-    grid-column: 3 / -1;
-  }
-}
-
-.c-deferrals-list {
-  @include flex-column();
-  gap: $spacing-1;
-}
-
-.c-deferral-item {
-  @include flex-column();
-  gap: 0.5rem;
-  padding: $spacing-1 0;
-  border-top: 1px dashed $gray;
-}
-
-.c-deferral-item__tag {
-  font-family: $suisse-intl-mono;
-  font-size: $font-2xs;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: $gray;
-}
-
-.c-deferral-item__title {
-  font-size: $font-lg;
-  font-weight: 700;
-  margin: 0;
-}
-
-.c-deferral-item__note {
-  font-size: $font-sm;
-  line-height: 1.6;
-  margin: 0;
-}
-
-/* ── CS/012 Timeline ───────────────────────────────────────────── */
-
-.c-timeline-wrapper {
-  @include flex-column();
-  gap: $spacing-3;
-
-  @include respond(md) {
-    grid-column: 3 / -1;
-  }
-}
-
-.c-timeline-columns {
+.c-fonts__row {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: $spacing-3;
+  gap: 0.25rem 2rem;
+  padding-block: 1rem;
+  border-top: 1px dashed $gray;
 
   @include respond(sm) {
     grid-template-columns: 1fr 1fr;
+    align-items: baseline;
   }
-}
 
-.c-timeline-col__heading {
-  font-family: $suisse-intl-mono;
-  font-size: $font-xs;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: $gray;
-  margin: 0 0 1rem 0;
-}
+  dt {
+    font-size: $font-xl;
+    font-weight: 700;
+  }
 
-.c-timeline {
-  @include flex-column();
-}
-
-.c-timeline-item {
-  @include flex-column();
-  gap: 0.25rem;
-  padding: 1rem 0;
-  border-top: 1px dashed $gray;
-}
-
-.c-timeline-item__milestone {
-  font-size: $font-sm;
-  font-weight: 700;
-}
-
-.c-timeline-item__detail {
-  font-size: $font-sm;
-  color: $gray;
-  line-height: 1.5;
+  dd {
+    margin: 0;
+    font-size: $font-sm;
+    color: $ink-muted;
+  }
 }
 
 /* ── Pager ─────────────────────────────────────────────────────── */
@@ -840,10 +1217,10 @@
 
 .c-pager__label {
   font-family: $suisse-intl-mono;
-  font-size: $font-2xs;
+  font-size: max($font-xs, 11px);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: $gray;
+  color: $ink-muted;
 }
 
 .c-pager__link {
@@ -863,11 +1240,11 @@
   font-size: $font-xs;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: $gray;
+  color: $ink-muted;
   text-align: center;
   white-space: nowrap;
 }
 
 .c-pager__empty {
-  color: $gray;
+  color: $ink-muted;
 }

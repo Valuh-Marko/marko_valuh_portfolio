@@ -1,32 +1,37 @@
 import { SectionLabel } from "./SectionLabel";
 
 export const DesignSystemSection = ({ designSystem, num }) => (
-  <div className="container">
+  <section className="container">
     <div className="c-case-section">
-      <SectionLabel num={num} label="Design System" />
+      <SectionLabel num={num} label="Design system" />
 
-      <div className="c-section__column">
+      <div className="c-wide">
+        <h2 className="c-section__title">{designSystem.title}</h2>
         <p className="c-context__lede">{designSystem.intro}</p>
-      </div>
 
-      <div className="c-swatches">
-        {designSystem.swatches.map((swatch) => (
-          <div key={swatch.name} className="c-swatch">
-            <span className="c-swatch__chip" style={{ backgroundColor: swatch.hex }} />
-            <span className="c-swatch__name">{swatch.name}</span>
-            <span className="c-swatch__usage">{swatch.usage}</span>
-          </div>
-        ))}
-      </div>
+        <ul className="c-swatches">
+          {designSystem.swatches.map((swatch) => (
+            <li key={swatch.name} className="c-swatch">
+              <span
+                className="c-swatch__chip"
+                style={{ backgroundColor: swatch.value }}
+              />
+              <code className="c-swatch__name">{swatch.name}</code>
+              <code className="c-swatch__value">{swatch.value}</code>
+              <span className="c-swatch__usage">{swatch.usage}</span>
+            </li>
+          ))}
+        </ul>
 
-      <div className="c-fonts">
-        {designSystem.fonts.map((font) => (
-          <div key={font.name} className="c-font-sample">
-            <span className="c-font-sample__name">{font.name}</span>
-            <span className="c-font-sample__usage">{font.usage}</span>
-          </div>
-        ))}
+        <dl className="c-fonts">
+          {designSystem.fonts.map((font) => (
+            <div key={font.name} className="c-fonts__row">
+              <dt>{font.name}</dt>
+              <dd>{font.usage}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </div>
-  </div>
+  </section>
 );

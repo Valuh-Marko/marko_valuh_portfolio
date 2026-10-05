@@ -15,7 +15,7 @@ const NAV_LINKS = [
   { label: "Projects", to: "/projects" },
 ];
 
-const CV_FILE = "/files/Marko Valuh - Frontend Developer.pdf";
+export const CV_FILE = "/files/Marko Valuh - Frontend Developer.pdf";
 
 const SOCIAL_LINKS = [
   { label: "GitHub", href: "https://github.com/Valuh-Marko", Icon: FaGithub },
@@ -28,11 +28,7 @@ const SOCIAL_LINKS = [
 ];
 
 const HERO_SELECTOR =
-  ".c-hero, .c-projects-hero, .c-work-experience-hero, .c-single-page-hero";
-
-// Matches the `md` breakpoint in styles/_mixin.scss, where the burger hands
-// over to the inline nav.
-const DESKTOP_QUERY = "(min-width: 768px)";
+  ".c-hero, .c-projects-hero, .c-work-experience-hero, .c-single-page-hero, .c-case-hero";
 
 const MotionLink = motion.create(Link);
 const TAP_SCALE = { scale: 0.95 };
@@ -58,10 +54,20 @@ const HIDE_ANIMATION_MS =
   (slideY.hide.transition.delay + slideY.hide.transition.duration) * 1000;
 
 // Three-line burger from the original mobile header: the outer lines fold
-// into a cross on the middle line's axis while the middle one fades.
+// into a cross on the middle line's axis while the middle one fades. To land
+// there, each outer line moves by one line thickness plus one gap. The
+// stylesheet takes both sizes from these constants via custom properties.
+const BURGER_LINE = 3;
+const BURGER_GAP = 4;
+const BURGER_PITCH = BURGER_LINE + BURGER_GAP;
+const burgerSize = {
+  "--burger-line": `${BURGER_LINE}px`,
+  "--burger-gap": `${BURGER_GAP}px`,
+};
+
 const burgerFirst = {
   closed: { rotate: 0, y: 0 },
-  open: { rotate: -45, y: "6px" },
+  open: { rotate: -45, y: BURGER_PITCH },
 };
 const burgerMiddle = {
   closed: { opacity: 1 },
@@ -69,7 +75,7 @@ const burgerMiddle = {
 };
 const burgerLast = {
   closed: { rotate: 0, y: 0 },
-  open: { rotate: 45, y: "-4px" },
+  open: { rotate: 45, y: -BURGER_PITCH },
 };
 
 // The menu wipes down from under the bar, then the rows drop in the same
@@ -106,13 +112,16 @@ const menuRowReduced = {
   open: { opacity: 1 },
 };
 
-const HeaderNavLink = ({ label, to, isActive }) => {
+// aria-label keeps the accessible name stable while the visible text scrambles.
+const MenuLink = ({ label, to, isActive, onClick }) => {
   const [text, scramble] = useScrambleText(label);
 
   return (
     <MotionLink
       to={to}
-      className={`c-header__link${isActive ? " is-active" : ""}`}
+      className={`c-header__menu-link${isActive ? " is-active" : ""}`}
+      aria-label={label}
+      onClick={onClick}
       onMouseEnter={() => scramble()}
       whileTap={TAP_SCALE}
       transition={TAP_TRANSITION}
@@ -137,8 +146,19 @@ export const Header = ({ shouldShow }) => {
 
   const closeMenu = () => setIsOpen(false);
 
+  // Switching pages leaves the menu open for the page transition to cover.
+  // Lenis has to run again first: it ignores the scroll-to-top the route
+  // exit fires while the open menu has it stopped.
+  const handleNavigate = (to) => {
+    if (location.pathname === to) {
+      closeMenu();
+      return;
+    }
+    lenis.current?.start();
+  };
+
   const handleLogoClick = (e) => {
-    closeMenu();
+    handleNavigate("/");
     if (location.pathname === "/") {
       e.preventDefault();
       lenis.current?.scrollTo(0);
@@ -149,8 +169,8 @@ export const Header = ({ shouldShow }) => {
     return () => clearTimeout(colorTimeoutRef.current);
   }, []);
 
-  // While the menu is open the page behind it must not move, and Escape or
-  // growing past the breakpoint (tablet rotation) closes it.
+  // While the menu is open the page behind it must not move, and Escape
+  // closes it.
   useEffect(() => {
     if (!isOpen) return;
 
@@ -160,18 +180,11 @@ export const Header = ({ shouldShow }) => {
     const onKeyDown = (e) => {
       if (e.key === "Escape") setIsOpen(false);
     };
-    const query = window.matchMedia(DESKTOP_QUERY);
-    const onQueryChange = (e) => {
-      if (e.matches) setIsOpen(false);
-    };
-
     window.addEventListener("keydown", onKeyDown);
-    query.addEventListener("change", onQueryChange);
 
     return () => {
       instance?.start();
       window.removeEventListener("keydown", onKeyDown);
-      query.removeEventListener("change", onQueryChange);
     };
   }, [isOpen, lenis]);
 
@@ -269,26 +282,6 @@ export const Header = ({ shouldShow }) => {
           />
         </MotionLink>
 
-        <nav className="c-header__nav" aria-label="Primary">
-          {NAV_LINKS.map(({ label, to }) => (
-            <HeaderNavLink
-              key={to}
-              label={label}
-              to={to}
-              isActive={location.pathname === to}
-            />
-          ))}
-        </nav>
-
-        <div className="c-header__actions">
-          <Button
-            label="Download CV"
-            to={CV_FILE}
-            blankTarget={true}
-            color={isAtTop ? "white" : "black"}
-          />
-        </div>
-
         <button
           type="button"
           className="c-header__burger"
@@ -297,7 +290,11 @@ export const Header = ({ shouldShow }) => {
           aria-label={isOpen ? "Close menu" : "Open menu"}
           onClick={() => setIsOpen((open) => !open)}
         >
-          <span className="c-header__burger-lines" aria-hidden="true">
+          <span
+            className="c-header__burger-lines"
+            style={burgerSize}
+            aria-hidden="true"
+          >
             <motion.span
               className="c-header__burger-line"
               animate={menuState}
@@ -327,30 +324,25 @@ export const Header = ({ shouldShow }) => {
             exit="closed"
             variants={reduceMotion ? menuPanelReduced : menuPanel}
           >
-            <nav className="c-header__menu-nav" aria-label="Primary">
+            <nav className="container c-header__menu-nav" aria-label="Primary">
               {NAV_LINKS.map(({ label, to }) => (
                 <motion.div
                   key={to}
                   className="c-header__menu-row"
                   variants={reduceMotion ? menuRowReduced : menuRow}
                 >
-                  <MotionLink
+                  <MenuLink
+                    label={label}
                     to={to}
-                    className={`c-header__menu-link${
-                      location.pathname === to ? " is-active" : ""
-                    }`}
-                    onClick={closeMenu}
-                    whileTap={TAP_SCALE}
-                    transition={TAP_TRANSITION}
-                  >
-                    {label}
-                  </MotionLink>
+                    isActive={location.pathname === to}
+                    onClick={() => handleNavigate(to)}
+                  />
                 </motion.div>
               ))}
             </nav>
 
             <motion.div
-              className="c-header__menu-footer"
+              className="container c-header__menu-footer"
               variants={reduceMotion ? menuRowReduced : menuRow}
             >
               <Button

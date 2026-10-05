@@ -26,14 +26,6 @@ $menu-hairline: rgba(255, 255, 255, 0.18);
     padding-block: $spacing-1;
   }
 
-  .c-header__link {
-    color: $white;
-  }
-
-  .c-header__link.is-active {
-    color: $orange;
-  }
-
   .c-header__wordmark {
     filter: invert(1);
   }
@@ -54,14 +46,6 @@ $menu-hairline: rgba(255, 255, 255, 0.18);
 
     .c-header__inner {
       padding-block: $header-scrolled-padding-block;
-    }
-
-    .c-header__link {
-      color: $black;
-    }
-
-    .c-header__link.is-active {
-      color: $orange;
     }
 
     .c-header__wordmark {
@@ -96,27 +80,16 @@ $menu-hairline: rgba(255, 255, 255, 0.18);
   }
 }
 
-// Wordmark and burger sit at the edges below `md`; the twelve-column grid
-// takes over once the inline nav appears.
+// Wordmark and burger sit at the container edges at every width.
 .c-header__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-block: $header-scrolled-padding-block;
   transition: padding-block $header-state-transition;
-
-  // Plain 1fr is minmax(auto, 1fr): tracks under wide content (the CV
-  // button) grow and pull the nav off centre. Pin all twelve equal.
-  @include respond(md) {
-    display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    gap: 4rem;
-  }
 }
 
-// 3 / 6 / 3 columns keep the nav on the page's centre axis.
 .c-header__label {
-  grid-column: 1 / span 3;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -130,62 +103,19 @@ $menu-hairline: rgba(255, 255, 255, 0.18);
   -webkit-tap-highlight-color: transparent;
 }
 
-// Matches the Download CV button's height (0.75rem type + 1em padding).
 .c-header__wordmark {
   height: 1.75rem;
   transition: filter 0.3s ease;
-}
-
-.c-header__nav {
-  grid-column: 4 / span 6;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  gap: $spacing-2;
 
   @include respond(md) {
-    display: flex;
-  }
-}
-
-.c-header__link {
-  font-family: $suisse-intl-mono;
-  font-size: $font-xs;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: $black;
-  transition:
-    color 0.2s ease,
-    opacity 0.2s ease;
-
-  &.is-active {
-    color: $orange;
-  }
-}
-
-.c-header__nav:has(.c-header__link:hover) .c-header__link:not(:hover),
-.c-header__actions:has(.c-header__link:hover) .c-header__link:not(:hover) {
-  opacity: 0.5;
-}
-
-// Socials as mono text links at the nav's scale, then the CV button.
-.c-header__actions {
-  grid-column: 10 / -1;
-  display: none;
-  align-items: center;
-  justify-content: flex-end;
-  gap: $spacing-2;
-
-  @include respond(md) {
-    display: flex;
+    height: 2rem;
   }
 }
 
 // ─── Burger ───────────────────────────────────────────────────────────────────
 
-// The original mobile header's three-line glyph inside a 44px hit area,
-// pulled right so the lines sit on the container edge like the nav text
-// does on desktop. --burger-ground is the colour behind the bar; the hover
+// The three-line glyph inside a 44px hit area, pulled right so the lines
+// sit on the container edge. --burger-ground is the colour behind the bar; the hover
 // sweep uses it to cut a moving gap through each line.
 .c-header__burger {
   --burger-ground: #{$black};
@@ -213,10 +143,6 @@ $menu-hairline: rgba(255, 255, 255, 0.18);
       left: 100%;
     }
   }
-
-  @include respond(md) {
-    display: none;
-  }
 }
 
 .c-header.is-scrolled .c-header__burger {
@@ -231,15 +157,22 @@ $menu-hairline: rgba(255, 255, 255, 0.18);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
+  gap: var(--burger-gap);
 }
 
+// Clipped so the sweep only ever shows inside the line it cuts, never
+// parked beside it.
 .c-header__burger-line {
   position: relative;
   width: 1.5rem;
-  height: 2px;
+  height: var(--burger-line);
+  overflow: hidden;
   background-color: currentColor;
   transform-origin: center;
+
+  @include respond(md) {
+    width: 2rem;
+  }
 
   &::before {
     content: "";
@@ -248,7 +181,7 @@ $menu-hairline: rgba(255, 255, 255, 0.18);
     left: -0.75rem;
     z-index: 2;
     width: 0.75rem;
-    height: 1px;
+    height: 100%;
     background-color: var(--burger-ground);
     transition: left 0.4s cubic-bezier(0.76, 0, 0.24, 1);
   }
@@ -270,7 +203,8 @@ $menu-hairline: rgba(255, 255, 255, 0.18);
 
 // Sits behind the bar inside the header's stacking context and covers the
 // viewport from the bar's top edge. The links centre in the free space; the
-// action row is anchored to the bottom so it lands under the thumb.
+// action row is anchored to the bottom so it lands under the thumb. Nav and
+// footer carry .container, so they line up with the bar at every width.
 .c-header__menu {
   position: absolute;
   top: 0;
@@ -280,7 +214,7 @@ $menu-hairline: rgba(255, 255, 255, 0.18);
   height: 100dvh;
   display: flex;
   flex-direction: column;
-  padding: 0 1rem max(1.5rem, env(safe-area-inset-bottom));
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
   background-color: $black;
   color: $white;
   touch-action: none;
@@ -292,7 +226,7 @@ $menu-hairline: rgba(255, 255, 255, 0.18);
   }
 
   @include respond(md) {
-    display: none;
+    padding-bottom: $spacing-2;
   }
 }
 
@@ -316,12 +250,16 @@ $menu-hairline: rgba(255, 255, 255, 0.18);
   max-width: none;
   padding-block: clamp(1rem, 2.5vh, 1.5rem);
   font-family: $font-helvetica-now;
-  font-size: clamp($font-h5, 9vw, $font-h3);
+  // Uppercase runs wide: 8vw keeps "Work Experience" on one line at 360px.
+  font-size: clamp($font-h6, 8vw, $font-h3);
   font-weight: 700;
   line-height: 1.05;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: $white;
-  transition: color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
   -webkit-tap-highlight-color: transparent;
 
   &.is-active {
@@ -331,6 +269,20 @@ $menu-hairline: rgba(255, 255, 255, 0.18);
   &:focus-visible {
     outline: 2px solid $orange;
     outline-offset: 2px;
+  }
+
+  // The vh term keeps three rows inside short laptop screens.
+  @include respond(md) {
+    padding-block: clamp(1rem, 3vh, 2rem);
+    font-size: clamp($font-h3, min(7vw, 11vh), 6rem);
+  }
+}
+
+// With a pointer, the hovered destination stays bright and the rest step back.
+@media (hover: hover) {
+  .c-header__menu-nav:has(.c-header__menu-link:hover)
+    .c-header__menu-link:not(:hover) {
+    opacity: 0.4;
   }
 }
 
