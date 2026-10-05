@@ -1,24 +1,12 @@
 import React from "react";
 
+import { Tooltip } from "../tooltip/Tooltip";
+import { STACK } from "./stack";
+import { StackTooltipContent } from "./StackTooltipContent";
 import "./tech-stack-section.scss";
 
-const STACK = [
-  "Angular",
-  "Next.js",
-  "Nest.js",
-  "TypeScript",
-  "Tailwind",
-  "MongoDB",
-];
-
-const ICON_SLUGS = {
-  Angular: "angular",
-  "Next.js": "nextdotjs",
-  "Nest.js": "nestjs",
-  TypeScript: "typescript",
-  Tailwind: "tailwindcss",
-  MongoDB: "mongodb",
-};
+// Long enough that sweeping the cursor across the plate stays quiet.
+const TOOLTIP_DELAY = 680;
 
 export const TechStackSection = () => {
   return (
@@ -31,24 +19,27 @@ export const TechStackSection = () => {
         </span>
         {/* second column */}
         <div className="c-section__column">
-          <h3 className="c-section__title">
-            The tools I reach for <br /> before anything else
-          </h3>
+          <h2 className="c-section__title c-tech-stack__title">
+            The tools I reach for before anything else
+          </h2>
         </div>
-        <div className="c-section-icon-wrapper">
-          {STACK.map((name) => (
-            <div key={name} className="c-stack-tile">
-              {ICON_SLUGS[name] && (
-                <img
-                  src={`https://cdn.simpleicons.org/${ICON_SLUGS[name]}/0a0a0a`}
-                  alt={name}
-                  className="c-stack-tile__icon c-stack-tile__icon--lg"
-                />
-              )}
-              <span className="c-stack-tile__name">{name}</span>
-            </div>
+        {/* One sliced-corner plate split into cells by white channels; the
+            tooltip sits inside each <li> so the list keeps valid markup. */}
+        <ul className="c-stack-plate">
+          {STACK.map((tech) => (
+            <li key={tech.name} className="c-stack-plate__cell">
+              <Tooltip
+                content={<StackTooltipContent tech={tech} />}
+                showDelay={TOOLTIP_DELAY}
+              >
+                <div className="c-stack-plate__inner">
+                  <tech.Icon className="c-stack-plate__icon" aria-hidden="true" />
+                  <span className="c-stack-plate__name">{tech.name}</span>
+                </div>
+              </Tooltip>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </div>
   );

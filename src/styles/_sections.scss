@@ -66,16 +66,3 @@
   line-height: 1;
   font-weight: 700;
 }
-
-.c-section-icon-wrapper {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  justify-content: start;
-  align-items: center;
-  gap: $spacing-1;
-
-  @include respond(md) {
-    grid-template-columns: repeat(6, 1fr);
-    grid-column: 3 / -1;
-  }
-}

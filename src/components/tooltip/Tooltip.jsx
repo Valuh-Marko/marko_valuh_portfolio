@@ -31,6 +31,7 @@ export const Tooltip = ({
   rows = 1,
   cols = 14,
   variant = "default",
+  showDelay = SHOW_DELAY,
 }) => {
   const cellCount = rows * cols;
 
@@ -73,9 +74,9 @@ export const Tooltip = ({
       showTimeout.current = setTimeout(() => {
         setCellCustom(generateCellCustom(cellCount));
         setIsOpen(true);
-      }, SHOW_DELAY);
+      }, showDelay);
     },
-    [cellCount]
+    [cellCount, showDelay]
   );
 
   const handleMove = useCallback(

@@ -1,3 +1,124 @@
 @use "../../styles/variables" as *;
 @use "../../styles/mixin" as *;
 @use "../../styles/sections" as *;
+
+$ease: cubic-bezier(0.61, 0.16, 0.17, 0.93);
+
+.c-tech-stack__title {
+  text-wrap: balance;
+}
+
+// ─── Tooltip content ──────────────────────────────────────────────────────────
+
+.c-stack-tt__name {
+  margin: 0 0 0.625rem;
+  font-size: $font-xl;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.c-stack-tt__label,
+.c-stack-tt__row {
+  font-family: $suisse-intl-mono;
+  font-size: max($font-2xs, 11px);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.c-stack-tt__label {
+  display: block;
+  margin-bottom: 0.375rem;
+  color: color-mix(in oklch, var(--tt-fg) 65%, transparent);
+}
+
+.c-stack-tt__list {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  row-gap: 0.375rem;
+  column-gap: 1.25rem;
+}
+
+.c-stack-tt__row {
+  display: contents;
+}
+
+// Explicit columns so a place without a client still starts its own row.
+.c-stack-tt__at {
+  grid-column: 1;
+  font-weight: 600;
+}
+
+.c-stack-tt__for {
+  grid-column: 2;
+  text-align: right;
+  color: color-mix(in oklch, var(--tt-fg) 65%, transparent);
+}
+
+// ─── Plate ────────────────────────────────────────────────────────────────────
+
+// White gaps over gray cells read as channels cut into a single plate.
+.c-stack-plate {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  background-color: $white;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 1.5rem),
+    calc(100% - 1.5rem) 100%,
+    0 100%
+  );
+
+  @include respond(sm) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include respond(md) {
+    grid-column: 3 / -1;
+  }
+
+  @include respond(lg) {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.c-stack-plate__cell {
+  background-color: $light-gray;
+  transition:
+    background-color 0.3s $ease,
+    color 0.3s $ease;
+
+  &:hover {
+    background-color: $black;
+    color: $white;
+  }
+}
+
+.c-stack-plate__inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+
+  @include respond(lg) {
+    aspect-ratio: 1;
+  }
+}
+
+.c-stack-plate__icon {
+  width: $font-h4;
+  height: $font-h4;
+}
+
+.c-stack-plate__name {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  font-family: $suisse-intl-mono;
+  font-size: max($font-xs, 11px);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}

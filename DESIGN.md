@@ -171,6 +171,12 @@ Precise and utilitarian: clean borders, mono labels, minimal ornamentation. Ever
 - **Shadow:** soft drop shadow (see Elevation & Depth) — the system's only shadow use.
 - **Content:** an ID card. The portrait bleeds edge to edge across the top (4:3, top-anchored, full colour), then a caption: name at 700, and a two-row mono uppercase meta grid (Based in, Experience). Role is omitted because the panel opens over the hero headline that already states it.
 
+### Stack Plate
+- **Structure:** the home Tech Stack list is one sliced-corner plate (1.5rem cut, bottom-right), not separate tiles: a `ul` grid on columns 3–12 at `md`+, 2 / 3 / 6 cells across (base / `sm` / `lg`). Cells are hairline-gray and separated by 2px paper-white gaps, so the white reads as channels cut into a single plate.
+- **Cell:** a react-icons logo on `currentColor` centred at 2.5rem, with the tool name as a mono uppercase label pinned bottom-left. 4:3 cells, square at `lg`. Nothing else: no years, usage, or counts on the surface.
+- **Hover:** the cell inverts to ink-black with paper-white contents over 0.3s on the standard ease, the same inversion the buttons use.
+- **Tooltip:** each cell opens the signal-orange tooltip after a 0.68s hover delay (the hero portrait keeps its near-instant open). Content follows the ID-card caption: tool name at 700, a mono "Used at" label, then a two-column mono list of company and client/project, drawn from `stack.js`.
+
 ### Hero Stack
 A centered calling card on grid columns 4–9, everything text-aligned center. Top to bottom: circular portrait (3.5rem, tooltip trigger) → mono email link (lowercase, quiet-white, 0.06em tracking; underlines and goes full white on hover/focus) → role line in Display → intro sentence in Body at quiet-white, max-width 30rem, balanced → orange asterisk separator (a 0.75rem inline SVG on `currentColor`, the view's one signal) → mono uppercase references line (0.14em tracking, quiet-white) → one filled-white button. Reveals on load with the existing text-reveal/mask stagger.
 

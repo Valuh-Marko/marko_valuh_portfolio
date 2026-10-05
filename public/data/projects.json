@@ -113,9 +113,9 @@
               ],
               "guard": "A ticket is private to its author and staff. A neighbour who asks for it gets 403, and the e2e suite checks that.",
               "shot": {
-                "src": null,
-                "caption": "Moj stan with IPS QR",
-                "alt": "Resident's Moj stan view: the unit's ledger and an IPS QR code for paying it"
+                "src": "/images/resident_screenshot.webp",
+                "caption": "Početna · building feed",
+                "alt": "Resident's home page: pinned building announcements in the feed, with their own tickets alongside"
               }
             },
             {
@@ -131,9 +131,9 @@
               ],
               "guard": "Every finance write records an audit row in the same transaction, and a published report locks its period.",
               "shot": {
-                "src": null,
+                "src": "/images/upravnik_screenshot.webp",
                 "caption": "Finansije · Pregled",
-                "alt": "The building's finance overview: balances, budget against actual, and arrears"
+                "alt": "The building's finance overview: account balance, the period's income and expenses by fund, and totals by category"
               }
             },
             {
@@ -148,7 +148,7 @@
               ],
               "guard": "The only role that can create a building. An upravnik who tries gets 403.",
               "shot": {
-                "src": null,
+                "src": "/images/super_admin_screenshot.webp",
                 "caption": "Setup wizard · FloorEditor",
                 "alt": "Step two of the setup wizard: a building's units laid out floor by floor"
               }
@@ -425,9 +425,9 @@
             }
           ],
           "shot": {
-            "src": null,
-            "caption": "Uvoz · statement review",
-            "alt": "Bank statement import review, with lines matched to units by payment reference"
+            "src": "/images/import_screenshot.webp",
+            "caption": "Uvoz izvoda · column mapping",
+            "alt": "Bank statement import dialog: encoding, delimiter, date and decimal format, and CSV columns mapped to fields such as poziv na broj"
           }
         },
         "provisioning": {
