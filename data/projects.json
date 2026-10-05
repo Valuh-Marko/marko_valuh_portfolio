@@ -3,8 +3,8 @@
     {
       "id": 0,
       "title": "Upravnik Platform",
-      "excerpt": "Property-management platform for residential buildings in Serbia. Building managers, board members, and residents each get their own view of the same building.",
-      "excerpt_xl": "Upravnik Platform is a role-based property-management system for residential buildings in Serbia. It replaces the WhatsApp group and the paper notice in the lobby with one place for announcements, forum threads, private support tickets, chat, and shared documents.\n\nI built both halves: a NestJS/Prisma/PostgreSQL API and a Next.js/React frontend. The data model, the permission rules, and every screen are mine.",
+      "excerpt": "Property-management platform for residential buildings in Serbia. Residents, building managers, and board members each get their own view of the same building, including its money.",
+      "excerpt_xl": "Upravnik Platform is a role-based property-management system for residential buildings in Serbia. It replaces the WhatsApp group, the paper notice in the lobby, and the spreadsheet nobody else can see with one place for announcements, forum threads, private support tickets, chat, and the building's finances.\n\nI built all of it in one Nx monorepo: a NestJS/Prisma/PostgreSQL API and a Next.js/React frontend. The data model, the access rules, the finance ledger, and every screen are mine.",
       "url": "upravnik-platform",
       "img_url": "/images/upravnik_logo.svg",
       "image": "/images/up.webp",
@@ -16,271 +16,576 @@
           "PostgreSQL",
           "Next.js",
           "React",
-          "TypeScript"
+          "TypeScript",
+          "Nx"
         ],
         "stats": [
           {
-            "value": "46",
-            "label": "API endpoints across 13 feature areas"
+            "value": "91",
+            "label": "HTTP endpoints across 17 controllers"
           },
-          { "value": "17", "label": "Data models behind the permission rules" },
-          { "value": "1", "label": "Engineer, backend and frontend" }
+          {
+            "value": "32",
+            "label": "Data models, from units to the finance ledger"
+          },
+          {
+            "value": "194",
+            "label": "Automated tests, 132 of them end to end"
+          }
         ],
-        "footer": ["PRE-1.0", "SOLO PROJECT"]
+        "footer": [
+          "PRE-1.0",
+          "SOLO PROJECT"
+        ]
       },
       "caseStudy": {
-        "overview": {
-          "lede": "Upravnik Platform is a role-based property-management system for residential buildings in Serbia. Announcements, forum threads, private support tickets, chat, and shared documents all live behind one login, in place of the WhatsApp group and the paper notice in the lobby.",
-          "results": [
+        "hero": {
+          "hook": "Property management for residential buildings in Serbia. Three people see the same building from different seats, and since October 2026 it also keeps the building's books.",
+          "status": "PRE-1.0",
+          "period": "Jul–Oct 2026",
+          "highlights": [
+            "IPS QR payments",
+            "Auto-matched bank statements",
+            "Built on Serbian housing law"
+          ],
+          "index": [
             {
-              "label": "Shared record",
-              "value": "Every announcement, ticket, and reply stays searchable in one place."
+              "id": "seats",
+              "label": "Three seats",
+              "note": "What the resident, upravnik, and super admin each see"
             },
             {
-              "label": "No install",
-              "value": "Runs in the browser. Residents download nothing."
+              "id": "access",
+              "label": "Access",
+              "note": "Deny by default, proven by an e2e matrix"
             },
             {
-              "label": "Five tools in one",
-              "value": "Announcements, forum, support tickets, chat, and documents."
+              "id": "money",
+              "label": "Money",
+              "note": "An immutable ledger and locked periods"
             }
           ]
         },
-        "snapshot": {
-          "backend": {
-            "repo": "Backend API",
-            "stack": "NestJS, Prisma, PostgreSQL"
-          },
-          "frontend": {
-            "repo": "Frontend Web App",
-            "stack": "Next.js, React, TypeScript"
-          },
-          "realTime": "Socket.IO chat with read receipts and automatic notifications",
-          "apiSurface": "46 API endpoints across 13 feature areas, plus real-time chat",
-          "contractDiscipline": "Every endpoint change lands in the Postman collection the same day",
-          "soloNote": "I designed the data model, wrote the permission logic, and built both the API and the frontend."
-        },
-        "problem": {
-          "lede": "Residential buildings in Serbia, especially larger complexes built from several connected blocks, run informally. The manager pins a notice to the board in the lobby, residents raise problems in a WhatsApp group, and nothing records who asked for what or whether the leak ever got fixed.",
+        "building": {
+          "title": "One building, modelled strictly.",
+          "lede": "Residential buildings in Serbia mostly run informally: a notice pinned in the lobby, a WhatsApp group for complaints, the money in a spreadsheet only the manager sees. The housing law still gives every owner the right to see the building's account, and obliges the upravnik to keep records and report on them.",
           "body": [
-            "A Complex is an optional grouping of buildings that share something physical: a courtyard, a parking structure, a boiler room. Not every building belongs to one.",
-            "A Building always belongs to at most one Complex, and owns its own units, announcements, documents, forum threads, tickets, and chat.",
-            "A Unit (apartment, office, or commercial space) belongs to exactly one Building and can be linked to at most one account, enforced at the database level, not just in application logic.",
-            "Accounts are never self-registered. There is no public sign-up. A building manager creates each resident's account and hands over the credentials, which matches how it already works, since the manager knows who lives in which apartment. A public sign-up would mean verifying that claim; this way there is nothing to verify."
+            "Accounts are never self-registered. The upravnik creates each resident's account and hands over the generated credentials, which matches how it already works: the manager knows who lives in which apartment. A public sign-up would mean verifying that claim; this way there is nothing to verify."
           ],
-          "hierarchy": ["Complex (optional)", "Building", "Unit"],
-          "closing": "Everything else builds on this hierarchy. Every authorization decision in the backend comes down to one question: which buildings is this user a member of, and with what role."
+          "tree": [
+            {
+              "name": "Platform",
+              "note": "Super admins sit here, above every building."
+            },
+            {
+              "name": "Complex",
+              "note": "Optional. Buildings that share a courtyard, a garage, or a boiler room."
+            },
+            {
+              "name": "Building",
+              "note": "Owns its units, announcements, documents, forum, tickets, chat, and finances."
+            },
+            {
+              "name": "Unit",
+              "note": "An apartment, office, or shop. Unit numbers are unique per building."
+            },
+            {
+              "name": "Account",
+              "note": "At most one per unit, enforced by the database."
+            }
+          ],
+          "closing": "Every authorization decision traces back to one question: which buildings is this user a member of, and with what role."
+        },
+        "seats": {
+          "title": "Three seats, one building.",
+          "intro": "Each role gets its own app shell, and the same URL can render a different page: /tickets shows the upravnik the whole queue and a resident only their own threads.",
+          "items": [
+            {
+              "id": "seat-resident",
+              "seat": "Resident",
+              "role": "RESIDENT",
+              "summary": "A unit account, created by the upravnik and tied to exactly one apartment.",
+              "can": [
+                "Read the building feed: announcements and forum threads, pinned items first.",
+                "Open private tickets and follow them to resolution, with unread badges.",
+                "See their own unit ledger in Moj stan and pay it with an IPS QR code from any Serbian banking app.",
+                "See the building's balances and budget, with other owners' payments shown only as \"Uplata – stan 12\"."
+              ],
+              "guard": "A ticket is private to its author and staff. A neighbour who asks for it gets 403, and the e2e suite checks that.",
+              "shot": {
+                "src": null,
+                "caption": "Moj stan with IPS QR",
+                "alt": "Resident's Moj stan view: the unit's ledger and an IPS QR code for paying it"
+              }
+            },
+            {
+              "id": "seat-upravnik",
+              "seat": "Upravnik",
+              "role": "UPRAVNIK · BOARD_MEMBER",
+              "summary": "The building manager, and the elected board who read everything and write some of it.",
+              "can": [
+                "Create units and resident accounts, then hand out the generated credentials.",
+                "Post announcements and documents; answer, close, and pin.",
+                "Keep the books in Finansije: record income and expenses, issue monthly charges, import bank statements, publish reports.",
+                "Board members read all of it, including raw bank data. Only the upravnik writes money."
+              ],
+              "guard": "Every finance write records an audit row in the same transaction, and a published report locks its period.",
+              "shot": {
+                "src": null,
+                "caption": "Finansije · Pregled",
+                "alt": "The building's finance overview: balances, budget against actual, and arrears"
+              }
+            },
+            {
+              "id": "seat-super-admin",
+              "seat": "Super admin",
+              "role": "SUPER_ADMIN",
+              "summary": "Platform staff. Creates buildings and complexes, never runs one.",
+              "can": [
+                "Provision one building, several standalone buildings, or a whole complex in one wizard.",
+                "Lay out units floor by floor, generate them, or import a CSV.",
+                "Submit the whole structure as one all-or-nothing request."
+              ],
+              "guard": "The only role that can create a building. An upravnik who tries gets 403.",
+              "shot": {
+                "src": null,
+                "caption": "Setup wizard · FloorEditor",
+                "alt": "Step two of the setup wizard: a building's units laid out floor by floor"
+              }
+            }
+          ]
+        },
+        "engineer": {
+          "title": "The engineer's seat.",
+          "body": "Underneath the three seats, every request asks one question: who is this, and which building are they in? The rest of the page is how that question gets answered, how the money stays honest, and what isn't built yet."
         },
         "architecture": {
-          "backend": {
-            "title": "Backend",
-            "stack": [
-              "NestJS 11",
-              "Prisma 7",
-              "PostgreSQL 16",
-              "JWT Authentication",
-              "Real-time chat (Socket.IO)",
-              "API documentation (Swagger)"
-            ],
-            "body": "NestJS and Prisma over PostgreSQL, containerized so local and production behave the same, with JWT authentication, a real-time chat layer, and generated API docs. The validation pipe rejects any field an endpoint didn't declare, so a client can't smuggle in an extra property and overwrite something it shouldn't."
-          },
-          "frontend": {
-            "title": "Frontend",
-            "stack": [
-              "Next.js 16",
-              "React 19",
-              "TypeScript",
-              "React Query",
-              "Axios",
-              "Tailwind CSS + shadcn/ui"
-            ],
-            "body": "Next.js, React, and TypeScript. Routing decides which experience you get: residents, board members, and building managers land in different app shells assembled from the same component set. Running the newest Next.js and React was a deliberate bet on the fastest-moving part of the stack."
-          },
+          "title": "One monorepo, two apps.",
+          "intro": "An Nx workspace holding apps/backend and apps/frontend. Both repositories were merged in with their history in September 2026, and CI runs lint, test, and build on whatever a change affects.",
+          "apps": [
+            {
+              "name": "Backend",
+              "stack": [
+                "NestJS 11",
+                "Prisma 7",
+                "PostgreSQL 16",
+                "Socket.IO",
+                "Swagger"
+              ],
+              "body": "NestJS and Prisma over PostgreSQL in Docker, with JWT auth, a Socket.IO gateway for building chat, and generated API docs. The validation pipe rejects any field an endpoint didn't declare, environment variables are checked at boot, and files go to S3-compatible storage."
+            },
+            {
+              "name": "Frontend",
+              "stack": [
+                "Next.js 16",
+                "React 19",
+                "TypeScript",
+                "TanStack Query 5",
+                "Tailwind 4",
+                "shadcn/ui"
+              ],
+              "body": "Next.js App Router with a route group per role. TanStack Query is the only server-state layer, with one API module and one hook module per backend resource. Amounts never become floats: they arrive as strings and the arithmetic runs in integer paras with BigInt."
+            }
+          ],
           "layers": [
             {
               "name": "Identity",
-              "models": "One account system for everyone on the platform: admins, building managers, board members, and residents."
+              "models": "User"
             },
             {
               "name": "Structure",
-              "models": "The physical hierarchy: complexes, buildings, and units."
+              "models": "Complex, Building, Unit"
             },
             {
               "name": "Membership",
-              "models": "Role-based access scoped to the building each person belongs to. Permissions never leak across buildings."
+              "models": "BuildingMember: one role per user per building"
             },
             {
               "name": "Content",
-              "models": "Announcements and shared documents. Building-scoped, low interaction."
+              "models": "Announcement, Document"
             },
             {
               "name": "Interaction",
-              "models": "Anything with a back-and-forth: forum threads, support tickets, cross-building discussions, and live chat."
+              "models": "Threads, tickets, complex threads, chat, with their replies and reads"
+            },
+            {
+              "name": "Finance",
+              "models": "15 models: ledger, invoices, fee rules, charges, statement imports, budgets, files"
             },
             {
               "name": "System",
-              "models": "Activity logging and notifications."
+              "models": "AuditLog, Notification"
             }
           ]
         },
-        "dataModel": {
-          "rolesIntro": "The permission system separates who someone is from what they can do. Every person is either platform staff or a resident tied to a unit, and separately holds one role in one building: manager, board member, or resident. A handful of platform administrators sit above all of that with system-wide access. A unique constraint in the database stops anyone from holding two roles in the same building, so permissions can't go ambiguous.",
-          "authLayers": [
+        "access": {
+          "title": "Denied unless declared.",
+          "lede": "Every HTTP handler declares exactly one access policy. The app refuses to boot if a handler has none, or if a building-scoped route is missing the parameter the guard reads.",
+          "policies": [
             {
-              "num": "01",
-              "title": "Platform-level access control",
-              "body": "One check that gates platform-wide operations. Creating a building or an administrator account is admin-only, and nothing further down needs to know about it."
+              "name": "@Public()",
+              "note": "Login, and nothing else."
             },
             {
-              "num": "02",
-              "title": "Role-based permissions",
-              "body": "A declarative guard that restricts actions by role. Only building managers and board members can post an announcement."
+              "name": "@AnyUser()",
+              "note": "Any signed-in, active account."
             },
             {
-              "num": "03",
-              "title": "Ownership-aware permissions",
-              "body": "The nuanced one, used in the two hardest areas of the product: support tickets and cross-building discussions. Access depends on ownership as well as role. A resident can read and reply to their own ticket; staff can act on any ticket in the building."
+              "name": "@SuperAdmin()",
+              "note": "Platform staff only."
+            },
+            {
+              "name": "@InBuilding(...roles)",
+              "note": "A member of this building, with one of these roles."
+            },
+            {
+              "name": "@InComplex(...roles)",
+              "note": "The caller's highest active role across the complex's buildings."
             }
           ],
-          "callerRoleNote": "The trickiest permission logic sits in the cross-building forum. A complex can span several buildings, and the same person might be a resident in one and a board member in another. The system gives them their highest role anywhere in the complex, and blocks them only if they hold no membership in any of its buildings."
-        },
-        "businessLogic": [
-          {
-            "title": "Read tracking and notifications",
-            "body": "Opening a ticket marks it read, and so does replying, without a background job or a separate tracking table. Each ticket event notifies exactly the people it should: a new ticket alerts building staff, a resident's reply alerts them again, and a staff reply goes only to the resident who opened it. Every in-app message is written in Serbian, because that is who uses this."
-          },
-          {
-            "title": "All-or-nothing setup",
-            "body": "Creating a complex with its buildings and every unit runs inside one transaction. If unit 47 fails, buildings 1 through 3 don't survive either, so there is no half-built complex to clean up by hand. It exists because the admin bulk-setup wizard needed it, and the endpoint and the wizard were designed as one thing."
-          }
-        ],
-        "process": {
           "body": [
-            "Every API change goes into the collection as it happens, with example requests, responses, required permissions, and error cases, so the frontend always has an accurate reference. A changelog tracks the same changes in order, which is the readable version of that history.",
-            "Documentation is a deliverable here. A living design document holds the mission, the account and role model, the data structure, and the order things get built in. The bulk-setup wizard got a full handoff spec covering layout, data format, and behavior before a line of it existed, which is why the two sides fit together on the first try.",
-            "The build order tells its own story. Structure first: buildings, units, accounts, roles. Then platform administration, operational details, private ticketing, read receipts, and cross-building discussions. Foundation first, product features after."
-          ]
+            "One AccessService turns a user plus a building into a role, and both the HTTP routes and the WebSocket chat go through it. Rules a role can't express, like a resident seeing only their own tickets or nobody replying to a closed thread, are plain functions in one file.",
+            "The user is reloaded on every request, so a disabled account, or a token issued before a password change, gets 401."
+          ],
+          "matrix": {
+            "caption": "Every filled cell is an assertion in the e2e suite, run against a real PostgreSQL database. A dash means that pair isn't asserted.",
+            "cols": [
+              "Read building A",
+              "Read A1's ticket",
+              "Read finance",
+              "Record a payment",
+              "Payer name and account",
+              "Create a building"
+            ],
+            "rows": [
+              {
+                "actor": "Super admin",
+                "cells": [
+                  "200",
+                  null,
+                  null,
+                  null,
+                  null,
+                  "201"
+                ]
+              },
+              {
+                "actor": "Upravnik A",
+                "cells": [
+                  "200",
+                  "200",
+                  null,
+                  "201",
+                  null,
+                  "403"
+                ]
+              },
+              {
+                "actor": "Board A",
+                "cells": [
+                  "200",
+                  "200",
+                  "200",
+                  "403",
+                  "shown",
+                  null
+                ]
+              },
+              {
+                "actor": "Resident A1, the author",
+                "cells": [
+                  "200",
+                  "200",
+                  "200",
+                  "403",
+                  null,
+                  null
+                ]
+              },
+              {
+                "actor": "Resident A2, a neighbour",
+                "cells": [
+                  null,
+                  "403",
+                  "200",
+                  null,
+                  "hidden",
+                  null
+                ]
+              },
+              {
+                "actor": "Resident B, other building",
+                "cells": [
+                  "403",
+                  "403",
+                  "403",
+                  null,
+                  null,
+                  null
+                ]
+              },
+              {
+                "actor": "Deactivated",
+                "cells": [
+                  "403",
+                  null,
+                  "403",
+                  null,
+                  null,
+                  null
+                ]
+              },
+              {
+                "actor": "Outsider",
+                "cells": [
+                  "403",
+                  "403",
+                  "403",
+                  null,
+                  null,
+                  null
+                ]
+              }
+            ]
+          },
+          "growth": {
+            "title": "How it got here",
+            "body": "Authorization first grew in three layers, an admin guard, a roles guard, and inline checks in services, attached controller by controller. An audit found real holes: an upravnik could reset the password of a member of another building (S1), a ticket could be opened in a building the caller didn't belong to (S2), generated passwords used Math.random (S4), and the JWT secret had a hard-coded fallback (S5). Rather than patch endpoints one by one, I inverted the default, and every finding got a regression test."
+          }
         },
-        "frontendDeepDive": {
-          "body": "The frontend splits into separate experiences per user type: residents, board members, building managers, and platform administrators. Each gets its own navigation and layout, enforced at the routing level so nobody wanders into a page meant for someone else. The same route can also render a different page depending on who is logged in. Support tickets show a building manager the full queue and a resident only their own threads. One data layer handles fetching and caching for the whole app, kept in sync with every backend change.",
-          "standoutFeature": {
-            "title": "Bulk Setup Wizard",
-            "intro": "The most elaborate thing in the frontend, and the clearest case of the API and the UI being designed together.",
-            "steps": [
-              "A 3-step guided wizard: Scope, Buildings, Review. This lets an administrator set up a single building, several standalone buildings, or an entire complex in one flow.",
-              "Units can be generated automatically (by floor count and units per floor, with a choice of numbering style) or entered manually, building by building.",
-              "A CSV import mode that automatically detects whether the file describes one building, several buildings, or a full complex, and flags row-level errors before anything is submitted.",
-              "A live tree of the structure so far, so the admin can check it before committing.",
-              "One request creates the complex, its buildings, and every unit, then drops the admin on the new building list."
+        "money": {
+          "title": "Money that can't be quietly edited.",
+          "lede": "Finance went in on 5 October 2026 as phases 1–4 of a written plan, grounded in the housing law: owners may see the account, the upravnik must keep records and report, and fees split per unit and per square metre.",
+          "ledger": {
+            "caption": "Illustrative data",
+            "rows": [
+              {
+                "id": "T-0411",
+                "date": "03.09.",
+                "text": "Uplata – stan 12",
+                "amount": "+4.850,00"
+              },
+              {
+                "id": "T-0412",
+                "date": "08.09.",
+                "text": "Servis lifta, račun 118/26",
+                "amount": "−18.000,00"
+              },
+              {
+                "id": "T-0413",
+                "date": "11.09.",
+                "text": "Uplata – stan 7",
+                "amount": "+4.850,00"
+              },
+              {
+                "id": "T-0414",
+                "date": "14.09.",
+                "text": "Storno: wrong unit",
+                "amount": "−4.850,00",
+                "reverses": "T-0413"
+              },
+              {
+                "id": "T-0415",
+                "date": "14.09.",
+                "text": "Uplata – stan 17",
+                "amount": "+4.850,00"
+              }
+            ],
+            "lock": "Report for September published. Period locked.",
+            "refused": {
+              "date": "20.09.",
+              "text": "Any write dated in September",
+              "result": "409 Conflict"
+            }
+          },
+          "points": [
+            {
+              "title": "An immutable ledger",
+              "body": "Transactions are never edited or deleted. A correction is a storno entry linked to the original, and a unique key means a transaction can be reversed once. Invoices are cancelled with a reason, and their paid status is derived, never stored."
+            },
+            {
+              "title": "Decimals end to end",
+              "body": "Decimal(14,2) in PostgreSQL, serialized as strings and summed in SQL. The frontend works in integer paras with BigInt and accepts amounts the way people type them in Serbia: 12.500,50."
+            },
+            {
+              "title": "Charges, exactly once",
+              "body": "Fee rules per unit or per square metre generate monthly charges. A cron job runs at 06:00 on the 1st, Belgrade time, and a Postgres advisory lock per building means the scheduler and a manual click can't charge twice."
+            },
+            {
+              "title": "Bank statement import",
+              "body": "CSV statements in UTF-8 or windows-1250 are deduplicated by a hash of the line plus its occurrence count, so two identical payments on one day stay two payments. Lines are matched to units by poziv na broj and to suppliers by account number, reviewed, then committed all-or-nothing."
+            },
+            {
+              "title": "Reports lock the period",
+              "body": "A server-rendered PDF report, once published, locks its period. Any write dated inside it returns 409, checked at 10 call sites."
+            },
+            {
+              "title": "Audit and privacy",
+              "body": "Every finance write records an audit row in the same database transaction. Payer names and account numbers are for staff only. Uploaded PDFs are checked by their magic bytes, not their extension, and served through five-minute signed URLs."
+            }
+          ],
+          "shot": {
+            "src": null,
+            "caption": "Uvoz · statement review",
+            "alt": "Bank statement import review, with lines matched to units by payment reference"
+          }
+        },
+        "provisioning": {
+          "title": "A whole complex in one request.",
+          "lede": "The super-admin wizard and its endpoint were designed as one thing. POST /setup/bulk creates a complex, its buildings, and every unit inside one database transaction. If unit 47 fails, nothing survives, so there is no half-built complex to clean up by hand.",
+          "steps": [
+            {
+              "name": "Vrsta",
+              "note": "One building, several standalone buildings, or a complex."
+            },
+            {
+              "name": "Zgrade i jedinice",
+              "note": "A FloorEditor per building: units laid out floor by floor and edited in place, a generator for floors × units, and Dupliraj to copy a layout to the next building."
+            },
+            {
+              "name": "Pregled",
+              "note": "Review the whole structure, then submit it as one call."
+            }
+          ],
+          "details": [
+            "CSV import with a template that opens correctly in Serbian Excel (UTF-8 with a BOM, semicolons), a windows-1250 fallback, and row-level errors before anything is sent.",
+            "Duplicate unit numbers are caught in the form and, as a backstop, by a unique constraint per building. A request is capped at 1,000 units."
+          ],
+          "growth": "The FloorEditor replaced an earlier live tree preview, which showed the structure but couldn't edit it."
+        },
+        "process": {
+          "title": "Tested against a real database.",
+          "body": [
+            "The e2e suites boot the whole NestJS app and run against a real PostgreSQL database, so a passing test means the policy, the query, and the response all agree. The access matrix above is one of those suites, written as a table of actors and endpoints.",
+            "Finance carries the most tests because a mistake there costs someone money: posting and reversing entries, monthly charges that are safe to run twice, statement imports that commit all or nothing, and reports that lock their period.",
+            "Every endpoint change also lands in the Postman collection the same day, with examples, required roles, and error cases, so the API stays usable by hand as well as by tests."
+          ],
+          "tests": {
+            "total": "194",
+            "caption": "Automated tests",
+            "groups": [
+              {
+                "name": "Backend unit",
+                "count": 53,
+                "note": "Access service, policies, env checks, charge maths, CSV parsing, password generation"
+              },
+              {
+                "name": "Finance e2e",
+                "count": 76,
+                "note": "Ledger 30, charges 19, imports 12, reports 15"
+              },
+              {
+                "name": "Access matrix e2e",
+                "count": 35,
+                "note": "Actor × endpoint, from the table above"
+              },
+              {
+                "name": "Accounts, chat, setup e2e",
+                "count": 21,
+                "note": "9, 7, and 5"
+              },
+              {
+                "name": "Frontend",
+                "count": 9,
+                "note": "Money formatting, the IPS QR payload, input validation"
+              }
             ]
           }
         },
-        "featureInventory": [
-          {
-            "name": "Secure login with role-based access for every type of user",
-            "status": "Shipped"
-          },
-          {
-            "name": "Unified activity feed with announcements and forum posts in one place, pinned items first",
-            "status": "Shipped"
-          },
-          {
-            "name": "Announcements with pin/unpin for staff",
-            "status": "Shipped"
-          },
-          {
-            "name": "Threaded discussions, both within a building and across an entire complex",
-            "status": "Shipped"
-          },
-          {
-            "name": "Private support tickets from first message to resolution, with unread indicators",
-            "status": "Shipped"
-          },
-          {
-            "name": "Resident and unit directory with occupancy status",
-            "status": "Shipped"
-          }
-        ],
-        "designSystem": {
-          "intro": "The interface runs on a custom palette: teal for the brand, warm neutrals for surfaces and text, and three accents that color-code content types. Announcements, forum, chat, and documents keep their own color everywhere they appear. Type pairs a UI sans with a monospace face for numbers and timestamps.",
-          "swatches": [
+        "growth": {
+          "title": "Three months, four bursts.",
+          "bursts": [
             {
-              "name": "pine",
-              "hex": "#0f6f5c",
-              "usage": "Brand · board & announcements"
+              "date": "2026-07-08",
+              "title": "First version",
+              "body": "Two separate repositories: the backend with its core schema, roles, tickets, forums, and chat, and the frontend scaffolded with every role group and the data layer."
             },
             {
-              "name": "stone",
-              "hex": "#8a8477",
-              "usage": "Neutral surfaces, text, borders"
+              "date": "2026-09-30",
+              "title": "Monorepo and trust",
+              "body": "Both repositories merged into one Nx workspace with history kept, and authorization rewritten to deny by default with its e2e suite."
             },
-            { "name": "amber", "hex": "#c98a1e", "usage": "Forum" },
-            { "name": "sky", "hex": "#2f8fd1", "usage": "Chat" },
-            { "name": "violet", "hex": "#7a5fc4", "usage": "Docs" }
-          ],
-          "fonts": [
-            { "name": "Hanken Grotesk", "usage": "UI text / prose" },
-            { "name": "JetBrains Mono", "usage": "Numeric / timestamp data" }
+            {
+              "date": "2026-10-01",
+              "title": "Provisioning",
+              "body": "Product and design docs, shared UI components, and the FloorEditor and CSV import in the setup wizard."
+            },
+            {
+              "date": "2026-10-05",
+              "title": "Finance",
+              "body": "Phases 1–4 in one pull request: ledger, charges, statement import, budgets, and reports, about 20,500 lines with tests and docs."
+            }
           ]
         },
-        "warStory": {
-          "title": "The sidebar bug",
-          "body": "One push shipped the ticket system, color-coded categories, and the bulk setup wizard together, and it broke the building sidebar. Expanding a building collapsed it again immediately, so you couldn't browse between buildings at all. A state reset was firing on every render instead of on a change. The fix was small: remember which building was active last, and reset the expand state only when that value changes."
+        "notYet": {
+          "title": "What isn't built yet.",
+          "deferrals": [
+            {
+              "title": "Chat UI",
+              "note": "The gateway is finished and hardened, with 7 e2e tests, but the page still shows a placeholder. Tickets, provisioning, and finance went first."
+            },
+            {
+              "title": "Document upload",
+              "note": "File storage exists, but only finance uses it. Documents are still a list of links."
+            },
+            {
+              "title": "Dashboard widgets, settings, members directory",
+              "note": "Placeholders in the UI, not faked."
+            },
+            {
+              "title": "Finance phase 5",
+              "note": "Complex-level roll-up, SEF import, and the NBS XML parser."
+            }
+          ]
         },
-        "scopeDeferrals": [
-          {
-            "title": "Real-time chat interface",
-            "note": "The backend does secure per-building messaging today. There is no chat UI yet, so that page shows a placeholder."
-          },
-          {
-            "title": "Full document management",
-            "note": "Documents can be listed and linked. Uploading and previewing files in the app is not built."
-          },
-          {
-            "title": "Building manager dashboard widgets",
-            "note": "Pinned content, personal to-dos, and an activity feed are planned. The page shows a preview of them for now."
-          },
-          {
-            "title": "Settings & cross-building member directory",
-            "note": "Planned, not built."
-          }
-        ],
-        "timeline": {
-          "backend": [
+        "designSystem": {
+          "title": "OKLCH, and no colour for money.",
+          "intro": "shadcn/ui over Tailwind 4's CSS-first theme. Every ramp is defined step by step in OKLCH, with a tuned dark-mode counterpart, not an inverted one, and ticket categories get their own hues: moss, rose, indigo, and plum. Finance has no colour of its own. Money uses only the status tokens, so it reads the same everywhere.",
+          "swatches": [
             {
-              "milestone": "Foundation",
-              "detail": "Core data structure: accounts, complexes, buildings, units, membership, announcements, documents, forums, chat, activity logs, and notifications"
+              "name": "pine-600",
+              "value": "oklch(52% 0.090 185)",
+              "usage": "Brand"
             },
             {
-              "milestone": "Platform administration",
-              "detail": "Introduced a platform-level administrator role, separate from building-level roles"
+              "name": "stone-500",
+              "value": "oklch(54% 0.008 75)",
+              "usage": "Surfaces, text, borders"
             },
             {
-              "milestone": "Operational refinements",
-              "detail": "Added operational details like resident counts per unit"
+              "name": "amber-500",
+              "value": "oklch(74% 0.142 62)",
+              "usage": "Forum, warnings"
             },
             {
-              "milestone": "Support tickets",
-              "detail": "Built the private support-ticket system"
+              "name": "sky-500",
+              "value": "oklch(60% 0.105 240)",
+              "usage": "Chat"
             },
             {
-              "milestone": "Read tracking",
-              "detail": "Added unread indicators for support tickets"
+              "name": "violet-500",
+              "value": "oklch(56% 0.110 300)",
+              "usage": "Documents"
             },
             {
-              "milestone": "Cross-building forum",
-              "detail": "Added discussions that span an entire complex, not just a single building"
+              "name": "green-500",
+              "value": "oklch(62% 0.120 150)",
+              "usage": "Paid"
+            },
+            {
+              "name": "red-500",
+              "value": "oklch(58% 0.185 25)",
+              "usage": "Overdue"
             }
           ],
-          "frontend": [
-            { "step": "Scaffold", "detail": "Initial project setup" },
+          "fonts": [
             {
-              "step": "Full build-out",
-              "detail": "One large push laying down nearly the entire app: role-based navigation for every user type, core pages, the full component library, and the data-fetching layer"
+              "name": "Hanken Grotesk",
+              "usage": "Interface and prose"
             },
             {
-              "step": "Feature push",
-              "detail": "A dense follow-up push that shipped the entire support-ticket system end-to-end, introduced color-coded content categories, fixed a sidebar navigation bug, added a mobile account menu, and built the full bulk setup wizard including CSV import and live preview"
+              "name": "JetBrains Mono",
+              "usage": "Amounts, unit numbers, dates"
             }
           ]
         }
