@@ -1,14 +1,6 @@
 @use "../../styles/variables" as *;
 @use "../../styles/mixin" as *;
 
-.c-stacking-cards {
-  // Own formatting context so the track's negative bottom margin shrinks
-  // this box instead of collapsing through it; `clip` (not `hidden`) keeps
-  // this from becoming a scroll container, which would break the sticky cards.
-  display: flow-root;
-  overflow: clip;
-}
-
 .c-stacking-cards__track {
   position: relative;
 }
@@ -17,6 +9,9 @@
   @include col-grid();
   position: sticky;
   top: 0;
+  // The parallax drift is a transform; keep each card on its own layer so it
+  // moves without repainting the image, clip-path and gradient.
+  will-change: transform;
   padding-top: $spacing-4;
   padding-bottom: $spacing-8;
   border-top: 1px dashed $gray;

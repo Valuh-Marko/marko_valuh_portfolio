@@ -1,10 +1,43 @@
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { Button } from "../../button/Button";
 
-export const Card = ({ label, index, data, top, long_desc, external = false }) => {
+export const Card = ({ label, index, data, speed, long_desc, external = false }) => {
+  const ref = useRef(null);
+  const nextRef = useRef(null);
+
+  // This card's height in px: once it sticks at the top, the next card
+  // covers it over exactly that much scroll. Motion's scroll offsets take
+  // px, so re-measure whenever the card resizes.
+  const [height, setHeight] = useState(null);
+
+  // Declared before useScroll so the next card is set when it measures.
+  useLayoutEffect(() => {
+    const el = ref.current;
+    // The next card is the next sibling in the track. The last card has
+    // nothing sliding over it, so it scrolls on as normal.
+    nextRef.current = el.nextElementSibling;
+    if (!nextRef.current) return;
+
+    const observer = new ResizeObserver(() => setHeight(el.offsetHeight));
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // From this card hitting the top until the next card lands on it. Once the
+  // next card sticks, its offsetTop includes the sticky offset, so progress
+  // holds at 1.
+  const { scrollYProgress } = useScroll({
+    target: nextRef,
+    offset: height ? [`start ${height}px`, "start start"] : undefined,
+  });
+  // Keep drifting up at a fraction of the scroll speed while covered.
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", `-${20 * speed}%`]);
+
   return (
     <motion.div
-      style={{ top: `${(index - 1) * 5}rem`, y: top }}
+      ref={ref}
+      style={height ? { y } : undefined}
       className="c-card-container"
     >
       <div className="c-section__label">
