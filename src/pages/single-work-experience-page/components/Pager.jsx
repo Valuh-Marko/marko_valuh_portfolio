@@ -8,7 +8,7 @@ export const Pager = ({ allEntries, currentIndex, company }) => {
 
   return (
     <div className="container">
-      <nav className="c-pager">
+      <nav className="c-pager" aria-label="Work experience">
         <div className="c-pager__prev">
           {prevEntry ? (
             <>

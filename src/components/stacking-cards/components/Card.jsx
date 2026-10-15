@@ -62,7 +62,7 @@ export const Card = ({ label, index, data, speed, long_desc, external = false })
             {data.caseStudy && <Button label="View Case Study" to={data.url} />}
           </>
         ) : (
-          data.url && <Button label="Find out more" to={data.url} />
+          data.url && <Button label={data.cta ?? "Find out more"} to={data.url} />
         )}
       </div>
 

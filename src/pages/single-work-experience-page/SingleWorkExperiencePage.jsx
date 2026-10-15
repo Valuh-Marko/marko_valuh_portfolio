@@ -1,33 +1,38 @@
-import { motion, useScroll, useTransform } from "motion/react";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { MotionConfig } from "motion/react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import workExperience from "../../assets/images/work_experience.webp";
-import { useWindowSize } from "../../hooks/useWindowSize";
+import { Button } from "../../components/button/Button";
+import { CaseHero } from "../single-project-page/components/CaseHero";
+import "../single-project-page/single-project-page.scss";
 import WithTransition from "../with-transition/WithTransition";
-import { ApproachSection } from "./components/ApproachSection";
-import { ContextSection } from "./components/ContextSection";
+import { ClientsSection } from "./components/ClientsSection";
 import { Pager } from "./components/Pager";
-import { ScopeSection } from "./components/ScopeSection";
-import { StackSection } from "./components/StackSection";
-import { WorkSection } from "./components/WorkSection";
+import { PointsSection } from "./components/PointsSection";
+import { ProseSection } from "./components/ProseSection";
+import { TeamSection } from "./components/TeamSection";
 import "./single-work-experience-page.scss";
+
+// Each job lists its own sections in work_experience.json; the type picks
+// the component. Each id doubles as the anchor the hero's contents link to.
+const SECTION_TYPES = {
+  clients: ClientsSection,
+  points: PointsSection,
+  prose: ProseSection,
+  team: TeamSection,
+};
+
+const NOT_FOUND = {
+  title: "Nothing here",
+  excerpt: "There is no work-experience page at this address.",
+};
 
 export const SingleWorkExperiencePage = WithTransition(
   ({ setContentLoaded }) => {
     const { name } = useParams();
 
-    const container = useRef(null);
-    const { scrollYProgress: heroScroll } = useScroll({
-      target: container,
-      offset: ["start start", "end start"],
-    });
-    const { height } = useWindowSize();
-    const y = useTransform(heroScroll, [0, 1], [0, height / 4]);
-
     const [data, setData] = useState(null);
     const [allEntries, setAllEntries] = useState([]);
     const [dataLoaded, setDataLoaded] = useState(false);
-    const [imageLoaded, setImageLoaded] = useState(false);
 
     useEffect(() => {
       fetch("/data/work_experience.json")
@@ -43,76 +48,52 @@ export const SingleWorkExperiencePage = WithTransition(
     }, [name]);
 
     useEffect(() => {
-      if (dataLoaded && imageLoaded) {
+      if (dataLoaded) {
         setContentLoaded();
       }
-    }, [dataLoaded, imageLoaded, setContentLoaded]);
+    }, [dataLoaded, setContentLoaded]);
 
-    const meta = data?.context?.meta;
-    const subheading = meta ? `${meta.role} · ${meta.location}` : "";
     const currentIndex = allEntries.findIndex((item) => item.url === name);
 
-    const sections = [
-      data?.context && {
-        key: "context",
-        render: (num) => <ContextSection context={data.context} num={num} />,
-      },
-      data?.scope?.length > 0 && {
-        key: "scope",
-        render: (num) => <ScopeSection scope={data.scope} num={num} />,
-      },
-      data?.work?.length > 0 && {
-        key: "work",
-        render: (num) => <WorkSection work={data.work} num={num} />,
-      },
-      data?.stack?.length > 0 && {
-        key: "stack",
-        render: (num) => <StackSection stack={data.stack} num={num} />,
-      },
-      data?.approach?.length > 0 && {
-        key: "approach",
-        render: (num) => <ApproachSection approach={data.approach} num={num} />,
-      },
-    ].filter(Boolean);
+    // CaseHero reads a project's shape.
+    const hero = data && {
+      title: data.company,
+      excerpt: data.excerpt,
+      spec: data.spec,
+      caseStudy: { hero: data.hero },
+    };
+
+    const sections = (data?.sections ?? []).map((section, i) => {
+      const Section = SECTION_TYPES[section.type];
+      return (
+        <div key={section.id} id={section.id} className="c-case-anchor" tabIndex={-1}>
+          <Section section={section} num={i + 1} />
+        </div>
+      );
+    });
 
     return (
-      <div className="c-single-page">
-        {/* ── Hero ─────────────────────────────────────────────── */}
-        <div ref={container} className="c-single-page-hero">
-          <div className="c-single-page-hero-container container">
-            <div className="c-page-hero__content">
-              <h1 className="c-single-page-hero__title">{data?.company}</h1>
-              <div className="c-single-page-hero-details">
-                <h3 className="c-single-page-hero-subtitle">
-                  <span className="big-subheading">{subheading}</span>
-                  <span className="small-subheading">{data?.subtitle}</span>
-                </h3>
-              </div>
+      <MotionConfig reducedMotion="user">
+        <div className="c-single-page c-case">
+          {dataLoaded && <CaseHero project={hero ?? NOT_FOUND} />}
+
+          {sections}
+
+          {dataLoaded && !data && (
+            <div className="container c-story__missing">
+              <Button label="All work experience" to="/work-experience" />
             </div>
-          </div>
-          <motion.img
-            className="c-single-page-hero-img"
-            src={workExperience}
-            alt="hero_img"
-            onLoad={() => setImageLoaded(true)}
-            style={{ y }}
-          />
+          )}
+
+          {currentIndex !== -1 && (
+            <Pager
+              allEntries={allEntries}
+              currentIndex={currentIndex}
+              company={data.company}
+            />
+          )}
         </div>
-
-        {/* ── Sections ─────────────────────────────────────────── */}
-        {sections.map(({ key, render }, index) => (
-          <Fragment key={key}>{render(index + 1)}</Fragment>
-        ))}
-
-        {/* ── Pager ────────────────────────────────────────────── */}
-        {allEntries.length > 0 && (
-          <Pager
-            allEntries={allEntries}
-            currentIndex={currentIndex}
-            company={data?.company}
-          />
-        )}
-      </div>
+      </MotionConfig>
     );
   },
 );

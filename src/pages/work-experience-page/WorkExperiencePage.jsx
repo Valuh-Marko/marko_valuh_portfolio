@@ -1,75 +1,37 @@
-import { motion, useScroll, useTransform } from "motion/react";
-import { useEffect, useRef, useState } from "react";
-import workExperience from "../../assets/images/work_experience.webp";
+import { MotionConfig } from "motion/react";
+import { useEffect, useState } from "react";
 import { StackingCards } from "../../components/stacking-cards/StackingCards";
-import { useWindowSize } from "../../hooks/useWindowSize";
+import { CaseHero } from "../single-project-page/components/CaseHero";
+import "../single-project-page/single-project-page.scss";
 import WithTransition from "../with-transition/WithTransition";
 import "./work_experience.scss";
 
+const HERO = {
+  title: "Work experience",
+  excerpt:
+    "Front-end work since February 2021. A small agency first, then two years on a live betting product at EPAM, three clients through NQode, and now AxiomQ.",
+};
+
 export const WorkExperiencePage = WithTransition(({ setContentLoaded }) => {
   const [response, setResponse] = useState();
-  const [dataLoaded, setDataLoaded] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const container = useRef(null);
-  const { scrollYProgress: heroScroll } = useScroll({
-    target: container,
-    offset: ["start start", "end start"],
-  });
-  const { height } = useWindowSize();
-  const y = useTransform(heroScroll, [0, 1], [0, height / 3]);
 
   useEffect(() => {
     async function fetchData() {
       const res = await fetch("/data/work_experience.json");
       const data = await res.json();
       setResponse(data);
-      setDataLoaded(true);
+      setContentLoaded();
     }
 
     fetchData();
-  }, []);
-
-  useEffect(() => {
-    if (dataLoaded && imageLoaded) {
-      setContentLoaded();
-    }
-  }, [dataLoaded, imageLoaded, setContentLoaded]);
+  }, [setContentLoaded]);
 
   return (
-    <>
-      <div className="c-work-experience">
-        <div ref={container} className="c-work-experience-hero">
-          <div className="c-work-experience-hero-container container">
-            <div className="c-page-hero__row">
-              <span className="c-section__label">
-                <span>/</span>
-                <span>Work Experience</span>
-              </span>
-              <div className="c-page-hero__content">
-                <h1 className="c-work-experience-hero__title">
-                  Experience & Expertise
-                </h1>
-                <div className="c-work-experience-hero-details">
-                  <h3 className="c-work-experience-hero-subtitle">
-                    Over 4 years of hands-on industry experience.
-                  </h3>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Background Paralax Image */}
-          <motion.img
-            className="c-work-experience-hero-img"
-            src={workExperience}
-            alt="hero_img"
-            onLoad={() => setImageLoaded(true)}
-            style={{
-              y: y,
-            }}
-          />
-        </div>
+    <MotionConfig reducedMotion="user">
+      <div className="c-work-experience c-case">
+        <CaseHero project={HERO} />
         <div className="container">
+          <h2 className="u-visually-hidden">Jobs</h2>
           {response && (
             <StackingCards
               className="c-work-experience__cards"
@@ -79,6 +41,6 @@ export const WorkExperiencePage = WithTransition(({ setContentLoaded }) => {
           )}
         </div>
       </div>
-    </>
+    </MotionConfig>
   );
 });

@@ -77,13 +77,13 @@ const SpecLine = ({ parts, separator, index, highlight = false }) => (
   </p>
 );
 
-// Black hero shared by every project page. Projects with a case study get
-// the full-height version with the spec lines and the contents; the rest
-// get title, excerpt and stack.
+// Black hero shared by every project and work-experience page. A hero with
+// contents gets the full-height version; the rest get the short one.
 export const CaseHero = ({ project }) => {
   const { lenis } = useContext(ScrollContext);
   const reduceMotion = useReducedMotion();
   const hero = project.caseStudy?.hero;
+  const full = hero?.index?.length > 0;
   const hook = hero?.hook ?? project.excerpt;
   const titleLength = project.title.length;
   const hookLength = hook.split(" ").length;
@@ -103,7 +103,7 @@ export const CaseHero = ({ project }) => {
   };
 
   return (
-    <header className={`c-case-hero${hero ? " c-case-hero--full" : ""}`}>
+    <header className={`c-case-hero${full ? " c-case-hero--full" : ""}`}>
       <div className="container c-case-hero__body">
         <div className="c-case-hero__main">
           <TextReveal
@@ -132,7 +132,7 @@ export const CaseHero = ({ project }) => {
                 index={specStart}
               />
             )}
-            {hero && (
+            {hero?.highlights?.length > 0 && (
               <SpecLine
                 parts={hero.highlights}
                 separator="/"
@@ -144,15 +144,15 @@ export const CaseHero = ({ project }) => {
               <SpecLine
                 parts={project.spec.stack}
                 separator="·"
-                index={specStart + 2 + (hero?.highlights.length ?? 0)}
+                index={specStart + 2 + (hero?.highlights?.length ?? 0)}
               />
             )}
           </div>
         </div>
       </div>
 
-      {hero && (
-        <nav className="container" aria-label="Case study contents">
+      {full && (
+        <nav className="container" aria-label="Contents">
           <ul className="c-case-hero__toc">
             {hero.index.map((entry, i) => (
               <motion.li

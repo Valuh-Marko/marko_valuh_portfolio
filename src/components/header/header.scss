@@ -286,44 +286,76 @@ $menu-hairline: rgba(255, 255, 255, 0.18);
   }
 }
 
-// CV button on the left, the three contact icons on the right.
 .c-header__menu-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: $spacing-1;
   margin-top: $spacing-2;
 }
 
-.c-header__menu-socials {
-  display: flex;
-  align-items: center;
-  gap: $spacing-2;
+// The second tier: the destinations' voice at a fraction of their size, laid
+// out as a ruled row (2×2 below lg, where four cells can't hold
+// "Download CV") so it reads as one set under the nav.
+.c-header__menu-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: $spacing-1;
+
+  @include respond(md) {
+    column-gap: $spacing-2;
+  }
+
+  @include respond(lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
-.c-header__menu-social {
-  display: inline-flex;
+// Label on the left, arrow pinned right so the scramble never shifts it.
+.c-header__menu-action {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding-block: clamp(0.75rem, 2vh, 1rem);
+  border-top: 1px dashed $menu-hairline;
+  font-family: $font-helvetica-now;
+  font-size: $font-lg;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
   color: $white;
-  transition: color 0.2s ease;
+  transition: opacity 0.2s ease;
   -webkit-tap-highlight-color: transparent;
-
-  svg {
-    width: 2rem;
-    height: 2rem;
-  }
-
-  @media (hover: hover) {
-    &:hover {
-      color: $orange;
-    }
-  }
 
   &:focus-visible {
     outline: 2px solid $orange;
     outline-offset: 2px;
+  }
+
+  @include respond(md) {
+    font-size: clamp($font-xl, 2vw, $font-h6);
+  }
+}
+
+// The arrow leans the way the link goes: out of the site, or down to disk.
+.c-header__menu-action-icon {
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  transition: translate 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+@media (hover: hover) {
+  .c-header__menu-actions:has(.c-header__menu-action:hover)
+    .c-header__menu-action:not(:hover) {
+    opacity: 0.4;
+  }
+
+  .c-header__menu-action:hover .c-header__menu-action-icon {
+    translate: 0.15em -0.15em;
+  }
+
+  .c-header__menu-action.is-download:hover .c-header__menu-action-icon {
+    translate: 0 0.15em;
   }
 }

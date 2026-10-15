@@ -1,30 +1,27 @@
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useContext, useEffect, useRef, useState } from "react";
-import { FaGithub, FaLinkedin } from "react-icons/fa6";
-import { MdEmail } from "react-icons/md";
+import { MdArrowDownward, MdOutlineArrowOutward } from "react-icons/md";
 import { Link, useLocation } from "react-router";
 import { ScrollContext } from "../../context/ScrollContext";
 import { useScrollLock } from "../../hooks/useLockScroll";
 import { useScrambleText } from "../../hooks/useScrambleText";
-import { Button } from "../button/Button";
 import "./header.scss";
 
 const NAV_LINKS = [
   { label: "Homepage", to: "/" },
-  { label: "Work Experience", to: "/work-experience" },
+  { label: "Experience", to: "/work-experience" },
   { label: "Projects", to: "/projects" },
 ];
 
 export const CV_FILE = "/files/Marko Valuh - Frontend Developer.pdf";
 
-const SOCIAL_LINKS = [
-  { label: "GitHub", href: "https://github.com/Valuh-Marko", Icon: FaGithub },
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/marko-valuh/",
-    Icon: FaLinkedin,
-  },
-  { label: "Email", href: "mailto:marko.valuh@gmail.com", Icon: MdEmail },
+// The second tier under the destinations: same behaviour, a fraction of the
+// size. The arrow says what the link does: fetch a file or leave the site.
+const ACTION_LINKS = [
+  { label: "Download CV", href: CV_FILE, isDownload: true },
+  { label: "GitHub", href: "https://github.com/Valuh-Marko" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/marko-valuh/" },
+  { label: "Email", href: "mailto:marko.valuh@gmail.com" },
 ];
 
 const HERO_SELECTOR =
@@ -111,6 +108,12 @@ const menuRowReduced = {
   closed: { opacity: 0 },
   open: { opacity: 1 },
 };
+// Passes the panel's state down and drops the action links in one by one
+// after the destinations.
+const menuActions = {
+  closed: {},
+  open: { transition: { staggerChildren: 0.05 } },
+};
 
 // aria-label keeps the accessible name stable while the visible text scrambles.
 const MenuLink = ({ label, to, isActive, onClick }) => {
@@ -128,6 +131,27 @@ const MenuLink = ({ label, to, isActive, onClick }) => {
     >
       {text}
     </MotionLink>
+  );
+};
+
+const MenuAction = ({ label, href, isDownload }) => {
+  const [text, scramble] = useScrambleText(label);
+  const Icon = isDownload ? MdArrowDownward : MdOutlineArrowOutward;
+
+  return (
+    <motion.a
+      href={href}
+      className={`c-header__menu-action${isDownload ? " is-download" : ""}`}
+      aria-label={label}
+      target={href.startsWith("mailto:") ? undefined : "_blank"}
+      rel="noreferrer"
+      onMouseEnter={() => scramble()}
+      whileTap={TAP_SCALE}
+      transition={TAP_TRANSITION}
+    >
+      <span>{text}</span>
+      <Icon className="c-header__menu-action-icon" aria-hidden="true" />
+    </motion.a>
   );
 };
 
@@ -341,35 +365,21 @@ export const Header = ({ shouldShow }) => {
               ))}
             </nav>
 
-            <motion.div
-              className="container c-header__menu-footer"
-              variants={reduceMotion ? menuRowReduced : menuRow}
-            >
-              <Button
-                label="Download CV"
-                to={CV_FILE}
-                blankTarget={true}
-                color="white"
-                variant="filled"
-                size="lg"
-              />
-              <div className="c-header__menu-socials">
-                {SOCIAL_LINKS.map((social) => (
-                  <a
-                    key={social.href}
-                    href={social.href}
-                    className="c-header__menu-social"
-                    aria-label={social.label}
-                    target={
-                      social.href.startsWith("mailto:") ? undefined : "_blank"
-                    }
-                    rel="noreferrer"
+            <div className="container c-header__menu-footer">
+              <motion.ul
+                className="c-header__menu-actions"
+                variants={menuActions}
+              >
+                {ACTION_LINKS.map((action) => (
+                  <motion.li
+                    key={action.href}
+                    variants={reduceMotion ? menuRowReduced : menuRow}
                   >
-                    <social.Icon />
-                  </a>
+                    <MenuAction {...action} />
+                  </motion.li>
                 ))}
-              </div>
-            </motion.div>
+              </motion.ul>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
