@@ -3,131 +3,221 @@
     {
       "id": 1,
       "company": "AxiomQ",
-      "title": "Front-end Developer at AxiomQ",
+      "title": "Full-Stack Developer at AxiomQ",
       "subtitle": "August 2026 – Present",
-      "excerpt": "Where I am now. AxiomQ is a software company out of Novi Sad with a second office in Harrisburg, Pennsylvania, building eLearning platforms, enterprise tools, and business process software for clients in the US and Europe. I work on the front end in React. The product itself sits under a strict NDA, so that is as much as I can say about it.",
+      "excerpt": "Where I am now, and the first job where I work on both ends of the stack. So far that has meant two projects: an events platform for a large pharmaceutical company and an application that extends a cloud-based ERP. Neither client can be named, so there are no screenshots.",
+      "cta": "Read the AxiomQ story",
       "image": "/images/axiomq.webp",
+      "url": "axiomq",
       "spec": {
         "location": "Novi Sad, Serbia",
-        "stack": ["React", "React Native", "Nest.js"]
-      }
+        "stack": ["React", "Next.js", "NestJS", "Claude", "Cursor"]
+      },
+      "hero": {
+        "status": "Novi Sad, Serbia",
+        "period": "Aug 2026 – Present",
+        "highlights": ["Full-stack", "Transactional outbox", "Two-way ERP sync"]
+      },
+      "sections": [
+        {
+          "id": "projects",
+          "type": "projects",
+          "label": "Two projects",
+          "title": "An events platform and an ERP sync engine",
+          "lede": "Both live in monorepos with NestJS on the server and React or Next.js in the browser, and on both I write code on each side.",
+          "items": [
+            {
+              "name": "Events platform",
+              "meta": "Large pharmaceutical company",
+              "summary": "A platform for running large professional events and the content shared around them.",
+              "built": [
+                {
+                  "term": "Integrations",
+                  "body": "Connections to the client's internal systems, its SDKs and outside data sources. Events between services go through a transactional outbox, so an event only leaves once the change behind it is committed."
+                },
+                {
+                  "term": "Scheduling",
+                  "body": "Modular scheduling, with integrations into third-party calendars."
+                },
+                {
+                  "term": "Component library",
+                  "body": "I helped build the in-house React component library the product's screens are made from."
+                }
+              ],
+              "tags": ["React", "NestJS", "Monorepo"]
+            },
+            {
+              "name": "ERP extension",
+              "meta": "Cloud-based ERP",
+              "summary": "An application that adds custom business features on top of a cloud-based ERP, so its users can do that work in one place.",
+              "built": [
+                {
+                  "term": "Two-way sync",
+                  "body": "A sync engine I designed and built. It keeps data consistent between the application and the ERP in near real time, in both directions, on custom job queues and sync workers."
+                },
+                {
+                  "term": "API and webhooks",
+                  "body": "The ERP's API and webhooks wired into the application, with custom modules built on top of them."
+                }
+              ],
+              "tags": ["Next.js", "NestJS", "Monorepo"]
+            }
+          ]
+        }
+      ]
     },
     {
       "id": 2,
       "company": "NQode",
       "title": "Front-end Developer at NQode",
-      "subtitle": "April 2024 – May 2026",
-      "excerpt": "An agency in Novi Sad, and three clients through it: one of several front-end teams on a greenhouse platform, the only front-end developer on a prop trading app, then two months of animation-heavy marketing sites.",
+      "subtitle": "April 2024 – June 2026",
+      "excerpt": "An agency in Novi Sad, and three clients through it: full-stack work on a greenhouse platform, sixteen months as the only front-end developer on a prop trading app, then marketing sites with a lot of motion for a digital agency.",
       "cta": "Read the NQode story",
       "image": "/images/brightfunded.webp",
       "url": "nqode",
       "spec": {
         "location": "Novi Sad, Serbia",
         "locationSub": "Hybrid",
-        "stack": ["Angular", "Next.js", "TypeScript", "RxJS", "GraphQL", "GSAP"]
+        "stack": ["Angular", "Next.js", "Nest.js", "TypeScript", "GraphQL", "Playwright"]
       },
       "hero": {
         "status": "Novi Sad · Hybrid",
-        "period": "Apr 2024 – May 2026",
+        "period": "Apr 2024 – Jun 2026",
         "highlights": [
           "Sole front end at BrightFunded",
-          "Two component libraries",
-          "GSAP marketing sites"
+          "A 35-component library",
+          "SSR and SEO at Source AG"
         ],
         "index": [
           {
             "id": "source-ag",
             "label": "Source AG",
-            "note": "One of several front-end teams, on Next.js and GraphQL"
+            "note": "Full-stack: server rendering, SEO, deploys and tests"
           },
           {
             "id": "brightfunded",
             "label": "BrightFunded",
-            "note": "The only front-end developer, about twelve screens"
+            "note": "The only front-end developer, for sixteen months"
           },
           {
             "id": "owow",
             "label": "Owow",
-            "note": "Two months of animation-heavy marketing sites"
+            "note": "Marketing sites on Next.js, Payload and GSAP"
           }
         ]
       },
       "sections": [
         {
-          "id": "clients",
-          "type": "clients",
-          "label": "Clients",
-          "title": "One agency, three clients.",
-          "intro": "Most of my time at NQode went to client work. Each of the three clients needed something different from me.",
-          "items": [
+          "id": "source-ag",
+          "type": "engagement",
+          "label": "Source AG",
+          "title": "Moving a greenhouse platform's rendering to the server",
+          "meta": "Apr – Nov 2024 · AgriTech · Full-stack",
+          "lede": "Source makes AI tools for commercial greenhouse growers. I worked across the stack there, on Next.js and Nest.js.",
+          "body": [
+            "The main job was moving rendering out of the browser. Pages arrived from the server already built, for a faster first load and markup search engines could crawl. Around that I set up the SEO, the deploy pipeline and the tests."
+          ],
+          "shot": {
+            "src": "/images/source.webp",
+            "caption": "Source · public site",
+            "alt": "Source's public home page: AI solutions for smarter greenhouse cultivation, with photos of tomatoes on the vine"
+          },
+          "built": [
             {
-              "id": "source-ag",
-              "name": "Source AG",
-              "meta": "Apr – Nov 2024 · AgriTech",
-              "summary": "A greenhouse-intelligence platform for commercial growers. Several front-end teams build it, and I worked in one of them.",
-              "did": [
-                "A Next.js front end that reads from a GraphQL API.",
-                "Some work on the Nest.js back end as well."
-              ],
-              "tags": ["Next.js", "GraphQL", "Nest.js", "Vercel"],
-              "shot": {
-                "src": "/images/source.webp",
-                "caption": "Source · public site",
-                "alt": "Source's public home page: AI solutions for smarter greenhouse cultivation, with photos of tomatoes on the vine"
-              }
+              "term": "Server rendering",
+              "body": "A Next.js application rendered on the server, with Nest.js behind it."
             },
             {
-              "id": "brightfunded",
-              "name": "BrightFunded",
-              "meta": "Dec 2024 – Mar 2026 · Prop trading",
-              "summary": "A prop trading firm. I was the only front-end developer on its client app and owned the UI end to end.",
-              "did": [
-                "About twelve screens, built and maintained by me.",
-                "The whole component library underneath them, in Angular.",
-                "The hardest part was the purchase flow, which is heavily customised."
-              ],
-              "tags": ["Angular", "RxJS", "Figma", "Framer"],
-              "shot": {
-                "src": "/images/brightfunded.webp",
-                "caption": "BrightFunded · public site",
-                "alt": "BrightFunded's public home page on a dark background: 'We fund traders up to 400K' above a Get Funded button and a row of trader payouts"
-              }
+              "term": "Technical SEO",
+              "body": "Meta tags, structured data and server-rendered markup, so the content can be indexed."
             },
             {
-              "id": "owow",
-              "name": "Owow",
-              "meta": "Apr – May 2026 · Digital agency",
-              "summary": "A digital agency. I spent two months building animation-heavy marketing sites with them.",
-              "did": [
-                "Motion built with GSAP.",
-                "Content edited through Payload CMS.",
-                "Next.js and Tailwind underneath."
-              ],
-              "tags": ["Next.js", "Payload CMS", "Tailwind", "GSAP"],
-              "shot": {
-                "src": "/images/owow.webp",
-                "caption": "Owow · public site",
-                "alt": "Owow's own site on black: selected work shown as large device mockups with project names and service tags"
-              }
+              "term": "Data",
+              "body": "GraphQL and REST APIs feeding the interface."
+            },
+            {
+              "term": "Deploys",
+              "body": "Vercel CI/CD that ships serverless functions on every merge to main."
+            },
+            {
+              "term": "Tests",
+              "body": "Playwright end-to-end tests on the critical user journeys, and Jest for unit tests."
             }
-          ]
+          ],
+          "tags": ["Next.js", "TypeScript", "Nest.js", "GraphQL", "Jest", "Playwright"]
         },
         {
-          "id": "libraries",
-          "type": "points",
-          "label": "Libraries",
-          "title": "Two component libraries, end to end.",
-          "intro": "Both times I built the whole library, not a few components inside someone else's.",
-          "points": [
+          "id": "brightfunded",
+          "type": "engagement",
+          "label": "BrightFunded",
+          "title": "The only front-end developer on a prop trading app",
+          "meta": "Dec 2024 – Mar 2026 · Prop trading · Front-end",
+          "lede": "BrightFunded is a prop trading firm that funds traders. For sixteen months I was the only front-end developer on its client app, and the UI was mine from end to end.",
+          "body": [
+            "The app has about twelve screens, all built and maintained by me. The hardest was the purchase flow, which is heavily customised. Because nobody else worked on the front end, the structure, the tests and the rules for working on it were mine to set up too."
+          ],
+          "shot": {
+            "src": "/images/brightfunded.webp",
+            "caption": "BrightFunded · public site",
+            "alt": "BrightFunded's public home page on a dark background: 'We fund traders up to 400K' above a Get Funded button and a row of trader payouts"
+          },
+          "built": [
             {
-              "term": "NQode internal tools",
-              "body": "The component library under the internal tools NQode builds for its own use."
+              "term": "Architecture",
+              "body": "A modular Angular and TypeScript structure, laid out so new features could be added without reworking the ones already there."
             },
             {
-              "term": "BrightFunded",
-              "body": "The component library under the client app's twelve or so screens, written in Angular."
+              "term": "Component library",
+              "body": "Around 35 components under every screen, which kept the interface consistent and made new screens quicker to build."
+            },
+            {
+              "term": "End-to-end tests",
+              "body": "There were none when I started. I added Playwright and brought coverage of the critical flows above 60%."
+            },
+            {
+              "term": "Ways of working",
+              "body": "Linting rules, a code review process and onboarding docs, so the next developer would not start from nothing."
             }
-          ]
+          ],
+          "tags": ["Angular", "RxJS", "TypeScript", "Playwright", "Figma"]
+        },
+        {
+          "id": "owow",
+          "type": "engagement",
+          "label": "Owow",
+          "title": "Marketing sites with a lot of motion",
+          "meta": "Apr – Jun 2026 · Digital agency · Front-end",
+          "lede": "Owow is a digital agency. My last stretch at NQode went to their marketing sites, built together with their designers.",
+          "body": [
+            "The sites are animation-heavy, with the motion written in GSAP. Content is managed in Payload CMS and rendered by Next.js, with Tailwind for the styling."
+          ],
+          "shot": {
+            "src": "/images/owow.webp",
+            "caption": "Owow · public site",
+            "alt": "Owow's own site on black: selected work shown as large device mockups with project names and service tags"
+          },
+          "built": [
+            {
+              "term": "Next.js and Payload",
+              "body": "A Next.js front end that reads its content from Payload CMS. I built it and then kept it running."
+            },
+            {
+              "term": "Layouts from Figma",
+              "body": "Responsive layouts in Tailwind, kept close to the Figma designs."
+            },
+            {
+              "term": "Working with design",
+              "body": "Regular back-and-forth with the designers, so what shipped matched what they drew and the components stayed consistent from page to page."
+            }
+          ],
+          "tags": ["Next.js", "Payload CMS", "Tailwind", "GSAP", "Figma"]
+        },
+        {
+          "id": "in-house",
+          "type": "engagement",
+          "label": "In-house",
+          "title": "A component library for NQode itself",
+          "lede": "Besides the client work, I built the component library under the internal tools NQode makes for its own use."
         }
       ]
     },
@@ -136,88 +226,106 @@
       "company": "EPAM Systems",
       "title": "Front-end Developer at EPAM Systems",
       "subtitle": "February 2022 – April 2024",
-      "excerpt": "Two years on one live product: Meridianbet, a sports betting and casino site. I worked across its Angular front end, from UI polish and the Win&Go casino game to live data arriving over WebSockets.",
+      "excerpt": "Two years on one live product: Meridianbet, a sports betting and casino site in more than 50 markets. I built betting features in Angular, standalone apps in React, the visuals for three casino games and admin tools for the client's executives.",
       "cta": "Read the EPAM story",
       "image": "/images/meridianbet.webp",
       "url": "epam",
       "spec": {
         "location": "Novi Sad, Serbia",
         "locationSub": "Remote / Hybrid",
-        "stack": ["Angular", "TypeScript", "RxJS", "NgRx", "Sass"]
+        "stack": ["Angular", "TypeScript", "React", "Sass", "Nest.js", "WebSockets"]
       },
       "hero": {
         "status": "Novi Sad · Remote / Hybrid",
         "period": "Feb 2022 – Apr 2024",
-        "highlights": [
-          "Live data over WebSockets",
-          "Win&Go casino game",
-          "One client, two years"
-        ],
+        "highlights": ["50+ markets", "Three casino games", "A 25-person team"],
         "index": [
           {
             "id": "product",
             "label": "The product",
-            "note": "One client, live the whole time"
+            "note": "Betting features, React apps and admin tools"
           },
           {
-            "id": "work",
-            "label": "The work",
-            "note": "From UI polish to the WebSocket feed"
+            "id": "games",
+            "label": "The games",
+            "note": "Three casino games, from Blender to WebSockets"
           },
           {
             "id": "team",
             "label": "The team",
-            "note": "Fourteen people, four of them in QA"
+            "note": "25 people, seven of them in QA"
           }
         ]
       },
       "sections": [
         {
           "id": "product",
-          "type": "prose",
+          "type": "engagement",
           "label": "The product",
-          "title": "One client, live the whole time.",
-          "lede": "Meridianbet was the only client I worked for at EPAM. Its sports betting and casino site stayed live while we shipped into it.",
+          "title": "A betting site that stayed live while we shipped into it",
+          "meta": "Meridianbet · Sports betting and casino · 50+ markets",
+          "lede": "Meridianbet was my only client at EPAM. Its sports betting and casino product runs in more than 50 markets, and it stayed live the whole time we were shipping into it.",
+          "body": [
+            "Most of my days went into the main Angular app. Alongside it I built smaller standalone apps in React, and the internal admin tools the client's executives used to manage users and read reports."
+          ],
           "shot": {
             "src": "/images/meridianbet.webp",
             "caption": "Meridianbet · home with live odds",
             "alt": "Meridianbet's home page: casino promotions across the top, featured matches with odds, a live football table, and the bet slip on the right"
-          }
+          },
+          "built": [
+            {
+              "term": "Betting features",
+              "body": "Interactive features in the Angular app, along with the everyday fixes that kept it moving."
+            },
+            {
+              "term": "Standalone apps",
+              "body": "Smaller apps built in React, separate from the main Angular codebase."
+            },
+            {
+              "term": "Admin platforms",
+              "body": "Internal tools for user management and reporting, used by the client's executive team."
+            }
+          ],
+          "tags": ["Angular", "TypeScript", "React", "Sass"]
         },
         {
-          "id": "work",
-          "type": "points",
-          "label": "The work",
-          "title": "I touched everything.",
-          "points": [
-            {
-              "term": "UI polish and features",
-              "body": "UI polish across the site, plus the everyday features and fixes that kept it moving."
-            },
-            {
-              "term": "Win&Go",
-              "body": "Front-end work on Win&Go, one of the site's casino games."
-            },
-            {
-              "term": "Real-time data",
-              "body": "Live data reached the UI over WebSockets. I worked on that path as well as on the screens it fed."
-            }
-          ]
+          "id": "games",
+          "type": "engagement",
+          "label": "The games",
+          "title": "Three casino games, from a Blender scene to a live bet",
+          "meta": "Visuals · Animation · Game logic · Real-time data",
+          "lede": "I owned the front-end visuals for three of the site's casino games: the art, the animation, the game logic in the browser, and the link to the game engine on the server.",
+          "body": [
+            "I made the assets in Blender and turned them into frame-by-frame CSS sprite animations. The game logic ran in plain JavaScript. Angular handled the ticket and bet data, and WebSockets carried real-time betting updates between the game and a C++ engine on the back end."
+          ],
+          "chain": {
+            "links": [
+              { "name": "Blender", "note": "Game assets, made and rendered out as frames." },
+              { "name": "CSS sprites", "note": "The frames played back as sprite animations." },
+              { "name": "JavaScript", "note": "The game logic, in the browser with no framework." },
+              { "name": "Angular", "note": "Ticket and bet data." },
+              { "name": "WebSockets", "note": "Real-time betting updates." },
+              { "name": "C++ engine", "note": "The game engine on the back end." }
+            ],
+            "caption": "One game, from the art to the engine. Everything but the engine itself was my work."
+          }
         },
         {
           "id": "team",
           "type": "team",
           "label": "The team",
-          "title": "Four testers for nine developers.",
+          "title": "A 25-person team with strict QA",
           "body": [
-            "A large QA team tested our work by hand and with automation. The checks were strict and the deadlines were tight."
+            "Designers handed us specs, product owners brought the business requirements, and the engineers turned both into shipped features. Seven QA engineers checked everything by hand and with automation. The checks were strict and the deadlines were tight."
           ],
           "groups": [
-            { "count": 9, "name": "Developers", "note": "Me among them." },
-            { "count": 4, "name": "QA", "note": "Manual and automated testing." },
+            { "count": 14, "name": "Full-stack engineers", "note": "Me among them, on the front end." },
+            { "count": 7, "name": "QA", "note": "Manual and automated testing." },
+            { "count": 3, "name": "Designers", "note": "The specs we built from." },
             { "count": 1, "name": "Project manager", "note": "Who I reported to." }
           ],
-          "total": 14,
+          "total": 25,
           "caption": "People on the team"
         }
       ]
@@ -227,7 +335,7 @@
       "company": "Codeplicity",
       "title": "Front-end Developer at Codeplicity",
       "subtitle": "February 2021 – February 2022",
-      "excerpt": "My first job: a seven-person agency in Novi Sad. I wrote JavaScript and Sass for client sites built on PHP templates.",
+      "excerpt": "My first job: a seven-person agency in Novi Sad. I wrote reusable JavaScript components and modular Sass for client sites built on PHP templates, and learned the work in code reviews and pair programming with the senior developers.",
       "cta": "Read the Codeplicity story",
       "image": "/images/codeplicity.webp",
       "url": "codeplicity",
@@ -239,28 +347,34 @@
       "hero": {
         "status": "Novi Sad · On-site",
         "period": "Feb 2021 – Feb 2022",
-        "highlights": ["First job", "Seven-person team"]
+        "highlights": ["First job", "Seven-person agency", "Sites from design to launch"]
       },
       "sections": [
         {
           "id": "first-job",
-          "type": "points",
+          "type": "engagement",
           "label": "First job",
-          "title": "Small team, client sites.",
-          "points": [
+          "title": "Client sites on PHP templates, with a small team",
+          "meta": "Seven people · One office · On-site",
+          "lede": "Everyone worked in one office, designers and back-end developers included. Client sites rendered on PHP, and my JavaScript and Sass went into those templates.",
+          "body": [
+            "Projects ran locally in Vagrant boxes that someone else set up. I worked next to the senior developers through code reviews and pair programming, and saw client sites through from design to launch with them."
+          ],
+          "built": [
             {
-              "term": "Seven people",
-              "body": "Everyone in one office, designers and back-end developers included."
+              "term": "Reusable components",
+              "body": "UI components in plain JavaScript, written to be carried from one client site to the next."
             },
             {
-              "term": "PHP templates",
-              "body": "Client sites rendered on PHP. My JavaScript and Sass went into those templates."
+              "term": "Modular Sass",
+              "body": "Styles organised as a modular Sass architecture."
             },
             {
-              "term": "Vagrant",
-              "body": "Projects ran locally in Vagrant boxes. I used them; someone else set them up."
+              "term": "Legacy code",
+              "body": "Older front-end code on client projects, refactored and brought up to date."
             }
-          ]
+          ],
+          "tags": ["JavaScript", "Sass", "HTML", "PHP"]
         }
       ]
     }
