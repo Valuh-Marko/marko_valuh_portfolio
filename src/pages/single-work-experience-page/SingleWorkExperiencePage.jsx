@@ -5,19 +5,17 @@ import { Button } from "../../components/button/Button";
 import { CaseHero } from "../single-project-page/components/CaseHero";
 import "../single-project-page/single-project-page.scss";
 import WithTransition from "../with-transition/WithTransition";
-import { ClientsSection } from "./components/ClientsSection";
+import { EngagementSection } from "./components/EngagementSection";
 import { Pager } from "./components/Pager";
-import { PointsSection } from "./components/PointsSection";
-import { ProseSection } from "./components/ProseSection";
+import { ProjectsSection } from "./components/ProjectsSection";
 import { TeamSection } from "./components/TeamSection";
 import "./single-work-experience-page.scss";
 
 // Each job lists its own sections in work_experience.json; the type picks
 // the component. Each id doubles as the anchor the hero's contents link to.
 const SECTION_TYPES = {
-  clients: ClientsSection,
-  points: PointsSection,
-  prose: ProseSection,
+  engagement: EngagementSection,
+  projects: ProjectsSection,
   team: TeamSection,
 };
 

@@ -104,7 +104,7 @@ Two structural neutrals, a narrow gray scale for hairlines and quiet text, and a
 **Character:** A heavy, confident display sans for anything meant to be felt (hero role, section titles) paired with an uppercase monospace for anything meant to be scanned (labels, tags, meta data) — the pairing itself does the work of separating "content" from "system chrome."
 
 ### Hierarchy
-- **Display** (700, `clamp(2.5rem, 3.4vw, 3rem)`, line-height 1.05, letter-spacing -0.02em): hero role line ("Frontend Engineer") only. Sized to sit as a calling card, not a masthead.
+- **Display** (700, `clamp(2.5rem, 3.4vw, 3rem)`, line-height 1.05, letter-spacing -0.02em): hero role line ("Software Engineer") only. Sized to sit as a calling card, not a masthead.
 - **Headline** (700, 3rem/`$font-h3`, line-height 1): section titles.
 - **Title** (500, 2rem/`$font-h5`, line-height 2rem): card titles.
 - **Body** (400, 1.25rem/`$font-lg`, line-height 1.45–1.5): hero intro sentence (max-width 30rem, `text-wrap: balance`) and longer-form copy.

@@ -13,7 +13,7 @@ const NAV_LINKS = [
   { label: "Projects", to: "/projects" },
 ];
 
-export const CV_FILE = "/files/Marko Valuh - Frontend Developer.pdf";
+export const CV_FILE = "/files/Marko Valuh CV.pdf";
 
 // The second tier under the destinations: same behaviour, a fraction of the
 // size. The arrow says what the link does: fetch a file or leave the site.

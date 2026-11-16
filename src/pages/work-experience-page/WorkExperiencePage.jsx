@@ -9,7 +9,7 @@ import "./work_experience.scss";
 const HERO = {
   title: "Work experience",
   excerpt:
-    "Front-end work since February 2021. A small agency first, then two years on a live betting product at EPAM, three clients through NQode, and now AxiomQ.",
+    "Building for the web since February 2021. A small agency first, then two years on a live betting product at EPAM, three clients through NQode, and now full-stack work at AxiomQ.",
 };
 
 export const WorkExperiencePage = WithTransition(({ setContentLoaded }) => {

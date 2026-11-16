@@ -73,7 +73,7 @@ export const HeroSection = () => {
           </RevealMask>
 
           <h1 className="c-hero__title">
-            <TextReveal text="Frontend Engineer" as="span" offset={4} />
+            <TextReveal text="Software Engineer" as="span" offset={4} />
           </h1>
 
           <p className="c-hero__intro">

@@ -4,28 +4,137 @@
 // Job pages are built from the case study's parts (single-project-page.scss).
 // Only the placements below are their own.
 
-.c-story__text {
+// The text column narrows at xl when a figure sits beside it, the same as
+// the case study's building section.
+.c-job__text {
   @include respond(md) {
     grid-column: 3 / span 7;
   }
+
+  &--beside {
+    @include respond(xl) {
+      grid-column: 3 / span 5;
+    }
+  }
 }
 
-.c-story__shot {
+.c-job__meta {
+  margin: 1.25rem 0 1.5rem 0;
+}
+
+// Screenshot and built list stack below xl, then sit side by side the way
+// the case study pairs its screenshot with the ledger.
+.c-job__shot {
+  @include respond(md) {
+    grid-column: 3 / -1;
+  }
+
+  @include respond(xl) {
+    grid-column: 3 / span 5;
+  }
+}
+
+.c-job__built {
+  @include flex-column();
+  gap: 1.25rem;
+  min-width: 0;
+
   @include respond(md) {
     grid-column: 3 / span 8;
   }
+
+  &--beside {
+    @include respond(md) {
+      grid-column: 3 / -1;
+    }
+
+    @include respond(xl) {
+      grid-column: 8 / -1;
+    }
+  }
 }
 
-// The hero's contents focus a seat after gliding to it; like the section
-// anchors, it takes no ring.
-.c-case .c-seat:focus {
-  outline: none;
+.c-built {
+  margin: 0;
 }
 
-.c-points--pair {
+.c-built__row {
+  display: grid;
+  gap: 0.375rem $spacing-2;
+  padding-block: 1rem;
+  border-top: 1px dashed $gray;
+
+  &:last-child {
+    border-bottom: 1px dashed $gray;
+  }
+
+  @include respond(sm) {
+    grid-template-columns: 11rem 1fr;
+  }
+
+  dt {
+    font-size: $font-md;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  dd {
+    max-width: 60ch;
+    margin: 0;
+    font-size: $font-sm;
+    line-height: 1.6;
+  }
+}
+
+// Projects under one heading: stacked, then two columns from lg, each
+// opened by a solid rule like the case study's notes.
+.c-job__projects {
+  display: grid;
+  gap: $spacing-5 $spacing-4;
+  min-width: 0;
+
+  @include respond(md) {
+    grid-column: 3 / -1;
+  }
+
   @include respond(lg) {
     grid-template-columns: 1fr 1fr;
   }
+}
+
+.c-job__project {
+  @include flex-column();
+  min-width: 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid $black;
+
+  .c-job__meta {
+    margin: 0.75rem 0 1.25rem 0;
+  }
+
+  // The columns are too narrow for the term beside its body.
+  .c-built__row {
+    grid-template-columns: 1fr;
+  }
+
+  > .c-tags {
+    margin-top: 1.25rem;
+  }
+}
+
+.c-job__project-name {
+  margin: 0;
+  font-size: $font-h5;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.c-job__project-summary {
+  max-width: 44ch;
+  margin: 0 0 1.5rem 0;
+  font-size: $font-lg;
+  line-height: 1.45;
+  text-wrap: pretty;
 }
 
 .c-story__missing {

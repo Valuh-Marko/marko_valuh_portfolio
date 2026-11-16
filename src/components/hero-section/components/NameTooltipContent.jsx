@@ -1,5 +1,5 @@
 // Role is left out on purpose: the tooltip opens right above the
-// "Frontend Engineer" headline, so it would say the same thing twice.
+// "Software Engineer" headline, so it would say the same thing twice.
 const META = [
   { label: "Based in", value: "Novi Sad, Serbia" },
   { label: "Experience", value: "5+ years" },
